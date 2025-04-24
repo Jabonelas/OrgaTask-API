@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BlazorAPI</name>
+    </assembly>
+    <members>
+        <member name="M:BlazorAPI.Controllers.UsuarioController.Cadastrar(BlazorAPI.DTOs.UsuarioCadastrarDTO)">
+             <summary>
+             Cadastra um novo usuário no sistema
+             </summary>
+             <remarks>
+             Exemplo de requisição:
+            
+                 POST /usuarios
+                 {
+                    "nome": "João Silva",
+                    "login": "joao",
+                    "senha": "SuaSenhaForte@123",
+                 }
+            
+             Exemplo de resposta de sucesso:
+            
+                 {
+                    "message": "Usuário cadastrado com sucesso!"
+                 }
+            
+             </remarks>
+             <param name="_dadosUsuarioCadastro">DTO com os dados necessários para cadastro</param>
+             <returns>Mensagem de sucesso ou erro detalhado</returns>
+             <response code="201">Usuário cadastrado com sucesso</response>
+             <response code="400">Se os dados forem inválidos</response>
+             <response code="409">Se houver conflito na operação (ex: Login já cadastrado)</response>
+             <response code="500">Erro interno no servidor</response>
+        </member>
+    </members>
+</doc>

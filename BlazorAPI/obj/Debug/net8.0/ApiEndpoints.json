@@ -1,0 +1,55 @@
+[
+  {
+    "ContainingType": "BlazorAPI.Controllers.UsuarioController",
+    "Method": "Cadastrar",
+    "RelativePath": "Usuario/cadastrar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "_dadosCadastroUsuario",
+        "Type": "BlazorAPI.DTOs.UsuarioCadastrarDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BlazorAPI.DTOs.UsuarioCadastrarDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 201
+      },
+      {
+        "Type": "BlazorAPI.Responses.ErrorResponse400",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "BlazorAPI.Responses.ErrorResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 409
+      },
+      {
+        "Type": "BlazorAPI.Responses.ErrorResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 500
+      }
+    ]
+  }
+]
