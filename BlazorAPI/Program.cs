@@ -1,4 +1,5 @@
 using BlazorAPI.Extensions;
+using BlazorAPI.Interfaces.Autenticacao;
 using BlazorAPI.Interfaces.Repository;
 using BlazorAPI.Interfaces.Service;
 using BlazorAPI.Models;
@@ -22,6 +23,17 @@ namespace BlazorAPI
                 options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            //Permitir interacao com a aplicacao blazor
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("PermitirBlazor", policy =>
+                {
+                    policy.WithOrigins("https://localhost:7170") // Porta do seu app Blazor
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
+            });
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -31,10 +43,23 @@ namespace BlazorAPI
             builder.Services.AddScoped<IUsuarioService, UsuarioService>();
             builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
+            //Usuario
+            builder.Services.AddScoped<ITarefaService, TarefaService>();
+            builder.Services.AddScoped<ITarefaRepository, TarefaRepository>();
+
+            //Autenticacao
+            builder.Services.AddScoped<IAutenticacao, AutenticacaoService>();
+
             //Swagger
             builder.Services.AdicionarConfiguracaoSwagger();
 
+            //JWT
+            builder.Services.AdicionarConfiguracaoJwtEF(builder.Configuration);
+
             var app = builder.Build();
+
+            //Permitir interacao com a aplicacao blazor
+            app.UseCors("PermitirBlazor");
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

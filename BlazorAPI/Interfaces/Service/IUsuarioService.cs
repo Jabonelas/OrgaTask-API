@@ -1,4 +1,5 @@
 ﻿using BlazorAPI.DTOs;
+using BlazorAPI.DTOs.Usuario;
 
 namespace BlazorAPI.Interfaces.Service
 {
@@ -7,6 +8,8 @@ namespace BlazorAPI.Interfaces.Service
         Task CadastrarUsuarioAsync(UsuarioCadastrarDTO _dadosCadastroUsuario);
 
         Task<bool> LoginExisteAsync(string _login);
+
+        Task<int> BuscarIdUsuarioAsync(string _login);
 
         Task LoginSenhaValidosAsync(UsuarioLoginDTO _dadosLogin);
 

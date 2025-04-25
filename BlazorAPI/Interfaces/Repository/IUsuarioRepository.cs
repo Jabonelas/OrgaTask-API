@@ -9,6 +9,8 @@ namespace BlazorAPI.Interfaces.Repository
 
         Task<bool> LoginExisteAsync(string _login);
 
+        Task<int> BuscarIdUsuarioAsync(string _login);
+
         Task<bool> LoginSenhaValidosAsync(TbUsuario _dadosUsuarioLogin);
     }
 }

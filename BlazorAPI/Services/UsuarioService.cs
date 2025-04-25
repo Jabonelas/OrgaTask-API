@@ -1,4 +1,5 @@
 ﻿using BlazorAPI.DTOs;
+using BlazorAPI.DTOs.Usuario;
 using BlazorAPI.Interfaces.Autenticacao;
 using BlazorAPI.Interfaces.Repository;
 using BlazorAPI.Interfaces.Service;
@@ -72,10 +73,15 @@ namespace BlazorAPI.Services
         {
             TbUsuario usuarioLogin = MapearParaUsuarioLogin(_dadosUsuarioLogin);
 
-            if (await iUsuarioRepository.LoginSenhaValidosAsync(usuarioLogin))
+            if (!await iUsuarioRepository.LoginSenhaValidosAsync(usuarioLogin))
             {
                 throw new UnauthorizedAccessException("Falha na autenticação: credenciais inválidas.");
             }
+        }
+
+        public async Task<int> BuscarIdUsuarioAsync(string _login)
+        {
+            return await iUsuarioRepository.BuscarIdUsuarioAsync(_login);
         }
 
         private TbUsuario MapearParaUsuarioLogin(UsuarioLoginDTO _dadosUsuarioLogin)

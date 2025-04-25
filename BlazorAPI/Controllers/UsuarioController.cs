@@ -1,4 +1,5 @@
 ﻿using BlazorAPI.DTOs;
+using BlazorAPI.DTOs.Usuario;
 using BlazorAPI.Interfaces.Service;
 using BlazorAPI.Models;
 using BlazorAPI.Responses;
@@ -104,6 +105,8 @@ namespace BlazorAPI.Controllers
                 await iUsuarioService.LoginSenhaValidosAsync(_usuarioDadosLogin);
 
                 UserToken token = await iUsuarioService.GerarTorkenAsync(_usuarioDadosLogin);
+
+                token.idUsuario = await iUsuarioService.BuscarIdUsuarioAsync(_usuarioDadosLogin.login);
 
                 return token;
             }

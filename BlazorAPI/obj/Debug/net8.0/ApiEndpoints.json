@@ -1,5 +1,205 @@
 [
   {
+    "ContainingType": "BlazorAPI.Controllers.TarefaController",
+    "Method": "CadastrarTarefa",
+    "RelativePath": "Tarefa/{_idUsuario}/cadastrar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "_idUsuario",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "_dadosTarefaCadastro",
+        "Type": "BlazorAPI.DTOs.Tarefa.TarefaCadastrarDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[BlazorAPI.DTOs.Tarefa.TarefaCadastrarDTO, BlazorAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 201
+      },
+      {
+        "Type": "BlazorAPI.Responses.ErrorResponse400",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "BlazorAPI.Responses.ErrorResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
+      },
+      {
+        "Type": "BlazorAPI.Responses.ErrorResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      },
+      {
+        "Type": "BlazorAPI.Responses.ErrorResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 422
+      },
+      {
+        "Type": "BlazorAPI.Responses.ErrorResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "BlazorAPI.Controllers.TarefaController",
+    "Method": "ListaTarefas",
+    "RelativePath": "Tarefa/{_idUsuario}/lista",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "_idUsuario",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[BlazorAPI.DTOs.Tarefa.TarefaConsultaDTO, BlazorAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "BlazorAPI.Responses.ErrorResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
+      },
+      {
+        "Type": "BlazorAPI.Responses.ErrorResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      },
+      {
+        "Type": "BlazorAPI.Responses.ErrorResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "BlazorAPI.Controllers.TarefaController",
+    "Method": "AlterarTarefa",
+    "RelativePath": "Tarefa/alterar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "_dadosTarefaCadastro",
+        "Type": "BlazorAPI.DTOs.Tarefa.TarefaCadastrarDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[BlazorAPI.DTOs.Tarefa.TarefaCadastrarDTO, BlazorAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 201
+      },
+      {
+        "Type": "BlazorAPI.Responses.ErrorResponse400",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "BlazorAPI.Responses.ErrorResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
+      },
+      {
+        "Type": "BlazorAPI.Responses.ErrorResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      },
+      {
+        "Type": "BlazorAPI.Responses.ErrorResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 422
+      },
+      {
+        "Type": "BlazorAPI.Responses.ErrorResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
     "ContainingType": "BlazorAPI.Controllers.UsuarioController",
     "Method": "Cadastrar",
     "RelativePath": "Usuario/cadastrar",
@@ -9,13 +209,13 @@
     "Parameters": [
       {
         "Name": "_dadosCadastroUsuario",
-        "Type": "BlazorAPI.DTOs.UsuarioCadastrarDTO",
+        "Type": "BlazorAPI.DTOs.Usuario.UsuarioCadastrarDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "BlazorAPI.DTOs.UsuarioCadastrarDTO",
+        "Type": "BlazorAPI.DTOs.Usuario.UsuarioCadastrarDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -40,6 +240,59 @@
           "text/json"
         ],
         "StatusCode": 409
+      },
+      {
+        "Type": "BlazorAPI.Responses.ErrorResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "BlazorAPI.Controllers.UsuarioController",
+    "Method": "UsuarioLogin",
+    "RelativePath": "Usuario/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "_usuarioDadosLogin",
+        "Type": "BlazorAPI.DTOs.Usuario.UsuarioLoginDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BlazorAPI.DTOs.Usuario.UsuarioLoginDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "BlazorAPI.Responses.ErrorResponse400",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "BlazorAPI.Responses.ErrorResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
       },
       {
         "Type": "BlazorAPI.Responses.ErrorResponse",

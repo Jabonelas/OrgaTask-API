@@ -1,6 +1,6 @@
-﻿using BlazorAPI.DTOs;
-using BlazorAPI.Interfaces.Repository;
+﻿using BlazorAPI.Interfaces.Repository;
 using BlazorAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlazorAPI.Repository
 {
@@ -22,12 +22,20 @@ namespace BlazorAPI.Repository
 
         public async Task<bool> LoginExisteAsync(string _login)
         {
-            return context.TbUsuarios.Any(x => x.UsLogin == _login);
+            return await context.TbUsuarios.AnyAsync(x => x.UsLogin == _login);
+        }
+
+        public async Task<int> BuscarIdUsuarioAsync(string _login)
+        {
+            return await context.TbUsuarios
+            .Where(x => x.UsLogin == _login)
+            .Select(x => x.IdUsuario)
+            .FirstOrDefaultAsync();
         }
 
         public async Task<bool> LoginSenhaValidosAsync(TbUsuario _dadosUsuarioLogin)
         {
-            return context.TbUsuarios.Any(x => x.UsLogin == _dadosUsuarioLogin.UsLogin && x.UsSenha == _dadosUsuarioLogin.UsSenha);
+            return await context.TbUsuarios.AnyAsync(x => x.UsLogin == _dadosUsuarioLogin.UsLogin && x.UsSenha == _dadosUsuarioLogin.UsSenha);
         }
     }
 }

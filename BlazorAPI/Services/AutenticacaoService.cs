@@ -28,7 +28,8 @@ namespace BlazorAPI.Services
 
             var credenciais = new SigningCredentials(chavePrivada, SecurityAlgorithms.HmacSha256);
 
-            var expiracao = DateTime.UtcNow.AddMinutes(10);
+            var expiracao = DateTime.UtcNow.AddSeconds(30);
+            //var expiracao = DateTime.UtcNow.AddMinutes(10);
 
             JwtSecurityToken token = new JwtSecurityToken(
 
