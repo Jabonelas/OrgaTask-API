@@ -104,9 +104,9 @@ namespace BlazorAPI.Controllers
             {
                 await iUsuarioService.LoginSenhaValidosAsync(_usuarioDadosLogin);
 
-                UserToken token = await iUsuarioService.GerarTorkenAsync(_usuarioDadosLogin);
+                var idUsuario = await iUsuarioService.BuscarIdUsuarioAsync(_usuarioDadosLogin.login);
 
-                token.idUsuario = await iUsuarioService.BuscarIdUsuarioAsync(_usuarioDadosLogin.login);
+                UserToken token = await iUsuarioService.GerarTorkenAsync(idUsuario, _usuarioDadosLogin);
 
                 return token;
             }

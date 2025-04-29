@@ -7,8 +7,12 @@ namespace BlazorAPI.Interfaces.Service
     {
         Task CadastrarTarefaAsync(int _idUsuario, TarefaCadastrarDTO _dadosTarefaCadastro);
 
-        Task AlterarTarefaAsync(TarefaCadastrarDTO _dadosTarefaCadastro);
+        Task AlterarTarefaAsync(TarefaCadastrarDTO _dadosTarefaCadastro, int _idUsuario);
+
+        Task DeletarTarefaAsync(int _idTarefa, int _idUsuario);
 
         Task<List<TarefaConsultaDTO>> ListaTarefasIdAsync(int _idUsuario);
+
+        Task<TarefaCadastrarDTO> BuscarTarefaAsync(int _idTarefa, int _idUsuario);
     }
 }

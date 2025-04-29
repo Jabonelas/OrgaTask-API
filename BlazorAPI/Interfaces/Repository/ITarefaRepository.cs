@@ -9,6 +9,12 @@ namespace BlazorAPI.Interfaces.Repository
 
         Task AlterarTarefaAsync(TbTarefa _dadosTarefa);
 
+        Task DeletarTarefaAsync(int _idTarefa);
+
+        Task<bool> TarefaPertenceUsuarioAsync(int _idTarefa, int _idUsuario);
+
+        Task<TbTarefa> BuscarTarefaAsync(int _idTarefa);
+
         Task<List<TbTarefa>> ListaTarefasIdAsync(int _idUsuario);
     }
 }

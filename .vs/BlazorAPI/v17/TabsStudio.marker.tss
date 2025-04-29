@@ -2,6 +2,18 @@
 <ArrayOfTabHighlightState xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <TabHighlightState>
     <extensions>
+      <string>BlazorAPI\Services\TarefaService.cs</string>
+    </extensions>
+    <highlightIndex>1</highlightIndex>
+  </TabHighlightState>
+  <TabHighlightState>
+    <extensions>
+      <string>BlazorAPI\Repository\TarefaRepository.cs</string>
+    </extensions>
+    <highlightIndex>1</highlightIndex>
+  </TabHighlightState>
+  <TabHighlightState>
+    <extensions>
       <string>BlazorAPI\Interfaces\Repository\ITarefaRepository.cs</string>
     </extensions>
     <highlightIndex>1</highlightIndex>
@@ -20,14 +32,8 @@
   </TabHighlightState>
   <TabHighlightState>
     <extensions>
-      <string>BlazorAPI\Repository\TarefaRepository.cs</string>
+      <string>BlazorAPI\Services\AutenticacaoService.cs</string>
     </extensions>
-    <highlightIndex>1</highlightIndex>
-  </TabHighlightState>
-  <TabHighlightState>
-    <extensions>
-      <string>BlazorAPI\Services\TarefaService.cs</string>
-    </extensions>
-    <highlightIndex>1</highlightIndex>
+    <highlightIndex>3</highlightIndex>
   </TabHighlightState>
 </ArrayOfTabHighlightState>

@@ -21,13 +21,44 @@ namespace BlazorAPI.Repository
 
         public async Task AlterarTarefaAsync(TbTarefa _dadosTarefa)
         {
-            context.TbTarefas.Update(_dadosTarefa);
+            TbTarefa tarefa = await context.TbTarefas.FirstOrDefaultAsync(x => x.IdTarefa == _dadosTarefa.IdTarefa);
+
+            tarefa.TaTitulo = _dadosTarefa.TaTitulo;
+            tarefa.TaDescricao = _dadosTarefa.TaDescricao;
+            tarefa.TaPrazo = _dadosTarefa.TaPrazo;
+            tarefa.TaPrioridade = _dadosTarefa.TaPrioridade;
+            tarefa.TaStatus = _dadosTarefa.TaStatus;
+
             await context.SaveChangesAsync();
+        }
+
+        public async Task<bool> TarefaPertenceUsuarioAsync(int _idTarefa, int _idUsuario)
+        {
+            return await context.TbTarefas.AnyAsync(x => x.IdTarefa == _idTarefa && x.FkUsuario == _idUsuario);
+        }
+
+        public async Task DeletarTarefaAsync(int _idTarefa)
+        {
+            TbTarefa tarefa = await BuscarTarefaAsync(_idTarefa);
+
+            if (tarefa != null)
+            {
+                context.TbTarefas.Remove(tarefa);
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<TbTarefa> BuscarTarefaAsync(int _idTarefa)
+        {
+            return await context.TbTarefas.FirstOrDefaultAsync(x => x.IdTarefa == _idTarefa);
         }
 
         public async Task<List<TbTarefa>> ListaTarefasIdAsync(int _idUsuario)
         {
-            List<TbTarefa> listaTarefa = await context.TbTarefas.Where(x => x.FkUsuario == _idUsuario).ToListAsync();
+            List<TbTarefa> listaTarefa = await context.TbTarefas
+     .Where(x => x.FkUsuario == _idUsuario)
+     .OrderByDescending(x => x.IdTarefa)
+     .ToListAsync();
 
             return listaTarefa;
         }

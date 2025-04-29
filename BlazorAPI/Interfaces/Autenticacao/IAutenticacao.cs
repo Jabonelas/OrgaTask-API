@@ -2,6 +2,6 @@
 {
     public interface IAutenticacao
     {
-        public string GenerateToken(string _email, string _senha);
+        public string GenerateToken(int _idUsuario, string _email);
     }
 }

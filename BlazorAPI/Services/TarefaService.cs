@@ -21,22 +21,45 @@ namespace BlazorAPI.Services
 
         public async Task CadastrarTarefaAsync(int _idUsuario, TarefaCadastrarDTO _dadosTarefaCadastro)
         {
-            TbTarefa tarefa = MapearParaUsuario(_idUsuario, _dadosTarefaCadastro);
+            TbTarefa tarefa = MapearParaTarefaFK(_idUsuario, _dadosTarefaCadastro);
 
             await iTarefaRepository.CadastrarTarefaAsync(tarefa);
         }
 
-        public async Task AlterarTarefaAsync(TarefaCadastrarDTO _dadosTarefaCadastro)
+        public async Task DeletarTarefaAsync(int _idTarefa, int _idUsuario)
         {
-            TbTarefa tarefa = MapearParaUsuario(_dadosTarefaCadastro);
+            if (!await TarefaPertenceUsuarioAsync(_idTarefa, _idUsuario))
+            {
+                throw new UnauthorizedAccessException("Operação não autorizada: a tarefa não pertence ao usuário atual.");
+            }
+
+            await iTarefaRepository.DeletarTarefaAsync(_idTarefa);
+        }
+
+        public async Task AlterarTarefaAsync(TarefaCadastrarDTO _dadosTarefaCadastro, int _idUsuario)
+        {
+            if (!await TarefaPertenceUsuarioAsync(_dadosTarefaCadastro.id, _idUsuario))
+            {
+                throw new UnauthorizedAccessException("Operação não autorizada: a tarefa não pertence ao usuário atual.");
+            }
+
+            TbTarefa tarefa = MapearParaTarefa(_dadosTarefaCadastro);
 
             await iTarefaRepository.AlterarTarefaAsync(tarefa);
         }
 
-        private TbTarefa MapearParaUsuario(TarefaCadastrarDTO _dadosTarefaCadastro)
+        private async Task<bool> TarefaPertenceUsuarioAsync(int _idTarefa, int _idUsuario)
+        {
+            return await iTarefaRepository.TarefaPertenceUsuarioAsync(_idTarefa, _idUsuario);
+        }
+
+        #region Mapear Tarefas
+
+        private TbTarefa MapearParaTarefa(TarefaCadastrarDTO _dadosTarefaCadastro)
         {
             TbTarefa tarefa = new TbTarefa
             {
+                IdTarefa = _dadosTarefaCadastro.id,
                 TaTitulo = _dadosTarefaCadastro.titulo,
                 TaDescricao = _dadosTarefaCadastro.descricao,
                 TaPrioridade = _dadosTarefaCadastro.prioridade,
@@ -48,7 +71,7 @@ namespace BlazorAPI.Services
             return tarefa;
         }
 
-        private TbTarefa MapearParaUsuario(int _idUsuario, TarefaCadastrarDTO _dadosTarefaCadastro)
+        private TbTarefa MapearParaTarefaFK(int _idUsuario, TarefaCadastrarDTO _dadosTarefaCadastro)
         {
             TbTarefa tarefa = new TbTarefa
             {
@@ -64,21 +87,7 @@ namespace BlazorAPI.Services
             return tarefa;
         }
 
-        public async Task<List<TarefaConsultaDTO>> ListaTarefasIdAsync(int _idUsuario)
-        {
-            List<TbTarefa> listaTarefas = await iTarefaRepository.ListaTarefasIdAsync(_idUsuario);
-
-            if (listaTarefas.Count == 0)
-            {
-                throw new KeyNotFoundException($"Não foi encontrado tarefas cadastrados.");
-            }
-
-            List<TarefaConsultaDTO> listaConsultaTarefa = MapearParaUsuario(listaTarefas);
-
-            return listaConsultaTarefa;
-        }
-
-        private List<TarefaConsultaDTO> MapearParaUsuario(List<TbTarefa> _listaTarefas)
+        private List<TarefaConsultaDTO> MapearParaListaTarefas(List<TbTarefa> _listaTarefas)
         {
             List<TarefaConsultaDTO> listaConsultaTarefa = new List<TarefaConsultaDTO>();
 
@@ -97,6 +106,56 @@ namespace BlazorAPI.Services
             }
 
             return listaConsultaTarefa;
+        }
+
+        private TarefaCadastrarDTO MapearParaCadastroTarefaDTO(TbTarefa _dadosTarefaCadastro)
+        {
+            if (_dadosTarefaCadastro == null)
+            {
+                return null;
+            }
+
+            TarefaCadastrarDTO tarefa = new TarefaCadastrarDTO
+            {
+                id = _dadosTarefaCadastro.IdTarefa,
+                titulo = _dadosTarefaCadastro.TaTitulo,
+                descricao = _dadosTarefaCadastro.TaDescricao,
+                prioridade = _dadosTarefaCadastro.TaPrioridade,
+                prazo = _dadosTarefaCadastro.TaPrazo,
+                status = _dadosTarefaCadastro.TaStatus,
+            };
+
+            return tarefa;
+        }
+
+        #endregion Mapear Tarefas
+
+        public async Task<List<TarefaConsultaDTO>> ListaTarefasIdAsync(int _idUsuario)
+        {
+            List<TbTarefa> listaTarefas = await iTarefaRepository.ListaTarefasIdAsync(_idUsuario);
+
+            if (listaTarefas.Count == 0)
+            {
+                throw new KeyNotFoundException($"Não foi encontrado tarefas cadastrados.");
+            }
+
+            List<TarefaConsultaDTO> listaConsultaTarefa = MapearParaListaTarefas(listaTarefas);
+
+            return listaConsultaTarefa;
+        }
+
+        public async Task<TarefaCadastrarDTO> BuscarTarefaAsync(int _idTarefa, int _idUsuario)
+        {
+            if (!await TarefaPertenceUsuarioAsync(_idTarefa, _idUsuario))
+            {
+                throw new UnauthorizedAccessException("Operação não autorizada: a tarefa não pertence ao usuário atual.");
+            }
+
+            TbTarefa tarefa = await iTarefaRepository.BuscarTarefaAsync(_idTarefa);
+
+            TarefaCadastrarDTO tarefaCadastrarDTO = MapearParaCadastroTarefaDTO(tarefa);
+
+            return tarefaCadastrarDTO;
         }
     }
 }
