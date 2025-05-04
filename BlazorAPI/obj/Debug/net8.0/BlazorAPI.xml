@@ -93,7 +93,7 @@
         </member>
         <member name="M:BlazorAPI.Controllers.TarefaController.ListaTarefas">
              <summary>
-             Lista todas as tarefas de um usuário específico
+             Lista todas as tarefas do usuário autenticado
              </summary>
              <remarks>
              Requer autenticação via JWT.
@@ -106,23 +106,74 @@
             
                  [
                     {
-                       "id": 1,
-                       "titulo": "Implementar API",
-                       "descricao": "Desenvolver endpoints da aplicação",
-                       "status": "concluído"
+                      "id": 1,
+                      "titulo": "Implementar API",
+                      "descricao": "Desenvolver endpoints da aplicação",
+                      "prioridade": "Alta",
+                      "prazo": 5,
+                      "status": "Em Progresso",
+                      "data": "2023-10-25T00:00:00"
                     },
                     {
-                       "id": 2,
-                       "titulo": "Criar documentação",
-                       "descricao": "Documentar endpoints no Swagger",
-                       "status": "pendente"
+                      "id": 2,
+                      "titulo": "Criar documentação",
+                      "descricao": "Documentar endpoints no Swagger",
+                      "prioridade": "Média",
+                      "prazo": 3,
+                      "status": "Pendente",
+                      "data": "2023-10-26T00:00:00"
                     }
                  ]
-            
              </remarks>
-             <param name="_idUsuario">ID do usuário (número inteiro positivo)</param>
              <returns>Lista de tarefas do usuário no formato JSON</returns>
              <response code="200">Retorna a lista de tarefas do usuário</response>
+             <response code="401">Acesso não autorizado (token inválido ou ausente)</response>
+             <response code="404">Nenhuma tarefa encontrada para o usuário</response>
+             <response code="500">Erro interno no servidor</response>
+        </member>
+        <member name="M:BlazorAPI.Controllers.TarefaController.ListaTarefasPaginadasAsync(System.Int32,System.Int32)">
+             <summary>
+             Lista tarefas de um usuário com paginação
+             </summary>
+             <remarks>
+             Requer autenticação via JWT.
+            
+             Exemplo de requisição:
+            
+                 GET /tarefa/lista-paginada?pageNumber=1&amp;pageSize=10
+            
+             Exemplo de resposta de sucesso:
+            
+                 {
+                     "items": [
+                        {
+                           "id": 1,
+                           "titulo": "Implementar API",
+                           "descricao": "Desenvolver endpoints da aplicação",
+                           "prioridade": "Alta",
+                           "prazo": 5,
+                           "status": "Em Progresso",
+                           "data": "2023-10-25T00:00:00"
+                        },
+                        {
+                           "id": 2,
+                           "titulo": "Criar documentação",
+                           "descricao": "Documentar endpoints no Swagger",
+                           "prioridade": "Média",
+                           "prazo": 3,
+                           "status": "Pendente",
+                           "data": "2023-10-26T00:00:00"
+                        }
+                     ],
+                     "totalCount": 15
+                 }
+            
+             </remarks>
+             <param name="pageNumber">Número da página (inicia em 1)</param>
+             <param name="pageSize">Quantidade de itens por página (máximo 50)</param>
+             <returns>Dados paginados das tarefas do usuário</returns>
+             <response code="200">Retorna a lista paginada de tarefas</response>
+             <response code="400">Parâmetros inválidos (valores negativos ou pageSize muito grande)</response>
              <response code="401">Acesso não autorizado (token inválido ou ausente)</response>
              <response code="404">Se o usuário não for encontrado</response>
              <response code="500">Erro interno no servidor</response>

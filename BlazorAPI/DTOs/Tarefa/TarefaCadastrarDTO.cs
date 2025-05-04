@@ -19,6 +19,7 @@ namespace BlazorAPI.DTOs.Tarefa
         public string prioridade { get; set; }
 
         [Required(ErrorMessage = "O prazo é obrigatório!")]
+        [Range(1, int.MaxValue)]
         public int prazo { get; set; }
 
         [Required(ErrorMessage = "O status é obrigatório!")]

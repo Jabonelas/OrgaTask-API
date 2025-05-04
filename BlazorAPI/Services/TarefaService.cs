@@ -1,9 +1,13 @@
-﻿using BlazorAPI.DTOs.Tarefa;
+﻿using BlazorAPI.DTOs;
+using BlazorAPI.DTOs.Tarefa;
 using BlazorAPI.DTOs.Usuario;
 using BlazorAPI.Interfaces.Autenticacao;
 using BlazorAPI.Interfaces.Repository;
 using BlazorAPI.Interfaces.Service;
 using BlazorAPI.Models;
+using BlazorAPI.Responses;
+using Microsoft.AspNetCore.Mvc;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace BlazorAPI.Services
 {
@@ -128,6 +132,27 @@ namespace BlazorAPI.Services
             return tarefa;
         }
 
+        private PagedResult<TarefaConsultaDTO> MapearTarefaPaginacao((List<TbTarefa> Items, int TotalCount) _listaTarefa)
+        {
+            var result = new PagedResult<TarefaConsultaDTO>
+            {
+                Items = _listaTarefa.Items.Select(t => new TarefaConsultaDTO
+                {
+                    id = t.IdTarefa,
+                    titulo = t.TaTitulo,
+                    descricao = t.TaDescricao,
+                    prioridade = t.TaPrioridade,
+                    prazo = t.TaPrazo,
+                    status = t.TaStatus,
+                    data = t.TaData,
+                }).ToList(),
+
+                TotalCount = _listaTarefa.TotalCount,
+            };
+
+            return result;
+        }
+
         #endregion Mapear Tarefas
 
         public async Task<List<TarefaConsultaDTO>> ListaTarefasIdAsync(int _idUsuario)
@@ -136,12 +161,24 @@ namespace BlazorAPI.Services
 
             if (listaTarefas.Count == 0)
             {
-                throw new KeyNotFoundException($"Não foi encontrado tarefas cadastrados.");
+                throw new KeyNotFoundException($"Nenhuma tarefa encontrada para o usuário ID {_idUsuario}");
             }
 
             List<TarefaConsultaDTO> listaConsultaTarefa = MapearParaListaTarefas(listaTarefas);
 
             return listaConsultaTarefa;
+        }
+
+        public async Task<PagedResult<TarefaConsultaDTO>> ListaTarefasPaginadasAsync(int _idUsuario, int _pageNumber, int _pageSize)
+        {
+            (List<TbTarefa> Items, int TotalCount) listaTarefa = await iTarefaRepository.ListaTarefasPaginadasAsync(_idUsuario, _pageNumber, _pageSize);
+
+            if (listaTarefa.TotalCount == 0)
+            {
+                throw new KeyNotFoundException($"Nenhuma tarefa encontrada para o usuário ID {_idUsuario}");
+            }
+
+            return MapearTarefaPaginacao(listaTarefa);
         }
 
         public async Task<TarefaCadastrarDTO> BuscarTarefaAsync(int _idTarefa, int _idUsuario)

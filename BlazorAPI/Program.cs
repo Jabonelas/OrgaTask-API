@@ -6,6 +6,7 @@ using BlazorAPI.Models;
 using BlazorAPI.Repository;
 using BlazorAPI.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.RateLimiting;
 
 namespace BlazorAPI
 {
@@ -23,15 +24,44 @@ namespace BlazorAPI
                 options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            //Pegando o link na appsettings
+            var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>();
+
             //Permitir interacao com a aplicacao blazor
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("PermitirBlazor", policy =>
                 {
-                    policy.WithOrigins("https://localhost:7170") // Porta do seu app Blazor
+                    policy.WithOrigins(allowedOrigins) // Porta do seu app Blazor
                           .AllowAnyHeader()
                           .AllowAnyMethod();
                 });
+            });
+
+            ////Permitir interacao com a aplicacao blazor
+            //builder.Services.AddCors(options =>
+            //{
+            //    options.AddPolicy("PermitirBlazor", policy =>
+            //    {
+            //        policy.WithOrigins("https://localhost:7170") // Porta do seu app Blazor
+            //              .AllowAnyHeader()
+            //              .AllowAnyMethod();
+            //    });
+            //});
+
+            //Limitação de Taxa (Rate Limiting)
+            builder.Services.AddRateLimiter(options =>
+            {
+                options.AddPolicy("ApiPolicy", context =>
+                    RateLimitPartition.GetFixedWindowLimiter(
+                        partitionKey: context.Connection.RemoteIpAddress?.ToString(),
+                        factory: partition => new FixedWindowRateLimiterOptions
+                        {
+                            PermitLimit = 50, // 50 requisições
+                            Window = TimeSpan.FromMinutes(1), // por minuto
+                            QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                            QueueLimit = 10
+                        }));
             });
 
             builder.Services.AddControllers();

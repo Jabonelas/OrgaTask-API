@@ -1,9 +1,12 @@
-﻿using BlazorAPI.DTOs.Tarefa;
+﻿using BlazorAPI.DTOs;
+using BlazorAPI.DTOs.Tarefa;
 using BlazorAPI.Interfaces.Service;
+using BlazorAPI.Models;
 using BlazorAPI.Responses;
 using BlazorAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlazorAPI.Controllers
 {
@@ -14,9 +17,12 @@ namespace BlazorAPI.Controllers
     {
         private readonly ITarefaService iTarefaService;
 
-        public TarefaController(ITarefaService _iTarefaService)
+        private readonly BlazorAPIBancodbContext context; // Renomeie para seu contexto real
+
+        public TarefaController(ITarefaService _iTarefaService, BlazorAPIBancodbContext _context)
         {
             iTarefaService = _iTarefaService;
+            context = _context ?? throw new ArgumentNullException(nameof(_context));
         }
 
         /// <summary>
@@ -205,7 +211,7 @@ namespace BlazorAPI.Controllers
         }
 
         /// <summary>
-        /// Lista todas as tarefas de um usuário específico
+        /// Lista todas as tarefas do usuário autenticado
         /// </summary>
         /// <remarks>
         /// Requer autenticação via JWT.
@@ -218,25 +224,29 @@ namespace BlazorAPI.Controllers
         ///
         ///     [
         ///        {
-        ///           "id": 1,
-        ///           "titulo": "Implementar API",
-        ///           "descricao": "Desenvolver endpoints da aplicação",
-        ///           "status": "concluído"
+        ///          "id": 1,
+        ///          "titulo": "Implementar API",
+        ///          "descricao": "Desenvolver endpoints da aplicação",
+        ///          "prioridade": "Alta",
+        ///          "prazo": 5,
+        ///          "status": "Em Progresso",
+        ///          "data": "2023-10-25T00:00:00"
         ///        },
         ///        {
-        ///           "id": 2,
-        ///           "titulo": "Criar documentação",
-        ///           "descricao": "Documentar endpoints no Swagger",
-        ///           "status": "pendente"
+        ///          "id": 2,
+        ///          "titulo": "Criar documentação",
+        ///          "descricao": "Documentar endpoints no Swagger",
+        ///          "prioridade": "Média",
+        ///          "prazo": 3,
+        ///          "status": "Pendente",
+        ///          "data": "2023-10-26T00:00:00"
         ///        }
         ///     ]
-        ///
         /// </remarks>
-        /// <param name="_idUsuario">ID do usuário (número inteiro positivo)</param>
         /// <returns>Lista de tarefas do usuário no formato JSON</returns>
         /// <response code="200">Retorna a lista de tarefas do usuário</response>
         /// <response code="401">Acesso não autorizado (token inválido ou ausente)</response>
-        /// <response code="404">Se o usuário não for encontrado</response>
+        /// <response code="404">Nenhuma tarefa encontrada para o usuário</response>
         /// <response code="500">Erro interno no servidor</response>
         [HttpGet("lista")]
         [ProducesResponseType(typeof(IEnumerable<TarefaConsultaDTO>), StatusCodes.Status200OK)]
@@ -250,7 +260,7 @@ namespace BlazorAPI.Controllers
                 // Recupera o ID do usuário do token
                 var idUsuario = int.Parse(User.FindFirst("idUsuario")?.Value);
 
-                var listaTarefas = await iTarefaService.ListaTarefasIdAsync(idUsuario);
+                List<TarefaConsultaDTO> listaTarefas = await iTarefaService.ListaTarefasIdAsync(idUsuario);
 
                 return Ok(listaTarefas);
             }
@@ -265,6 +275,98 @@ namespace BlazorAPI.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, new ErrorResponse { message = "Erro interno ao buscar lista tarefas." });
+            }
+        }
+
+        /// <summary>
+        /// Lista tarefas de um usuário com paginação
+        /// </summary>
+        /// <remarks>
+        /// Requer autenticação via JWT.
+        ///
+        /// Exemplo de requisição:
+        ///
+        ///     GET /tarefa/lista-paginada?pageNumber=1&amp;pageSize=10
+        ///
+        /// Exemplo de resposta de sucesso:
+        ///
+        ///     {
+        ///         "items": [
+        ///            {
+        ///               "id": 1,
+        ///               "titulo": "Implementar API",
+        ///               "descricao": "Desenvolver endpoints da aplicação",
+        ///               "prioridade": "Alta",
+        ///               "prazo": 5,
+        ///               "status": "Em Progresso",
+        ///               "data": "2023-10-25T00:00:00"
+        ///            },
+        ///            {
+        ///               "id": 2,
+        ///               "titulo": "Criar documentação",
+        ///               "descricao": "Documentar endpoints no Swagger",
+        ///               "prioridade": "Média",
+        ///               "prazo": 3,
+        ///               "status": "Pendente",
+        ///               "data": "2023-10-26T00:00:00"
+        ///            }
+        ///         ],
+        ///         "totalCount": 15
+        ///     }
+        ///
+        /// </remarks>
+        /// <param name="pageNumber">Número da página (inicia em 1)</param>
+        /// <param name="pageSize">Quantidade de itens por página (máximo 50)</param>
+        /// <returns>Dados paginados das tarefas do usuário</returns>
+        /// <response code="200">Retorna a lista paginada de tarefas</response>
+        /// <response code="400">Parâmetros inválidos (valores negativos ou pageSize muito grande)</response>
+        /// <response code="401">Acesso não autorizado (token inválido ou ausente)</response>
+        /// <response code="404">Se o usuário não for encontrado</response>
+        /// <response code="500">Erro interno no servidor</response>
+        [HttpGet("lista-paginada")]
+        [ProducesResponseType(typeof(PagedResult<TarefaConsultaDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<PagedResult<TarefaConsultaDTO>>> ListaTarefasPaginadasAsync(
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 12)
+        {
+            try
+            {
+                // Validação dos parâmetros
+                if (pageNumber < 1 || pageSize < 1)
+                {
+                    return BadRequest(new ErrorResponse { message = "Os parâmetros pageNumber e pageSize devem ser maiores que zero." });
+                }
+
+                if (pageSize > 50)
+                {
+                    return BadRequest(new ErrorResponse { message = "O tamanho máximo por página é 50 itens." });
+                }
+
+                // Recupera o ID do usuário do token
+                var idUsuario = int.Parse(User.FindFirst("idUsuario")?.Value);
+
+                var tarefas = await iTarefaService.ListaTarefasPaginadasAsync(idUsuario, pageNumber, pageSize);
+
+                return Ok(tarefas);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(new ErrorResponse { message = ex.Message });
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new ErrorResponse { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ErrorResponse
+                {
+                    message = $"Erro interno ao buscar lista de tarefas paginadas. {ex.Message}",
+                });
             }
         }
 

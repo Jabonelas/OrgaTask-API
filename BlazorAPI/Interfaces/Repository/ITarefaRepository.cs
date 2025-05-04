@@ -1,4 +1,5 @@
-﻿using BlazorAPI.DTOs.Tarefa;
+﻿using BlazorAPI.DTOs;
+using BlazorAPI.DTOs.Tarefa;
 using BlazorAPI.Models;
 
 namespace BlazorAPI.Interfaces.Repository
@@ -16,5 +17,7 @@ namespace BlazorAPI.Interfaces.Repository
         Task<TbTarefa> BuscarTarefaAsync(int _idTarefa);
 
         Task<List<TbTarefa>> ListaTarefasIdAsync(int _idUsuario);
+
+        Task<(List<TbTarefa> Items, int TotalCount)> ListaTarefasPaginadasAsync(int _idUsuario, int _pageNumber, int _pageSize);
     }
 }

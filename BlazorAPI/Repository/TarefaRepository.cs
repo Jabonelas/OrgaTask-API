@@ -1,4 +1,6 @@
-﻿using BlazorAPI.Interfaces.Repository;
+﻿using BlazorAPI.DTOs.Tarefa;
+using BlazorAPI.DTOs;
+using BlazorAPI.Interfaces.Repository;
 using BlazorAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -51,6 +53,26 @@ namespace BlazorAPI.Repository
         public async Task<TbTarefa> BuscarTarefaAsync(int _idTarefa)
         {
             return await context.TbTarefas.FirstOrDefaultAsync(x => x.IdTarefa == _idTarefa);
+        }
+
+        public async Task<(List<TbTarefa> Items, int TotalCount)> ListaTarefasPaginadasAsync(int _idUsuario, int _pageNumber, int _pageSize)
+        {
+            var query = context.TbTarefas
+                .Where(x => x.FkUsuario == _idUsuario)
+                .OrderByDescending(x => x.IdTarefa);
+
+            var qtdTarefas = query.CountAsync();
+
+            var tarefasPaginadas = query
+                .Skip((_pageNumber - 1) * _pageSize)
+                .Take(_pageSize)
+                .ToListAsync();
+
+            // Aguarda ambas as tarefas completarem
+            await Task.WhenAll(qtdTarefas, tarefasPaginadas);
+
+            // Retorna os itens e o total
+            return (tarefasPaginadas.Result, qtdTarefas.Result);
         }
 
         public async Task<List<TbTarefa>> ListaTarefasIdAsync(int _idUsuario)

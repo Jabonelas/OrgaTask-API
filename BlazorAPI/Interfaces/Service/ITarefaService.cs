@@ -1,5 +1,8 @@
-﻿using BlazorAPI.DTOs.Tarefa;
+﻿using BlazorAPI.DTOs;
+using BlazorAPI.DTOs.Tarefa;
 using BlazorAPI.Models;
+using Microsoft.AspNetCore.Mvc;
+using static BlazorAPI.Controllers.TarefaController;
 
 namespace BlazorAPI.Interfaces.Service
 {
@@ -12,6 +15,8 @@ namespace BlazorAPI.Interfaces.Service
         Task DeletarTarefaAsync(int _idTarefa, int _idUsuario);
 
         Task<List<TarefaConsultaDTO>> ListaTarefasIdAsync(int _idUsuario);
+
+        Task<PagedResult<TarefaConsultaDTO>> ListaTarefasPaginadasAsync(int _idUsuario, int _pageNumber, int _pageSize);
 
         Task<TarefaCadastrarDTO> BuscarTarefaAsync(int _idTarefa, int _idUsuario);
     }

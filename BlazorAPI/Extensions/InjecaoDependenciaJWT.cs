@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using BlazorAPI.Services;
 using BlazorAPI.Models;
 using BlazorAPI.Interfaces.Autenticacao;
+using System.Security.Cryptography;
 
 namespace BlazorAPI.Extensions
 {
