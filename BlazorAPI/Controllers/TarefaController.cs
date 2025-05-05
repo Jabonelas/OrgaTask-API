@@ -15,9 +15,9 @@ namespace BlazorAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class TarefaController : Controller
     {
-        //[Authorize]
         private readonly ITarefaService iTarefaService;
 
         private readonly BlazorAPIBancodbContext context;
@@ -364,7 +364,6 @@ namespace BlazorAPI.Controllers
         {
             try
             {
-                // Validação dos parâmetros
                 if (pageNumber < 1 || pageSize < 1)
                 {
                     return BadRequest(new ErrorResponse { message = "Os parâmetros pageNumber e pageSize devem ser maiores que zero." });
@@ -375,7 +374,6 @@ namespace BlazorAPI.Controllers
                     return BadRequest(new ErrorResponse { message = "O tamanho máximo por página é 50 itens." });
                 }
 
-                // 1. Tenta obter do cache
                 var cacheKey = "tarefas_cache";
                 var tarefasCache = await cache.GetStringAsync(cacheKey);
 
@@ -387,10 +385,8 @@ namespace BlazorAPI.Controllers
                 // Recupera o ID do usuário do token
                 var idUsuario = int.Parse(User.FindFirst("idUsuario")?.Value);
 
-                // 2. Se não tem cache, busca do banco
                 var tarefas = await iTarefaService.ListaTarefasPaginadasAsync(idUsuario, pageNumber, pageSize);
 
-                // 3. Armazena no cache (expira em 10 minutos)
                 await cache.SetStringAsync(
                     cacheKey,
                     JsonSerializer.Serialize(tarefas),

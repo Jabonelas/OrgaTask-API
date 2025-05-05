@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\services\\autenticacaoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|solutionrelative:blazorapi\\services\\autenticacaoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\controllers\\tarefacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|solutionrelative:blazorapi\\controllers\\tarefacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\services\\autenticacaoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|solutionrelative:blazorapi\\services\\autenticacaoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\interfaces\\service\\itarefaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -106,7 +106,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 17,
+          "SelectedChildIndex": 16,
           "Children": [
             {
               "$type": "Bookmark",
@@ -126,8 +126,7 @@
               "RelativeToolTip": "BlazorAPI\\DTOs\\Usuario\\UsuarioCadastrarDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T00:18:03.282Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T00:18:03.282Z"
             },
             {
               "$type": "Document",
@@ -139,8 +138,7 @@
               "RelativeToolTip": "BlazorAPI\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-02T00:01:25.433Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T00:01:25.433Z"
             },
             {
               "$type": "Document",
@@ -152,8 +150,7 @@
               "RelativeToolTip": "BlazorAPI\\Program.cs",
               "ViewState": "AgIAACAAAAAAAAAAAAAEwEcAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T23:39:51.861Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-01T23:39:51.861Z"
             },
             {
               "$type": "Document",
@@ -165,8 +162,7 @@
               "RelativeToolTip": "BlazorAPI\\Services\\UsuarioService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T19:23:01.497Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-01T19:23:01.497Z"
             },
             {
               "$type": "Document",
@@ -178,8 +174,7 @@
               "RelativeToolTip": "BlazorAPI\\Controllers\\UsuarioController.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAiwGUAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T17:29:45.01Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-01T17:29:45.01Z"
             },
             {
               "$type": "Document",
@@ -191,8 +186,7 @@
               "RelativeToolTip": "BlazorAPI\\DTOs\\PagedResult.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAxwAcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T21:25:18.874Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-30T21:25:18.874Z"
             },
             {
               "$type": "Document",
@@ -204,8 +198,7 @@
               "RelativeToolTip": "BlazorAPI\\Extensions\\InjecaoDependenciaJWT.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAcwCgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T23:43:00.808Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-24T23:43:00.808Z"
             },
             {
               "$type": "Document",
@@ -217,8 +210,7 @@
               "RelativeToolTip": "BlazorAPI\\Properties\\launchSettings.json",
               "ViewState": "AgIAAAoAAAAAAAAAAAAAABoAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-24T20:09:53.292Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-24T20:09:53.292Z"
             },
             {
               "$type": "Document",
@@ -230,8 +222,7 @@
               "RelativeToolTip": "BlazorAPI\\DTOs\\Tarefa\\TarefaCadastrarDTO.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAqwBwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T18:52:41.813Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-24T18:52:41.813Z"
             },
             {
               "$type": "Document",
@@ -243,8 +234,7 @@
               "RelativeToolTip": "BlazorAPI\\DTOs\\Tarefa\\TarefaConsultaDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAYAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T17:14:49.711Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-24T17:14:49.711Z"
             },
             {
               "$type": "Document",
@@ -256,8 +246,7 @@
               "RelativeToolTip": "BlazorAPI\\Services\\TarefaService.cs",
               "ViewState": "AgIAAC8AAAAAAAAAAAAlwLUAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T15:00:19.679Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-24T15:00:19.679Z"
             },
             {
               "$type": "Document",
@@ -269,8 +258,7 @@
               "RelativeToolTip": "BlazorAPI\\Repository\\TarefaRepository.cs",
               "ViewState": "AgIAACoAAAAAAAAAAAAIwDoAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T14:59:03.087Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-24T14:59:03.087Z"
             },
             {
               "$type": "Document",
@@ -282,8 +270,7 @@
               "RelativeToolTip": "BlazorAPI\\Interfaces\\Repository\\ITarefaRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T14:58:18.4Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-24T14:58:18.4Z"
             },
             {
               "$type": "Document",
@@ -295,34 +282,32 @@
               "RelativeToolTip": "BlazorAPI\\Interfaces\\Service\\ITarefaService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwBYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T14:57:31.581Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-24T14:57:31.581Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "TarefaController.cs",
               "DocumentMoniker": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Controllers\\TarefaController.cs",
               "RelativeDocumentMoniker": "BlazorAPI\\Controllers\\TarefaController.cs",
               "ToolTip": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Controllers\\TarefaController.cs",
               "RelativeToolTip": "BlazorAPI\\Controllers\\TarefaController.cs",
-              "ViewState": "AgIAAMoAAAAAAAAAAAAAABABAAAvAAAAAAAAAA==",
+              "ViewState": "AgIAAGUBAAAAAAAAAAAcwIABAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-24T14:56:11.323Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "AutenticacaoService.cs",
               "DocumentMoniker": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Services\\AutenticacaoService.cs",
               "RelativeDocumentMoniker": "BlazorAPI\\Services\\AutenticacaoService.cs",
-              "ToolTip": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Services\\AutenticacaoService.cs \u2B24",
-              "RelativeToolTip": "BlazorAPI\\Services\\AutenticacaoService.cs \u2B24",
+              "ToolTip": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Services\\AutenticacaoService.cs",
+              "RelativeToolTip": "BlazorAPI\\Services\\AutenticacaoService.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAAB4AAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T03:07:03.541Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-24T03:07:03.541Z"
             },
             {
               "$type": "Document",
@@ -334,8 +319,7 @@
               "RelativeToolTip": "BlazorAPI\\Interfaces\\Autenticacao\\IAutenticacao.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAQAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T03:05:41.964Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-24T03:05:41.964Z"
             },
             {
               "$type": "Document",
@@ -347,8 +331,7 @@
               "RelativeToolTip": "BlazorAPI\\DTOs\\Usuario\\UsuarioLoginDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAQAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T02:29:56.579Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-24T02:29:56.579Z"
             },
             {
               "$type": "Document",
@@ -360,8 +343,7 @@
               "RelativeToolTip": "BlazorAPI\\DTOs\\UserToken.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T02:26:44.042Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-24T02:26:44.042Z"
             },
             {
               "$type": "Document",
@@ -373,8 +355,7 @@
               "RelativeToolTip": "BlazorAPI\\Extensions\\InjecaoDependenciaSwagger.cs",
               "ViewState": "AgIAABcAAAAAAAAAAAAgwA4AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T02:00:11.553Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-24T02:00:11.553Z"
             },
             {
               "$type": "Document",
@@ -386,8 +367,7 @@
               "RelativeToolTip": "BlazorAPI\\Models\\TbTarefa.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T00:53:03.973Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-24T00:53:03.973Z"
             },
             {
               "$type": "Document",
@@ -399,8 +379,7 @@
               "RelativeToolTip": "BlazorAPI\\Models\\TbUsuario.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T00:14:14.378Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-24T00:14:14.378Z"
             },
             {
               "$type": "Document",
@@ -412,8 +391,7 @@
               "RelativeToolTip": "BlazorAPI\\Repository\\UsuarioRepository.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAAAiwB4AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T22:46:05.317Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T22:46:05.317Z"
             },
             {
               "$type": "Document",
@@ -425,8 +403,7 @@
               "RelativeToolTip": "BlazorAPI\\Interfaces\\Repository\\IUsuarioRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T22:44:39.19Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T22:44:39.19Z"
             }
           ]
         },
