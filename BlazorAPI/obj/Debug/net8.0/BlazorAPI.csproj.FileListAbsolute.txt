@@ -15,6 +15,7 @@ C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\bin\Debug\net8.0\Microsoft.Entit
 C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Sqlite.dll
 C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\bin\Debug\net8.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
 C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
@@ -28,9 +29,11 @@ C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\bin\Debug\net8.0\Microsoft.Ident
 C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\bin\Debug\net8.0\Pipelines.Sockets.Unofficial.dll
 C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\bin\Debug\net8.0\SQLitePCLRaw.batteries_v2.dll
 C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\bin\Debug\net8.0\SQLitePCLRaw.core.dll
 C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\bin\Debug\net8.0\SQLitePCLRaw.provider.e_sqlite3.dll
+C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\bin\Debug\net8.0\StackExchange.Redis.dll
 C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll

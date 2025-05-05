@@ -64,6 +64,13 @@ namespace BlazorAPI
                         }));
             });
 
+            // Configuração do cache
+            builder.Services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = "localhost:6379,connectTimeout=10000,syncTimeout=10000"; // 10 segundos
+                options.InstanceName = "BlazorAPI_"; // Prefixo para as chaves (opcional)
+            });
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

@@ -28,7 +28,7 @@ namespace BlazorAPI.Services
             var chavePrivada = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["jwt:secretKey"]));
             var credenciais = new SigningCredentials(chavePrivada, SecurityAlgorithms.HmacSha256);
 
-            var expiracao = DateTime.UtcNow.AddMinutes(100);
+            var expiracao = DateTime.UtcNow.AddMinutes(1);
 
             var token = new JwtSecurityToken(
                 issuer: configuration["jwt:issuer"],

@@ -7,22 +7,28 @@ using BlazorAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
+using Pipelines.Sockets.Unofficial.Arenas;
+using System.Text.Json;
 
 namespace BlazorAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [Authorize]
     public class TarefaController : Controller
     {
+        //[Authorize]
         private readonly ITarefaService iTarefaService;
 
-        private readonly BlazorAPIBancodbContext context; // Renomeie para seu contexto real
+        private readonly BlazorAPIBancodbContext context;
 
-        public TarefaController(ITarefaService _iTarefaService, BlazorAPIBancodbContext _context)
+        private readonly IDistributedCache cache;
+
+        public TarefaController(ITarefaService _iTarefaService, BlazorAPIBancodbContext _context, IDistributedCache _cache)
         {
             iTarefaService = _iTarefaService;
             context = _context ?? throw new ArgumentNullException(nameof(_context));
+            cache = _cache;
         }
 
         /// <summary>
@@ -69,6 +75,8 @@ namespace BlazorAPI.Controllers
                 var idUsuario = int.Parse(User.FindFirst("idUsuario")?.Value);
 
                 await iTarefaService.CadastrarTarefaAsync(idUsuario, _dadosTarefaCadastro);
+
+                await LimparCache();
 
                 return Created("", new ErrorResponse { message = "Tarefa cadastrada com sucesso!" });
             }
@@ -131,6 +139,8 @@ namespace BlazorAPI.Controllers
 
                 await iTarefaService.AlterarTarefaAsync(_dadosTarefaCadastro, idUsuario);
 
+                await LimparCache();
+
                 return Created("", new ErrorResponse { message = "Tarefa alterada com sucesso!" });
             }
             catch (UnauthorizedAccessException ex)
@@ -189,6 +199,8 @@ namespace BlazorAPI.Controllers
                 var idUsuario = int.Parse(User.FindFirst("idUsuario")?.Value);
 
                 await iTarefaService.DeletarTarefaAsync(_idTarefa, idUsuario);
+
+                await LimparCache();
 
                 return Created("", new ErrorResponse { message = "Tarefa deletada com sucesso!" });
             }
@@ -257,10 +269,27 @@ namespace BlazorAPI.Controllers
         {
             try
             {
+                // 1. Tenta obter do cache
+                var cacheKey = "tarefas_cache";
+                var tarefasCache = await cache.GetStringAsync(cacheKey);
+
+                if (tarefasCache != null)
+                {
+                    return Ok(JsonSerializer.Deserialize<List<TarefaConsultaDTO>>(tarefasCache));
+                }
+
                 // Recupera o ID do usuário do token
                 var idUsuario = int.Parse(User.FindFirst("idUsuario")?.Value);
 
+                // 2. Se não tem cache, busca do banco
                 List<TarefaConsultaDTO> listaTarefas = await iTarefaService.ListaTarefasIdAsync(idUsuario);
+
+                // 3. Armazena no cache (expira em 10 minutos)
+                await cache.SetStringAsync(
+                    cacheKey,
+                    JsonSerializer.Serialize(listaTarefas),
+                    new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10) }
+                );
 
                 return Ok(listaTarefas);
             }
@@ -346,10 +375,27 @@ namespace BlazorAPI.Controllers
                     return BadRequest(new ErrorResponse { message = "O tamanho máximo por página é 50 itens." });
                 }
 
+                // 1. Tenta obter do cache
+                var cacheKey = "tarefas_cache";
+                var tarefasCache = await cache.GetStringAsync(cacheKey);
+
+                if (tarefasCache != null)
+                {
+                    return Ok(JsonSerializer.Deserialize<PagedResult<TarefaConsultaDTO>>(tarefasCache));
+                }
+
                 // Recupera o ID do usuário do token
                 var idUsuario = int.Parse(User.FindFirst("idUsuario")?.Value);
 
+                // 2. Se não tem cache, busca do banco
                 var tarefas = await iTarefaService.ListaTarefasPaginadasAsync(idUsuario, pageNumber, pageSize);
+
+                // 3. Armazena no cache (expira em 10 minutos)
+                await cache.SetStringAsync(
+                    cacheKey,
+                    JsonSerializer.Serialize(tarefas),
+                    new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10) }
+                );
 
                 return Ok(tarefas);
             }
@@ -368,6 +414,12 @@ namespace BlazorAPI.Controllers
                     message = $"Erro interno ao buscar lista de tarefas paginadas. {ex.Message}",
                 });
             }
+        }
+
+        private async Task LimparCache()
+        {
+            // 2. Limpa o cache das tarefas
+            await cache.RemoveAsync("tarefas_cache");
         }
 
         /// <summary>
