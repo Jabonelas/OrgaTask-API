@@ -2,6 +2,7 @@
 #nullable disable
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using BlazorAPI.DTOs.Tarefa;
 
 namespace BlazorAPI.Models;
 
@@ -35,4 +36,16 @@ public partial class TbTarefa
 
     [ForeignKey("FkUsuario")]
     public virtual TbUsuario FkUsuarioNavigation { get; set; }
+
+    public static implicit operator TbTarefa(TarefaCadastrarDTO dadosTarefaCadastro) =>
+            new()
+            {
+                IdTarefa = dadosTarefaCadastro.Id,
+                TaTitulo = dadosTarefaCadastro.Titulo,
+                TaDescricao = dadosTarefaCadastro.Descricao,
+                TaPrioridade = dadosTarefaCadastro.Prioridade,
+                TaPrazo = dadosTarefaCadastro.Prazo,
+                TaStatus = dadosTarefaCadastro.Status,
+                TaData = DateTime.Now.ToString(),
+            };
 }
