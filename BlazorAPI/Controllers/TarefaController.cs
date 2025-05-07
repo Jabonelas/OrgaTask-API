@@ -10,7 +10,7 @@ using System.Text.Json;
 namespace BlazorAPI.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/tarefas")]
 [Authorize]
 public class TarefaController : ControllerBase
 {
@@ -53,7 +53,7 @@ public class TarefaController : ControllerBase
     /// <response code="404">Se o usuário não for encontrado</response>
     /// <response code="422">Status inválido. Informe um dos seguintes: 'pendente', 'em andamento' ou 'concluído'</response>
     /// <response code="500">Erro interno no servidor</response>
-    [HttpPost("cadastrar")]
+    [HttpPost]
     [ProducesResponseType(typeof(IEnumerable<TarefaCadastrarDTO>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ErrorResponse400), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
@@ -116,7 +116,7 @@ public class TarefaController : ControllerBase
     /// <response code="404">Se a tarefa não for encontrada</response>
     /// <response code="422">Status inválido. Informe um dos seguintes: 'pendente', 'em andamento' ou 'concluído'</response>
     /// <response code="500">Erro interno no servidor</response>
-    [HttpPut("alterar")]
+    [HttpPut]
     [ProducesResponseType(typeof(IEnumerable<TarefaCadastrarDTO>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ErrorResponse400), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
@@ -169,7 +169,7 @@ public class TarefaController : ControllerBase
     ///     "message": "Tarefa deletada com sucesso!"
     ///
     /// </remarks>
-    /// <param name="_idTarefa">ID da tarefa a ser deletada</param>
+    /// <param name="id">ID da tarefa a ser deletada</param>
     /// <returns>Mensagem de confirmação da exclusão</returns>
     /// <response code="201">Retorna mensagem de sucesso ao deletar a tarefa</response>
     /// <response code="400">Se o ID da tarefa for inválido</response>
@@ -177,21 +177,21 @@ public class TarefaController : ControllerBase
     /// <response code="404">Se a tarefa não for encontrada</response>
     /// <response code="422">Se a operação não puder ser concluída devido a regras de negócio</response>
     /// <response code="500">Erro interno no servidor</response>
-    [HttpDelete("deletar/{_idTarefa}")]
+    [HttpDelete("{id}")]
     [ProducesResponseType(typeof(IEnumerable<TarefaCadastrarDTO>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ErrorResponse400), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status422UnprocessableEntity)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult> DeletarTarefa(int _idTarefa)
+    public async Task<ActionResult> DeletarTarefa(int id)
     {
         try
         {
             // Recupera o ID do usuário do token
             _ = int.TryParse(User.FindFirst("idUsuario")?.Value, out var idUsuario);
 
-            await _tarefaService.DeletarTarefaAsync(_idTarefa, idUsuario);
+            await _tarefaService.DeletarTarefaAsync(id, idUsuario);
 
             await LimparCache();
 
@@ -253,7 +253,7 @@ public class TarefaController : ControllerBase
     /// <response code="401">Acesso não autorizado (token inválido ou ausente)</response>
     /// <response code="404">Nenhuma tarefa encontrada para o usuário</response>
     /// <response code="500">Erro interno no servidor</response>
-    [HttpGet("lista")]
+    [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<TarefaConsultaDTO>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
@@ -345,7 +345,7 @@ public class TarefaController : ControllerBase
     /// <response code="401">Acesso não autorizado (token inválido ou ausente)</response>
     /// <response code="404">Se o usuário não for encontrado</response>
     /// <response code="500">Erro interno no servidor</response>
-    [HttpGet("lista-paginada")]
+    [HttpGet("paginado")]
     [ProducesResponseType(typeof(PagedResult<TarefaConsultaDTO>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
@@ -403,13 +403,7 @@ public class TarefaController : ControllerBase
                 message = $"Erro interno ao buscar lista de tarefas paginadas. {ex.Message}",
             });
         }
-    }
-
-    private async Task LimparCache()
-    {
-        // 2. Limpa o cache das tarefas
-        await cache.RemoveAsync("tarefas_cache");
-    }
+    }    
 
     /// <summary>
     /// Busca uma tarefa específica pelo seu ID
@@ -433,25 +427,25 @@ public class TarefaController : ControllerBase
     ///     }
     ///
     /// </remarks>
-    /// <param name="_idTarefa">ID da tarefa (número inteiro positivo)</param>
+    /// <param name="id">ID da tarefa (número inteiro positivo)</param>
     /// <returns>Dados completos da tarefa no formato JSON</returns>
     /// <response code="200">Retorna os dados da tarefa solicitada</response>
     /// <response code="401">Acesso não autorizado (token inválido ou ausente)</response>
     /// <response code="404">Se nenhuma tarefa for encontrada com o ID fornecido</response>
     /// <response code="500">Erro interno no servidor</response>
-    [HttpGet("{_idTarefa}/buscar")]
+    [HttpGet("{id}")]
     [ProducesResponseType(typeof(IEnumerable<TarefaConsultaDTO>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<TarefaConsultaDTO>> BuscarTarefaAsync(int _idTarefa)
+    public async Task<ActionResult<TarefaConsultaDTO>> BuscarTarefaAsync(int id)
     {
         try
         {
             // Recupera o ID do usuário do token
             _ = int.TryParse(User.FindFirst("idUsuario")?.Value, out var idUsuario);
 
-            TarefaCadastrarDTO tarefa = await _tarefaService.BuscarTarefaAsync(_idTarefa, idUsuario);
+            TarefaCadastrarDTO tarefa = await _tarefaService.BuscarTarefaAsync(id, idUsuario);
 
             return Ok(tarefa);
         }
@@ -468,4 +462,12 @@ public class TarefaController : ControllerBase
             return StatusCode(500, new ErrorResponse { message = "Erro interno ao buscar lista tarefas." });
         }
     }
+
+    #region Métodos privados
+    private async Task LimparCache()
+    {
+        // 2. Limpa o cache das tarefas
+        await cache.RemoveAsync("tarefas_cache");
+    }
+    #endregion
 }

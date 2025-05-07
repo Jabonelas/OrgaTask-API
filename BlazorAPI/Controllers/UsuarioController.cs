@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BlazorAPI.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/usuarios")]
 public class UsuarioController : ControllerBase
 {
     private readonly IUsuarioService _iUsuarioService;
@@ -43,7 +43,7 @@ public class UsuarioController : ControllerBase
     /// <response code="400">Se os dados forem inválidos</response>
     /// <response code="409">Se houver conflito na operação (ex: Login já cadastrado)</response>
     /// <response code="500">Erro interno no servidor</response>
-    [HttpPost("cadastrar")]
+    [HttpPost]
     [ProducesResponseType(typeof(UsuarioCadastrarDTO), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ErrorResponse400), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status409Conflict)]
