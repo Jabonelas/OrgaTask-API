@@ -49,8 +49,5 @@
     <ArrayOfString>
       <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Interfaces\Service\IUsuarioService.cs</string>
     </ArrayOfString>
-    <ArrayOfString>
-      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Services\AutenticacaoService.cs</string>
-    </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>
