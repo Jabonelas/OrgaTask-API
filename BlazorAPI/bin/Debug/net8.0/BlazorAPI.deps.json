@@ -9,16 +9,19 @@
       "BlazorAPI/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.0",
+          "Microsoft.CodeAnalysis.NetAnalyzers": "8.0.0",
           "Microsoft.EntityFrameworkCore.Sqlite": "8.0.14",
           "Microsoft.Extensions.Caching.StackExchangeRedis": "8.0.0",
           "Microsoft.IdentityModel.JsonWebTokens": "8.8.0",
           "Swashbuckle.AspNetCore": "6.6.2",
-          "System.IdentityModel.Tokens.Jwt": "8.8.0"
+          "System.IdentityModel.Tokens.Jwt": "8.8.0",
+          "coverlet.collector": "6.0.0"
         },
         "runtime": {
           "BlazorAPI.dll": {}
         }
       },
+      "coverlet.collector/6.0.0": {},
       "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.0": {
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "7.0.3"
@@ -38,6 +41,7 @@
           }
         }
       },
+      "Microsoft.CodeAnalysis.NetAnalyzers/8.0.0": {},
       "Microsoft.Data.Sqlite.Core/8.0.14": {
         "dependencies": {
           "SQLitePCLRaw.core": "2.1.6"
@@ -502,6 +506,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "coverlet.collector/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tW3lsNS+dAEII6YGUX/VMoJjBS1QvsxqJeqLaJXub08y1FSjasFPtQ4UBUsudE9PNrzLjooClMsPtY2cZLdXpQ==",
+      "path": "coverlet.collector/6.0.0",
+      "hashPath": "coverlet.collector.6.0.0.nupkg.sha512"
+    },
     "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.0": {
       "type": "package",
       "serviceable": true,
@@ -515,6 +526,13 @@
       "sha512": "sha512-bTUtGfpGyJnohQzjdXbtc7MqNzkv7CWUSRz54+ucNm0i32rZiIU0VdVPHDBShOl1qhVKRjW8mnEBz3d2vH93tQ==",
       "path": "microsoft.bcl.memory/9.0.0",
       "hashPath": "microsoft.bcl.memory.9.0.0.nupkg.sha512"
+    },
+    "Microsoft.CodeAnalysis.NetAnalyzers/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DxiTgkCl3CGq1rYmBX2wjY7XGbxiBdL4J+/AJIAFLKy5z70NxhnVRnPghnicXZ8oF6JKVXlW3xwznRbI3ioEKg==",
+      "path": "microsoft.codeanalysis.netanalyzers/8.0.0",
+      "hashPath": "microsoft.codeanalysis.netanalyzers.8.0.0.nupkg.sha512"
     },
     "Microsoft.Data.Sqlite.Core/8.0.14": {
       "type": "package",

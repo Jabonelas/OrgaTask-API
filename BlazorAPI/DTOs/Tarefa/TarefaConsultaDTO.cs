@@ -1,17 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace BlazorAPI.DTOs.Tarefa
+﻿namespace BlazorAPI.DTOs.Tarefa
 {
     public class TarefaConsultaDTO
     {
-        public int id { get; set; }
-        public string titulo { get; set; }
-        public string descricao { get; set; }
-        public string prioridade { get; set; }
-        public int prazo { get; set; }
-        public string status { get; set; }
-        public string data { get; set; }
+        public int Id { get; set; }
+        public string Titulo { get; set; }
+        public string Descricao { get; set; }
+        public string Prioridade { get; set; }
+        public int Prazo { get; set; }
+        public string Status { get; set; }
+        public string Data { get; set; }
     }
 }

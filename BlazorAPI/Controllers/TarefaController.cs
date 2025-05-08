@@ -69,7 +69,7 @@ public class TarefaController : ControllerBase
 
             await _tarefaService.CadastrarTarefaAsync(idUsuario, dadosTarefaCadastro);
 
-            await LimparCache();
+            LimparCache();
 
             return Created("", new ErrorResponse { message = "Tarefa cadastrada com sucesso!" });
         }
@@ -132,7 +132,7 @@ public class TarefaController : ControllerBase
 
             await _tarefaService.AlterarTarefaAsync(_dadosTarefaCadastro, idUsuario);
 
-            await LimparCache();
+            LimparCache();
 
             return Created("", new ErrorResponse { message = "Tarefa alterada com sucesso!" });
         }
@@ -193,7 +193,7 @@ public class TarefaController : ControllerBase
 
             await _tarefaService.DeletarTarefaAsync(id, idUsuario);
 
-            await LimparCache();
+            LimparCache();
 
             return Created("", new ErrorResponse { message = "Tarefa deletada com sucesso!" });
         }
@@ -403,7 +403,7 @@ public class TarefaController : ControllerBase
                 message = $"Erro interno ao buscar lista de tarefas paginadas. {ex.Message}",
             });
         }
-    }    
+    }
 
     /// <summary>
     /// Busca uma tarefa específica pelo seu ID
@@ -464,10 +464,12 @@ public class TarefaController : ControllerBase
     }
 
     #region Métodos privados
-    private async Task LimparCache()
+
+    private void LimparCache()
     {
         // 2. Limpa o cache das tarefas
-        await cache.RemoveAsync("tarefas_cache");
+        cache.RemoveAsync("tarefas_cache");
     }
-    #endregion
+
+    #endregion Métodos privados
 }

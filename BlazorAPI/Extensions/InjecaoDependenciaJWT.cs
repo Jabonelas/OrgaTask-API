@@ -1,11 +1,10 @@
-﻿using System.Text;
+﻿using BlazorAPI.Interfaces.Autenticacao;
+using BlazorAPI.Models;
+using BlazorAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using BlazorAPI.Services;
-using BlazorAPI.Models;
-using BlazorAPI.Interfaces.Autenticacao;
-using System.Security.Cryptography;
+using System.Text;
 
 namespace BlazorAPI.Extensions
 {

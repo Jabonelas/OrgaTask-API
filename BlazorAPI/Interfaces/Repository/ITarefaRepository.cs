@@ -1,6 +1,4 @@
-﻿using BlazorAPI.DTOs;
-using BlazorAPI.DTOs.Tarefa;
-using BlazorAPI.Models;
+﻿using BlazorAPI.Models;
 
 namespace BlazorAPI.Interfaces.Repository
 {

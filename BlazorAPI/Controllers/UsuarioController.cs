@@ -102,7 +102,7 @@ public class UsuarioController : ControllerBase
         {
             await _iUsuarioService.LoginSenhaValidosAsync(usuarioDadosLogin);
 
-            var idUsuario = await _iUsuarioService.BuscarIdUsuarioAsync(usuarioDadosLogin.login);
+            var idUsuario = await _iUsuarioService.BuscarIdUsuarioAsync(usuarioDadosLogin.Login);
 
             UserToken token = await _iUsuarioService.GerarTorkenAsync(idUsuario, usuarioDadosLogin);
 

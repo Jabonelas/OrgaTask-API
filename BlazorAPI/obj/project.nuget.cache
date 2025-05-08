@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "wwDmZDa7EYw=",
+  "dgSpecHash": "FeJYP7bD1I8=",
   "success": true,
   "projectFilePath": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\BlazorAPI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\israe\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\israe\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.0\\microsoft.aspnetcore.authentication.jwtbearer.8.0.0.nupkg.sha512",
     "C:\\Users\\israe\\.nuget\\packages\\microsoft.bcl.memory\\9.0.0\\microsoft.bcl.memory.9.0.0.nupkg.sha512",
+    "C:\\Users\\israe\\.nuget\\packages\\microsoft.codeanalysis.netanalyzers\\8.0.0\\microsoft.codeanalysis.netanalyzers.8.0.0.nupkg.sha512",
     "C:\\Users\\israe\\.nuget\\packages\\microsoft.data.sqlite.core\\8.0.14\\microsoft.data.sqlite.core.8.0.14.nupkg.sha512",
     "C:\\Users\\israe\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.14\\microsoft.entityframeworkcore.8.0.14.nupkg.sha512",
     "C:\\Users\\israe\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.14\\microsoft.entityframeworkcore.abstractions.8.0.14.nupkg.sha512",

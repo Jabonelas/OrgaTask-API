@@ -4,7 +4,6 @@ using BlazorAPI.Interfaces.Autenticacao;
 using BlazorAPI.Interfaces.Repository;
 using BlazorAPI.Interfaces.Service;
 using BlazorAPI.Models;
-using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -24,12 +23,13 @@ namespace BlazorAPI.Services
 
         public async Task CadastrarUsuarioAsync(UsuarioCadastrarDTO _dadosCadastroUsuario)
         {
-            if (await LoginExisteAsync(_dadosCadastroUsuario.login.ToString()))
+            if (await LoginExisteAsync(_dadosCadastroUsuario.Login.ToString()))
             {
                 throw new InvalidOperationException("Login já cadastrado.");
             }
 
-            TbUsuario usuario = MapearParaUsuario(_dadosCadastroUsuario);
+            //TbUsuario usuario = MapearParaUsuario(_dadosCadastroUsuario);
+            TbUsuario usuario = _dadosCadastroUsuario;
 
             await iUsuarioRepository.AdicionarAsync(usuario);
         }
@@ -50,33 +50,33 @@ namespace BlazorAPI.Services
             return senhaCriptografada;
         }
 
-        private TbUsuario MapearParaUsuario(UsuarioCadastrarDTO _dadosCadastroUsuario)
-        {
-            string senhaCriptografada = CriptografarSenha(_dadosCadastroUsuario.senha);
+        //private TbUsuario MapearParaUsuario(UsuarioCadastrarDTO _dadosCadastroUsuario)
+        //{
+        //    string senhaCriptografada = CriptografarSenha(_dadosCadastroUsuario.Senha);
 
-            TbUsuario usuario = new TbUsuario
-            {
-                UsNome = _dadosCadastroUsuario.nome,
-                UsLogin = _dadosCadastroUsuario.login,
-                UsSenha = senhaCriptografada
-            };
+        //    TbUsuario usuario = new TbUsuario
+        //    {
+        //        UsNome = _dadosCadastroUsuario.Nome,
+        //        UsLogin = _dadosCadastroUsuario.Login,
+        //        UsSenha = senhaCriptografada
+        //    };
 
-            return usuario;
-        }
+        //    return usuario;
+        //}
 
-        private TbUsuario MapearParaUsuarioLogin(UsuarioLoginDTO _dadosUsuarioLogin)
-        {
-            string senhaCriptografada = CriptografarSenha(_dadosUsuarioLogin.senha);
+        //private TbUsuario MapearParaUsuarioLogin(UsuarioLoginDTO _dadosUsuarioLogin)
+        //{
+        //    string senhaCriptografada = CriptografarSenha(_dadosUsuarioLogin.Senha);
 
-            TbUsuario usuario = new TbUsuario
-            {
-                UsNome = "",
-                UsLogin = _dadosUsuarioLogin.login,
-                UsSenha = senhaCriptografada
-            };
+        //    TbUsuario usuario = new TbUsuario
+        //    {
+        //        UsNome = "",
+        //        UsLogin = _dadosUsuarioLogin.Login,
+        //        UsSenha = senhaCriptografada
+        //    };
 
-            return usuario;
-        }
+        //    return usuario;
+        //}
 
         public async Task<bool> LoginExisteAsync(string _login)
         {
@@ -85,7 +85,10 @@ namespace BlazorAPI.Services
 
         public async Task LoginSenhaValidosAsync(UsuarioLoginDTO _dadosUsuarioLogin)
         {
-            TbUsuario usuarioLogin = MapearParaUsuarioLogin(_dadosUsuarioLogin);
+            //TbUsuario usuarioLogin = MapearParaUsuarioLogin(_dadosUsuarioLogin);
+            TbUsuario usuarioLogin = _dadosUsuarioLogin;
+
+            usuarioLogin.UsSenha = CriptografarSenha(_dadosUsuarioLogin.Senha);
 
             if (!await iUsuarioRepository.LoginSenhaValidosAsync(usuarioLogin))
             {
@@ -100,7 +103,7 @@ namespace BlazorAPI.Services
 
         public async Task<UserToken> GerarTorkenAsync(int _idUsuario, UsuarioLoginDTO _dadosUsuarioLogin)
         {
-            var token = iAutenticacao.GenerateToken(_idUsuario, _dadosUsuarioLogin.login);
+            var token = iAutenticacao.GenerateToken(_idUsuario, _dadosUsuarioLogin.Login);
 
             return new UserToken
             {

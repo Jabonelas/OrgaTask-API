@@ -49,7 +49,7 @@ namespace BlazorAPI
             //    });
             //});
 
-            //Limitação de Taxa (Rate Limiting)
+            //Limitação de Taxa (Rate Limiting) - impedir que seja feita varias requisições em um curto periodo
             builder.Services.AddRateLimiter(options =>
             {
                 options.AddPolicy("ApiPolicy", context =>
