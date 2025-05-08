@@ -94,8 +94,7 @@
               "RelativeToolTip": "BlazorAPI\\Interfaces\\Service\\IUsuarioService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-08T18:43:07.403Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-08T18:43:07.403Z"
             },
             {
               "$type": "Document",
@@ -107,8 +106,7 @@
               "RelativeToolTip": "BlazorAPI\\Interfaces\\Service\\ITarefaService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-08T18:43:05.607Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-08T18:43:05.607Z"
             },
             {
               "$type": "Document",
@@ -120,8 +118,7 @@
               "RelativeToolTip": "BlazorAPI\\Interfaces\\Repository\\IUsuarioRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-08T18:43:02.753Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-08T18:43:02.753Z"
             },
             {
               "$type": "Document",
@@ -133,8 +130,7 @@
               "RelativeToolTip": "BlazorAPI\\Interfaces\\Repository\\ITarefaRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-08T18:43:00.556Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-08T18:43:00.556Z"
             },
             {
               "$type": "Document",
@@ -146,8 +142,7 @@
               "RelativeToolTip": "BlazorAPI\\Interfaces\\Autenticacao\\IAutenticacao.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-08T18:42:58.376Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-08T18:42:58.376Z"
             },
             {
               "$type": "Document",
@@ -159,8 +154,7 @@
               "RelativeToolTip": "BlazorAPI\\Extensions\\InjecaoDependenciaSwagger.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-08T18:42:52.488Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-08T18:42:52.488Z"
             },
             {
               "$type": "Document",
@@ -172,8 +166,7 @@
               "RelativeToolTip": "BlazorAPI\\Extensions\\InjecaoDependenciaJWT.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-08T18:40:07.369Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-08T18:40:07.369Z"
             },
             {
               "$type": "Document",
@@ -185,8 +178,7 @@
               "RelativeToolTip": "BlazorAPI\\DTOs\\Tarefa\\TarefaCadastrarDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-08T18:40:00.174Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-08T18:40:00.174Z"
             },
             {
               "$type": "Document",
@@ -198,8 +190,7 @@
               "RelativeToolTip": "BlazorAPI\\DTOs\\PagedResult.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-08T18:39:57.9Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-08T18:39:57.9Z"
             },
             {
               "$type": "Document",
@@ -211,8 +202,7 @@
               "RelativeToolTip": "BlazorAPI\\Controllers\\TarefaController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAEcAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-08T00:57:49.714Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-08T00:57:49.714Z"
             },
             {
               "$type": "Document",
@@ -222,7 +212,7 @@
               "RelativeDocumentMoniker": "BlazorAPI\\Program.cs",
               "ToolTip": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Program.cs",
               "RelativeToolTip": "BlazorAPI\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAADEAAAAAAAAAAAAgwD4AAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-08T00:51:12.756Z",
               "EditorCaption": ""
@@ -237,8 +227,7 @@
               "RelativeToolTip": "BlazorAPI\\Controllers\\UsuarioController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-08T00:29:41.411Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-08T00:29:41.411Z"
             },
             {
               "$type": "Document",
@@ -250,8 +239,7 @@
               "RelativeToolTip": "BlazorAPI\\Models\\TbUsuario.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-08T00:09:10.337Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-08T00:09:10.337Z"
             },
             {
               "$type": "Document",
@@ -263,8 +251,7 @@
               "RelativeToolTip": "BlazorAPI\\Services\\UsuarioService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-08T00:08:45.64Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-08T00:08:45.64Z"
             },
             {
               "$type": "Document",
@@ -276,8 +263,7 @@
               "RelativeToolTip": "BlazorAPI\\Models\\TbTarefa.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-07T23:53:55.51Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-07T23:53:55.51Z"
             },
             {
               "$type": "Document",
@@ -289,8 +275,7 @@
               "RelativeToolTip": "BlazorAPI\\Services\\TarefaService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAG4AAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T15:00:19.679Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-24T15:00:19.679Z"
             }
           ]
         },
