@@ -111,6 +111,9 @@ namespace BlazorAPI
 
             app.MapControllers();
 
+            app.MapGet("/", () => "API Blazor está online! ??");
+            app.MapControllers(); // Mantenha esta linha para suas APIs
+
             app.Run();
         }
     }
