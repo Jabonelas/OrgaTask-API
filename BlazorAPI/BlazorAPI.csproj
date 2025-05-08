@@ -31,7 +31,14 @@
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.8.0" />
 	</ItemGroup>
-
+	
+	<!-- Isso assegura que o arquivo Banco.db seja copiado para a pasta bin/Release/net8.0/ -->
+	<ItemGroup>
+		<None Update="Banco.db">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	
 	<!-- Pacotes adicionais para análise (opcionais) -->
 	<ItemGroup>
 		<!-- Para cobertura de testes -->
