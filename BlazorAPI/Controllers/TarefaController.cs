@@ -11,7 +11,6 @@ namespace BlazorAPI.Controllers;
 
 [ApiController]
 [Route("api/tarefas")]
-[Authorize]
 public class TarefaController : ControllerBase
 {
     private readonly ITarefaService _tarefaService;

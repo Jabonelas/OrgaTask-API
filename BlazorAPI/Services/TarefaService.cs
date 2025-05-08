@@ -155,6 +155,8 @@ namespace BlazorAPI.Services
 
         public async Task<List<TarefaConsultaDTO>> ListaTarefasIdAsync(int _idUsuario)
         {
+            _idUsuario = 3;
+
             List<TbTarefa> listaTarefas = await iTarefaRepository.ListaTarefasIdAsync(_idUsuario);
 
             if (listaTarefas.Count == 0)
