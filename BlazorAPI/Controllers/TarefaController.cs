@@ -262,13 +262,13 @@ public class TarefaController : ControllerBase
         try
         {
             // 1. Tenta obter do cache
-            var cacheKey = "tarefas_cache";
-            var tarefasCache = await cache.GetStringAsync(cacheKey);
+            //var cacheKey = "tarefas_cache";
+            //var tarefasCache = await cache.GetStringAsync(cacheKey);
 
-            if (tarefasCache != null)
-            {
-                return Ok(JsonSerializer.Deserialize<List<TarefaConsultaDTO>>(tarefasCache));
-            }
+            //if (tarefasCache != null)
+            //{
+            //    return Ok(JsonSerializer.Deserialize<List<TarefaConsultaDTO>>(tarefasCache));
+            //}
 
             // Recupera o ID do usuário do token
             //_ = int.TryParse(User.FindFirst("idUsuario")?.Value, out var idUsuario);
@@ -279,11 +279,11 @@ public class TarefaController : ControllerBase
             List<TarefaConsultaDTO> listaTarefas = await _tarefaService.ListaTarefasIdAsync(idUsuario);
 
             // 3. Armazena no cache (expira em 10 minutos)
-            await cache.SetStringAsync(
-                cacheKey,
-                JsonSerializer.Serialize(listaTarefas),
-                new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10) }
-            );
+            //await cache.SetStringAsync(
+            //    cacheKey,
+            //    JsonSerializer.Serialize(listaTarefas),
+            //    new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10) }
+            //);
 
             return Ok(listaTarefas);
         }
