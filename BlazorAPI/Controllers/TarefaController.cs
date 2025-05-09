@@ -259,16 +259,22 @@ public class TarefaController : ControllerBase
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<IEnumerable<TarefaConsultaDTO>>> ListaTarefas()
     {
+        string asdf = "";
+
         try
         {
             // 1. Tenta obter do cache
             var cacheKey = "tarefas_cache";
             var tarefasCache = await cache.GetStringAsync(cacheKey);
 
+            asdf = "2";
+
             if (tarefasCache != null)
             {
                 return Ok(JsonSerializer.Deserialize<List<TarefaConsultaDTO>>(tarefasCache));
             }
+
+            asdf = "3";
 
             // Recupera o ID do usuário do token
             _ = int.TryParse(User.FindFirst("idUsuario")?.Value, out var idUsuario);
@@ -276,12 +282,16 @@ public class TarefaController : ControllerBase
             // 2. Se não tem cache, busca do banco
             List<TarefaConsultaDTO> listaTarefas = await _tarefaService.ListaTarefasIdAsync(idUsuario);
 
+            asdf = "4";
+
             // 3. Armazena no cache (expira em 10 minutos)
             await cache.SetStringAsync(
                 cacheKey,
                 JsonSerializer.Serialize(listaTarefas),
                 new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10) }
             );
+
+            asdf = "5";
 
             return Ok(listaTarefas);
         }
@@ -295,7 +305,8 @@ public class TarefaController : ControllerBase
         }
         catch (Exception)
         {
-            return StatusCode(500, new ErrorResponse { message = "Erro interno ao buscar lista tarefas." });
+            return StatusCode(500, new ErrorResponse { message = asdf });
+            //return StatusCode(500, new ErrorResponse { message = "Erro interno ao buscar lista tarefas." });
         }
     }
 
