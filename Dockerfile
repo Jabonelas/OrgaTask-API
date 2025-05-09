@@ -8,7 +8,7 @@ RUN dotnet publish -c Release -o /app
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 COPY --from=build /app .
-COPY BlazorAPI/Banco.db ./Banco.db  # Copia o banco para a pasta de execução
+COPY BlazorAPI/Banco.db  # Copia o banco para a pasta de execução
 
 # Adicione esta linha para dar permissões ao arquivo:
 RUN chmod 777 ./Banco.db
