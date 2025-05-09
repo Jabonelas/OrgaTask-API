@@ -11,10 +11,16 @@
       <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Program.cs</string>
     </ArrayOfString>
     <ArrayOfString>
+      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Controllers\UsuarioController.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
       <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Controllers\TarefaController.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Controllers\UsuarioController.cs</string>
+      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Services\TarefaService.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Interfaces\Service\ITarefaService.cs</string>
     </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>

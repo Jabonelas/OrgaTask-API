@@ -65,13 +65,13 @@ namespace BlazorAPI
             });
 
             // Configuração do cache
-            builder.Services.AddStackExchangeRedisCache(options =>
-            {
-                // Configuração segura usando variáveis de ambiente
-                options.Configuration = builder.Configuration.GetConnectionString("Redis") ??
-                                      builder.Configuration["REDIS_CONNECTION_STRING"];
-                options.InstanceName = "BlazorAPI_";
-            });
+            //builder.Services.AddStackExchangeRedisCache(options =>
+            //{
+            //    // Configuração segura usando variáveis de ambiente
+            //    options.Configuration = builder.Configuration.GetConnectionString("Redis") ??
+            //                          builder.Configuration["REDIS_CONNECTION_STRING"];
+            //    options.InstanceName = "BlazorAPI_";
+            //});
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

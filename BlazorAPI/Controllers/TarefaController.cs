@@ -15,12 +15,13 @@ public class TarefaController : ControllerBase
 {
     private readonly ITarefaService _tarefaService;
 
-    private readonly IDistributedCache cache;
+    //private readonly IDistributedCache cache;
 
-    public TarefaController(ITarefaService tarefaService, IDistributedCache _cache)
+    //public TarefaController(ITarefaService tarefaService, IDistributedCache _cache)
+    public TarefaController(ITarefaService tarefaService)
     {
         _tarefaService = tarefaService;
-        cache = _cache;
+        //cache = _cache;
     }
 
     /// <summary>
@@ -262,13 +263,13 @@ public class TarefaController : ControllerBase
         try
         {
             // 1. Tenta obter do cache
-            var cacheKey = "tarefas_cache";
-            var tarefasCache = await cache.GetStringAsync(cacheKey);
+            //var cacheKey = "tarefas_cache";
+            //var tarefasCache = await cache.GetStringAsync(cacheKey);
 
-            if (tarefasCache != null)
-            {
-                return Ok(JsonSerializer.Deserialize<List<TarefaConsultaDTO>>(tarefasCache));
-            }
+            //if (tarefasCache != null)
+            //{
+            //    return Ok(JsonSerializer.Deserialize<List<TarefaConsultaDTO>>(tarefasCache));
+            //}
 
             // Recupera o ID do usuário do token
             //_ = int.TryParse(User.FindFirst("idUsuario")?.Value, out var idUsuario);
@@ -279,11 +280,11 @@ public class TarefaController : ControllerBase
             List<TarefaConsultaDTO> listaTarefas = await _tarefaService.ListaTarefasIdAsync(idUsuario);
 
             //// 3. Armazena no cache (expira em 10 minutos)
-            await cache.SetStringAsync(
-                cacheKey,
-                JsonSerializer.Serialize(listaTarefas),
-                new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10) }
-            );
+            //await cache.SetStringAsync(
+            //    cacheKey,
+            //    JsonSerializer.Serialize(listaTarefas),
+            //    new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10) }
+            //);
 
             return Ok(listaTarefas);
         }
@@ -380,24 +381,24 @@ public class TarefaController : ControllerBase
                 return BadRequest(new ErrorResponse { message = "O tamanho máximo por página é 50 itens." });
             }
 
-            var cacheKey = "tarefas_cache";
-            var tarefasCache = await cache.GetStringAsync(cacheKey);
+            //var cacheKey = "tarefas_cache";
+            //var tarefasCache = await cache.GetStringAsync(cacheKey);
 
-            if (tarefasCache != null)
-            {
-                return Ok(JsonSerializer.Deserialize<PagedResult<TarefaConsultaDTO>>(tarefasCache));
-            }
+            //if (tarefasCache != null)
+            //{
+            //    return Ok(JsonSerializer.Deserialize<PagedResult<TarefaConsultaDTO>>(tarefasCache));
+            //}
 
             // Recupera o ID do usuário do token
             _ = int.TryParse(User.FindFirst("idUsuario")?.Value, out var idUsuario);
 
             var tarefas = await _tarefaService.ListaTarefasPaginadasAsync(idUsuario, pageNumber, pageSize);
 
-            await cache.SetStringAsync(
-                cacheKey,
-                JsonSerializer.Serialize(tarefas),
-                new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10) }
-            );
+            //await cache.SetStringAsync(
+            //    cacheKey,
+            //    JsonSerializer.Serialize(tarefas),
+            //    new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10) }
+            //);
 
             return Ok(tarefas);
         }
@@ -481,7 +482,7 @@ public class TarefaController : ControllerBase
     private void LimparCache()
     {
         // 2. Limpa o cache das tarefas
-        cache.RemoveAsync("tarefas_cache");
+        //cache.RemoveAsync("tarefas_cache");
     }
 
     #endregion Métodos privados
