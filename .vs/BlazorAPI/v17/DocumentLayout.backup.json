@@ -7,6 +7,14 @@
       "RelativeMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|solutionrelative:blazorapi\\controllers\\tarefacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\blazorapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|solutionrelative:blazorapi\\blazorapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|solutionrelative:blazorapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\services\\tarefaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|solutionrelative:blazorapi\\services\\tarefaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,14 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|solutionrelative:blazorapi\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\blazorapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|solutionrelative:blazorapi\\blazorapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|solutionrelative:blazorapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,11 +34,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "TarefaService.cs",
               "DocumentMoniker": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Services\\TarefaService.cs",
               "RelativeDocumentMoniker": "BlazorAPI\\Services\\TarefaService.cs",
@@ -57,14 +65,14 @@
               "RelativeDocumentMoniker": "BlazorAPI\\Controllers\\TarefaController.cs",
               "ToolTip": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Controllers\\TarefaController.cs",
               "RelativeToolTip": "BlazorAPI\\Controllers\\TarefaController.cs",
-              "ViewState": "AgIAAJoAAAAAAAAAAAAewBQBAABIAAAAAAAAAA==",
+              "ViewState": "AgIAAAYBAAAAAAAAAAAcwDMBAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-08T23:32:53.833Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "UsuarioController.cs",
               "DocumentMoniker": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Controllers\\UsuarioController.cs",
               "RelativeDocumentMoniker": "BlazorAPI\\Controllers\\UsuarioController.cs",
@@ -77,7 +85,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Program.cs",
               "RelativeDocumentMoniker": "BlazorAPI\\Program.cs",
@@ -90,27 +98,43 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "BlazorAPI.csproj",
               "DocumentMoniker": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\BlazorAPI.csproj",
               "RelativeDocumentMoniker": "BlazorAPI\\BlazorAPI.csproj",
               "ToolTip": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\BlazorAPI.csproj",
               "RelativeToolTip": "BlazorAPI\\BlazorAPI.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAABYAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-05-08T21:47:03.981Z"
+              "WhenOpened": "2025-05-08T21:47:03.981Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\appsettings.json",
               "RelativeDocumentMoniker": "BlazorAPI\\appsettings.json",
               "ToolTip": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\appsettings.json",
               "RelativeToolTip": "BlazorAPI\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-08T21:42:43.946Z"
+              "WhenOpened": "2025-05-08T21:42:43.946Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
             }
           ]
         }
