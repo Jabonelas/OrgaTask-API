@@ -278,7 +278,7 @@ public class TarefaController : ControllerBase
             // 2. Se não tem cache, busca do banco
             List<TarefaConsultaDTO> listaTarefas = await _tarefaService.ListaTarefasIdAsync(idUsuario);
 
-            // 3. Armazena no cache (expira em 10 minutos)
+            //// 3. Armazena no cache (expira em 10 minutos)
             await cache.SetStringAsync(
                 cacheKey,
                 JsonSerializer.Serialize(listaTarefas),

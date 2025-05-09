@@ -67,8 +67,10 @@ namespace BlazorAPI
             // Configuração do cache
             builder.Services.AddStackExchangeRedisCache(options =>
             {
-                options.Configuration = "localhost:6379,connectTimeout=10000,syncTimeout=10000"; // 10 segundos
-                options.InstanceName = "BlazorAPI_"; // Prefixo para as chaves (opcional)
+                // Configuração segura usando variáveis de ambiente
+                options.Configuration = builder.Configuration.GetConnectionString("Redis") ??
+                                      builder.Configuration["REDIS_CONNECTION_STRING"];
+                options.InstanceName = "BlazorAPI_";
             });
 
             builder.Services.AddControllers();
