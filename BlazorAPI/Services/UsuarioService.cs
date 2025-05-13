@@ -28,7 +28,6 @@ namespace BlazorAPI.Services
                 throw new InvalidOperationException("Login já cadastrado.");
             }
 
-            //TbUsuario usuario = MapearParaUsuario(_dadosCadastroUsuario);
             TbUsuario usuario = _dadosCadastroUsuario;
 
             await iUsuarioRepository.AdicionarAsync(usuario);
@@ -50,34 +49,6 @@ namespace BlazorAPI.Services
             return senhaCriptografada;
         }
 
-        //private TbUsuario MapearParaUsuario(UsuarioCadastrarDTO _dadosCadastroUsuario)
-        //{
-        //    string senhaCriptografada = CriptografarSenha(_dadosCadastroUsuario.Senha);
-
-        //    TbUsuario usuario = new TbUsuario
-        //    {
-        //        UsNome = _dadosCadastroUsuario.Nome,
-        //        UsLogin = _dadosCadastroUsuario.Login,
-        //        UsSenha = senhaCriptografada
-        //    };
-
-        //    return usuario;
-        //}
-
-        //private TbUsuario MapearParaUsuarioLogin(UsuarioLoginDTO _dadosUsuarioLogin)
-        //{
-        //    string senhaCriptografada = CriptografarSenha(_dadosUsuarioLogin.Senha);
-
-        //    TbUsuario usuario = new TbUsuario
-        //    {
-        //        UsNome = "",
-        //        UsLogin = _dadosUsuarioLogin.Login,
-        //        UsSenha = senhaCriptografada
-        //    };
-
-        //    return usuario;
-        //}
-
         public async Task<bool> LoginExisteAsync(string _login)
         {
             return await iUsuarioRepository.LoginExisteAsync(_login);
@@ -85,7 +56,6 @@ namespace BlazorAPI.Services
 
         public async Task LoginSenhaValidosAsync(UsuarioLoginDTO _dadosUsuarioLogin)
         {
-            //TbUsuario usuarioLogin = MapearParaUsuarioLogin(_dadosUsuarioLogin);
             TbUsuario usuarioLogin = _dadosUsuarioLogin;
 
             usuarioLogin.UsSenha = CriptografarSenha(_dadosUsuarioLogin.Senha);

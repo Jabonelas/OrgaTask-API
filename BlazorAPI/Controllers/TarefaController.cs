@@ -296,21 +296,9 @@ public class TarefaController : ControllerBase
         {
             return NotFound(new ErrorResponse { message = ex.Message });
         }
-        //catch (Exception)
-        //{
-        //    return StatusCode(500, new ErrorResponse { message = "Erro interno ao buscar lista tarefas." });
-        //}
-        catch (Exception ex)
+        catch (Exception)
         {
-            //_logger.LogError(ex, "Erro completo: " + ex.ToString());
-
-            return StatusCode(500, new
-            {
-                Message = "Erro interno",
-                Detalhes = ex.Message,
-                StackTrace = ex.StackTrace,
-                InnerException = ex.InnerException?.Message
-            });
+            return StatusCode(500, new ErrorResponse { message = "Erro interno ao buscar lista tarefas." });
         }
     }
 

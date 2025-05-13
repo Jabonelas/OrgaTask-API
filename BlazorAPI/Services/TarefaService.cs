@@ -21,7 +21,9 @@ namespace BlazorAPI.Services
 
         public async Task CadastrarTarefaAsync(int _idUsuario, TarefaCadastrarDTO _dadosTarefaCadastro)
         {
-            TbTarefa tarefa = MapearParaTarefaFK(_idUsuario, _dadosTarefaCadastro);
+            TbTarefa tarefa = _dadosTarefaCadastro;
+
+            tarefa.FkUsuario = _idUsuario;
 
             await iTarefaRepository.CadastrarTarefaAsync(tarefa);
         }
@@ -43,8 +45,6 @@ namespace BlazorAPI.Services
                 throw new UnauthorizedAccessException("Operação não autorizada: a tarefa não pertence ao usuário atual.");
             }
 
-            //TbTarefa tarefa = MapearParaTarefa(_dadosTarefaCadastro);
-
             TbTarefa tarefa = _dadosTarefaCadastro;
 
             await iTarefaRepository.AlterarTarefaAsync(tarefa);
@@ -56,59 +56,6 @@ namespace BlazorAPI.Services
         }
 
         #region Mapear Tarefas
-
-        //private TbTarefa MapearParaTarefa(TarefaCadastrarDTO _dadosTarefaCadastro)
-        //{
-        //    TbTarefa tarefa = new TbTarefa
-        //    {
-        //        IdTarefa = _dadosTarefaCadastro.Id,
-        //        TaTitulo = _dadosTarefaCadastro.Titulo,
-        //        TaDescricao = _dadosTarefaCadastro.Descricao,
-        //        TaPrioridade = _dadosTarefaCadastro.Prioridade,
-        //        TaPrazo = _dadosTarefaCadastro.Prazo,
-        //        TaStatus = _dadosTarefaCadastro.Status,
-        //        TaData = DateTime.Now.ToString(),
-        //    };
-
-        //    return tarefa;
-        //}
-
-        private TbTarefa MapearParaTarefaFK(int _idUsuario, TarefaCadastrarDTO _dadosTarefaCadastro)
-        {
-            TbTarefa tarefa = new TbTarefa
-            {
-                TaTitulo = _dadosTarefaCadastro.Titulo,
-                TaDescricao = _dadosTarefaCadastro.Descricao,
-                TaPrioridade = _dadosTarefaCadastro.Prioridade,
-                TaPrazo = _dadosTarefaCadastro.Prazo,
-                TaStatus = _dadosTarefaCadastro.Status,
-                TaData = DateTime.Now.ToString(),
-                FkUsuario = _idUsuario
-            };
-
-            return tarefa;
-        }
-
-        //private List<TarefaConsultaDTO> MapearParaListaTarefas(List<TbTarefa> _listaTarefas)
-        //{
-        //    List<TarefaConsultaDTO> listaConsultaTarefa = new List<TarefaConsultaDTO>();
-
-        //    foreach (var item in _listaTarefas)
-        //    {
-        //        listaConsultaTarefa.Add(new TarefaConsultaDTO
-        //        {
-        //            Id = item.IdTarefa,
-        //            Titulo = item.TaTitulo,
-        //            Descricao = item.TaDescricao,
-        //            Prioridade = item.TaPrioridade,
-        //            Prazo = item.TaPrazo,
-        //            Status = item.TaStatus,
-        //            Data = item.TaData
-        //        });
-        //    }
-
-        //    return listaConsultaTarefa;
-        //}
 
         private PagedResult<TarefaConsultaDTO> MapearTarefaPaginacao((List<TbTarefa> Items, int TotalCount) _listaTarefa)
         {
@@ -131,26 +78,6 @@ namespace BlazorAPI.Services
             return result;
         }
 
-        //private TarefaCadastrarDTO MapearParaCadastroTarefaDTO(TbTarefa _dadosTarefaCadastro)
-        //{
-        //    if (_dadosTarefaCadastro == null)
-        //    {
-        //        return null;
-        //    }
-
-        //    TarefaCadastrarDTO tarefa = new TarefaCadastrarDTO
-        //    {
-        //        Id = _dadosTarefaCadastro.IdTarefa,
-        //        Titulo = _dadosTarefaCadastro.TaTitulo,
-        //        Descricao = _dadosTarefaCadastro.TaDescricao,
-        //        Prioridade = _dadosTarefaCadastro.TaPrioridade,
-        //        Prazo = _dadosTarefaCadastro.TaPrazo,
-        //        Status = _dadosTarefaCadastro.TaStatus,
-        //    };
-
-        //    return tarefa;
-        //}
-
         #endregion Mapear Tarefas
 
         public async Task<List<TarefaConsultaDTO>> ListaTarefasIdAsync(int _idUsuario)
@@ -162,7 +89,6 @@ namespace BlazorAPI.Services
                 throw new KeyNotFoundException($"Nenhuma tarefa encontrada para o usuário ID {_idUsuario}");
             }
 
-            //List<TarefaConsultaDTO> listaConsultaTarefa = MapearParaListaTarefas(listaTarefas);
             List<TarefaConsultaDTO> listaConsultaTarefa = listaTarefas.Select(t => (TarefaConsultaDTO)t).ToList();
 
             return listaConsultaTarefa;
@@ -188,8 +114,6 @@ namespace BlazorAPI.Services
             }
 
             TbTarefa tarefa = await iTarefaRepository.BuscarTarefaAsync(_idTarefa);
-
-            //TarefaCadastrarDTO tarefaCadastrarDTO = MapearParaCadastroTarefaDTO(tarefa);
 
             TarefaCadastrarDTO tarefaCadastrarDTO = tarefa;
 
