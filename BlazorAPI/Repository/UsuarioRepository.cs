@@ -1,4 +1,4 @@
-﻿using BlazorAPI.Interfaces.Repository;
+﻿using BlazorAPI.Interfaces.Repository.Usuario;
 using BlazorAPI.Models;
 using Microsoft.EntityFrameworkCore;
 

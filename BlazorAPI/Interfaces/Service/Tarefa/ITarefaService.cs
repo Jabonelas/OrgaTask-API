@@ -1,7 +1,8 @@
-﻿using BlazorAPI.DTOs;
+﻿using Blazor_WebAssembly.DTOs.Tarefa;
+using BlazorAPI.DTOs;
 using BlazorAPI.DTOs.Tarefa;
 
-namespace BlazorAPI.Interfaces.Service;
+namespace BlazorAPI.Interfaces.Service.Tarefa;
 
 public interface ITarefaService
 {
@@ -16,4 +17,6 @@ public interface ITarefaService
     Task<PagedResult<TarefaConsultaDTO>> ListaTarefasPaginadasAsync(int _idUsuario, int _pageNumber, int _pageSize);
 
     Task<TarefaCadastrarDTO> BuscarTarefaAsync(int _idTarefa, int _idUsuario);
+
+    Task<TarefaQtdStatus> BuscarQtdStatusTarefaAsync(int _idUsuario);
 }

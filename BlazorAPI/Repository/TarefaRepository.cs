@@ -1,4 +1,4 @@
-﻿using BlazorAPI.Interfaces.Repository;
+﻿using BlazorAPI.Interfaces.Repository.Tarefa;
 using BlazorAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -56,21 +56,17 @@ namespace BlazorAPI.Repository
         public async Task<(List<TbTarefa> Items, int TotalCount)> ListaTarefasPaginadasAsync(int _idUsuario, int _pageNumber, int _pageSize)
         {
             var query = context.TbTarefas
-                .Where(x => x.FkUsuario == _idUsuario)
-                .OrderByDescending(x => x.IdTarefa);
+                     .Where(x => x.FkUsuario == _idUsuario)
+                     .OrderByDescending(x => x.IdTarefa);
 
-            var qtdTarefas = query.CountAsync();
+            var totalCount = await query.CountAsync();
 
-            var tarefasPaginadas = query
+            var items = await query
                 .Skip((_pageNumber - 1) * _pageSize)
                 .Take(_pageSize)
                 .ToListAsync();
 
-            // Aguarda ambas as tarefas completarem
-            await Task.WhenAll(qtdTarefas, tarefasPaginadas);
-
-            // Retorna os itens e o total
-            return (tarefasPaginadas.Result, qtdTarefas.Result);
+            return (items, totalCount);
         }
 
         public async Task<List<TbTarefa>> ListaTarefasIdAsync(int _idUsuario)
@@ -81,6 +77,27 @@ namespace BlazorAPI.Repository
      .ToListAsync();
 
             return listaTarefa;
+        }
+
+        public async Task<(int pendente, int emAndamento, int concluido)> BuscarQtdStatusTarefaAsync(int _idUsuario)
+        {
+            var tarefas = await context.TbTarefas
+              .Where(x => x.TaStatus == "Pendente" ||
+                          x.TaStatus == "Em Progresso" ||
+                          x.TaStatus == "Concluído")
+              .GroupBy(x => x.TaStatus)
+              .Select(g => new
+              {
+                  Status = g.Key,
+                  Count = g.Count()
+              })
+              .ToListAsync();
+
+            return (
+                pendente: tarefas.FirstOrDefault(x => x.Status == "Pendente")?.Count ?? 0,
+                emProgresso: tarefas.FirstOrDefault(x => x.Status == "Em Progresso")?.Count ?? 0,
+                concluido: tarefas.FirstOrDefault(x => x.Status == "Concluído")?.Count ?? 0
+            );
         }
     }
 }

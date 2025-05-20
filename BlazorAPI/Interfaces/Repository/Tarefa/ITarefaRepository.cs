@@ -1,6 +1,7 @@
-﻿using BlazorAPI.Models;
+﻿using Blazor_WebAssembly.DTOs.Tarefa;
+using BlazorAPI.Models;
 
-namespace BlazorAPI.Interfaces.Repository
+namespace BlazorAPI.Interfaces.Repository.Tarefa
 {
     public interface ITarefaRepository
     {
@@ -17,5 +18,7 @@ namespace BlazorAPI.Interfaces.Repository
         Task<List<TbTarefa>> ListaTarefasIdAsync(int _idUsuario);
 
         Task<(List<TbTarefa> Items, int TotalCount)> ListaTarefasPaginadasAsync(int _idUsuario, int _pageNumber, int _pageSize);
+
+        Task<(int pendente, int emAndamento, int concluido)> BuscarQtdStatusTarefaAsync(int _idUsuario);
     }
 }

@@ -1,7 +1,7 @@
 ﻿using BlazorAPI.DTOs;
 using BlazorAPI.DTOs.Usuario;
 
-namespace BlazorAPI.Interfaces.Service
+namespace BlazorAPI.Interfaces.Service.Usuario
 {
     public interface IUsuarioService
     {

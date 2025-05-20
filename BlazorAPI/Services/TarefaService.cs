@@ -1,8 +1,9 @@
-﻿using BlazorAPI.DTOs;
+﻿using Blazor_WebAssembly.DTOs.Tarefa;
+using BlazorAPI.DTOs;
 using BlazorAPI.DTOs.Tarefa;
 using BlazorAPI.Interfaces.Autenticacao;
-using BlazorAPI.Interfaces.Repository;
-using BlazorAPI.Interfaces.Service;
+using BlazorAPI.Interfaces.Repository.Tarefa;
+using BlazorAPI.Interfaces.Service.Tarefa;
 using BlazorAPI.Models;
 
 namespace BlazorAPI.Services
@@ -118,6 +119,19 @@ namespace BlazorAPI.Services
             TarefaCadastrarDTO tarefaCadastrarDTO = tarefa;
 
             return tarefaCadastrarDTO;
+        }
+
+        public async Task<TarefaQtdStatus> BuscarQtdStatusTarefaAsync(int _idUsuario)
+        {
+            var tarefas = await iTarefaRepository.BuscarQtdStatusTarefaAsync(_idUsuario);
+
+            TarefaQtdStatus tarefaQtdStatus = new TarefaQtdStatus();
+
+            tarefaQtdStatus.Pendente = tarefas.pendente;
+            tarefaQtdStatus.EmProgresso = tarefas.emAndamento;
+            tarefaQtdStatus.Concluido = tarefas.concluido;
+
+            return tarefaQtdStatus;
         }
     }
 }

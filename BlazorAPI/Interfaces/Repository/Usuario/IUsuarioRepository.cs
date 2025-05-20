@@ -1,6 +1,6 @@
 ﻿using BlazorAPI.Models;
 
-namespace BlazorAPI.Interfaces.Repository
+namespace BlazorAPI.Interfaces.Repository.Usuario
 {
     public interface IUsuarioRepository
     {

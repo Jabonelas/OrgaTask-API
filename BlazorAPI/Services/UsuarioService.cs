@@ -1,8 +1,8 @@
 ﻿using BlazorAPI.DTOs;
 using BlazorAPI.DTOs.Usuario;
 using BlazorAPI.Interfaces.Autenticacao;
-using BlazorAPI.Interfaces.Repository;
-using BlazorAPI.Interfaces.Service;
+using BlazorAPI.Interfaces.Repository.Usuario;
+using BlazorAPI.Interfaces.Service.Usuario;
 using BlazorAPI.Models;
 using System.Security.Cryptography;
 using System.Text;

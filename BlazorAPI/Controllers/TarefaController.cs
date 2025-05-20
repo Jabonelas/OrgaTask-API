@@ -1,6 +1,9 @@
-﻿using BlazorAPI.DTOs;
+﻿using Blazor_WebAssembly.DTOs.Tarefa;
+using BlazorAPI.DTOs;
 using BlazorAPI.DTOs.Tarefa;
-using BlazorAPI.Interfaces.Service;
+using BlazorAPI.Interfaces.Service.Cache;
+using BlazorAPI.Interfaces.Service.Tarefa;
+using BlazorAPI.Models;
 using BlazorAPI.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,14 +16,17 @@ namespace BlazorAPI.Controllers;
 [Route("api/tarefas")]
 public class TarefaController : ControllerBase
 {
-    private readonly ITarefaService _tarefaService;
+    private readonly ITarefaService tarefaService;
+
+    private readonly ITarefaCacheService tarefacacheService;
 
     //private readonly IDistributedCache cache;
 
     //public TarefaController(ITarefaService tarefaService, IDistributedCache _cache)
-    public TarefaController(ITarefaService tarefaService)
+    public TarefaController(ITarefaService _tarefaService, ITarefaCacheService _tarefacacheService)
     {
-        _tarefaService = tarefaService;
+        tarefaService = _tarefaService;
+        tarefacacheService = _tarefacacheService;
         //cache = _cache;
     }
 
@@ -67,7 +73,7 @@ public class TarefaController : ControllerBase
             // Recupera o ID do usuário do token
             _ = int.TryParse(User.FindFirst("idUsuario")?.Value, out var idUsuario);
 
-            await _tarefaService.CadastrarTarefaAsync(idUsuario, dadosTarefaCadastro);
+            await tarefaService.CadastrarTarefaAsync(idUsuario, dadosTarefaCadastro);
 
             LimparCache();
 
@@ -130,7 +136,7 @@ public class TarefaController : ControllerBase
             // Recupera o ID do usuário do token
             _ = int.TryParse(User.FindFirst("idUsuario")?.Value, out var idUsuario);
 
-            await _tarefaService.AlterarTarefaAsync(_dadosTarefaCadastro, idUsuario);
+            await tarefaService.AlterarTarefaAsync(_dadosTarefaCadastro, idUsuario);
 
             LimparCache();
 
@@ -191,7 +197,7 @@ public class TarefaController : ControllerBase
             // Recupera o ID do usuário do token
             _ = int.TryParse(User.FindFirst("idUsuario")?.Value, out var idUsuario);
 
-            await _tarefaService.DeletarTarefaAsync(id, idUsuario);
+            await tarefaService.DeletarTarefaAsync(id, idUsuario);
 
             LimparCache();
 
@@ -262,29 +268,33 @@ public class TarefaController : ControllerBase
     {
         try
         {
-            // 1. Tenta obter do cache
-            //var cacheKey = "tarefas_cache";
-            //var tarefasCache = await cache.GetStringAsync(cacheKey);
+            int idusuario = 3;
 
-            //if (tarefasCache != null)
-            //{
-            //    return Ok(JsonSerializer.Deserialize<List<TarefaConsultaDTO>>(tarefasCache));
-            //}
+            //// 1. tenta obter do cache
+            ////var cachekey = "tarefas_cache";
+            ////var tarefascache = await cache.getstringasync(cachekey);
 
-            // Recupera o ID do usuário do token
-            //_ = int.TryParse(User.FindFirst("idUsuario")?.Value, out var idUsuario);
+            ////if (tarefascache != null)
+            ////{
+            ////    return ok(jsonserializer.deserialize<list<tarefaconsultadto>>(tarefascache));
+            ////}
 
-            int idUsuario = 3;
+            //// recupera o id do usuário do token
+            ////_ = int.tryparse(user.findfirst("idusuario")?.value, out var idusuario);
 
-            // 2. Se não tem cache, busca do banco
-            List<TarefaConsultaDTO> listaTarefas = await _tarefaService.ListaTarefasIdAsync(idUsuario);
+            //int idusuario = 3;
 
-            //// 3. Armazena no cache (expira em 10 minutos)
-            //await cache.SetStringAsync(
-            //    cacheKey,
-            //    JsonSerializer.Serialize(listaTarefas),
-            //    new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10) }
-            //);
+            //// 2. se não tem cache, busca do banco
+            //list<tarefaconsultadto> listatarefas = await tarefaservice.listatarefasidasync(idusuario);
+
+            ////// 3. armazena no cache (expira em 10 minutos)
+            ////await cache.setstringasync(
+            ////    cachekey,
+            ////    jsonserializer.serialize(listatarefas),
+            ////    new distributedcacheentryoptions { absoluteexpirationrelativetonow = timespan.fromminutes(10) }
+            ////);
+
+            var listaTarefas = await tarefacacheService.GetTarefasCacheAsync(idusuario);
 
             return Ok(listaTarefas);
         }
@@ -380,7 +390,7 @@ public class TarefaController : ControllerBase
             // Recupera o ID do usuário do token
             _ = int.TryParse(User.FindFirst("idUsuario")?.Value, out var idUsuario);
 
-            var tarefas = await _tarefaService.ListaTarefasPaginadasAsync(idUsuario, pageNumber, pageSize);
+            var tarefas = await tarefaService.ListaTarefasPaginadasAsync(idUsuario, pageNumber, pageSize);
 
             //await cache.SetStringAsync(
             //    cacheKey,
@@ -447,7 +457,7 @@ public class TarefaController : ControllerBase
             // Recupera o ID do usuário do token
             _ = int.TryParse(User.FindFirst("idUsuario")?.Value, out var idUsuario);
 
-            TarefaCadastrarDTO tarefa = await _tarefaService.BuscarTarefaAsync(id, idUsuario);
+            TarefaCadastrarDTO tarefa = await tarefaService.BuscarTarefaAsync(id, idUsuario);
 
             return Ok(tarefa);
         }
@@ -462,6 +472,64 @@ public class TarefaController : ControllerBase
         catch (Exception)
         {
             return StatusCode(500, new ErrorResponse { message = "Erro interno ao buscar lista tarefas." });
+        }
+    }
+
+    /// <summary>
+    /// Busca quantidade de tarefas por status para o usuário autenticado
+    /// </summary>
+    /// <remarks>
+    /// Requer autenticação via JWT.
+    ///
+    /// Exemplo de requisição:
+    ///
+    ///     GET /tarefa/qtdStatus
+    ///
+    /// Exemplo de resposta de sucesso:
+    ///
+    ///     {
+    ///        "Pendente": 3,
+    ///        "EmProgresso": 5,
+    ///        "Concluido": 7
+    ///     }
+    ///
+    /// Observações:
+    /// - Os valores retornados representam contagens absolutas
+    /// - Somente tarefas do usuário autenticado são consideradas
+    /// - O ID do usuário é extraído automaticamente do token JWT
+    /// </remarks>
+    /// <returns>Quantidade de tarefas agrupadas por status no formato JSON</returns>
+    /// <response code="200">Retorna as quantidades por status</response>
+    /// <response code="401">Token inválido ou ausente</response>
+    /// <response code="404">Usuário não encontrado</response>
+    /// <response code="500">Erro interno no servidor</response>
+    [HttpGet("qtdStatus")]
+    [ProducesResponseType(typeof(IEnumerable<TarefaQtdStatus>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
+    public async Task<ActionResult<TarefaQtdStatus>> BuscarTarefaQdtStatusAsync()
+    {
+        try
+        {
+            // Recupera o ID do usuário do token
+            _ = int.TryParse(User.FindFirst("idUsuario")?.Value, out var idUsuario);
+
+            var tarefa = await tarefaService.BuscarQtdStatusTarefaAsync(idUsuario);
+
+            return Ok(tarefa);
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            return Unauthorized(new ErrorResponse { message = ex.Message });
+        }
+        catch (KeyNotFoundException ex)
+        {
+            return NotFound(new ErrorResponse { message = ex.Message });
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, new ErrorResponse { message = "Erro interno ao buscar quantidade dos status das tarefas." });
         }
     }
 

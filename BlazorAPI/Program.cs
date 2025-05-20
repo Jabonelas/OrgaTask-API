@@ -1,7 +1,10 @@
 using BlazorAPI.Extensions;
 using BlazorAPI.Interfaces.Autenticacao;
-using BlazorAPI.Interfaces.Repository;
-using BlazorAPI.Interfaces.Service;
+using BlazorAPI.Interfaces.Repository.Tarefa;
+using BlazorAPI.Interfaces.Repository.Usuario;
+using BlazorAPI.Interfaces.Service.Cache;
+using BlazorAPI.Interfaces.Service.Tarefa;
+using BlazorAPI.Interfaces.Service.Usuario;
 using BlazorAPI.Models;
 using BlazorAPI.Repository;
 using BlazorAPI.Services;
@@ -65,13 +68,13 @@ namespace BlazorAPI
             });
 
             // Configuração do cache
-            //builder.Services.AddStackExchangeRedisCache(options =>
-            //{
-            //    // Configuração segura usando variáveis de ambiente
-            //    options.Configuration = builder.Configuration.GetConnectionString("Redis") ??
-            //                          builder.Configuration["REDIS_CONNECTION_STRING"];
-            //    options.InstanceName = "BlazorAPI_";
-            //});
+            builder.Services.AddStackExchangeRedisCache(options =>
+            {
+                // Configuração segura usando variáveis de ambiente
+                options.Configuration = builder.Configuration.GetConnectionString("Redis") ??
+                                      builder.Configuration["REDIS_CONNECTION_STRING"];
+                options.InstanceName = "BlazorAPI_";
+            });
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -85,6 +88,9 @@ namespace BlazorAPI
             //Usuario
             builder.Services.AddScoped<ITarefaService, TarefaService>();
             builder.Services.AddScoped<ITarefaRepository, TarefaRepository>();
+
+            //Cache
+            builder.Services.AddScoped<ITarefaCacheService, TarefaCacheService>();
 
             //Autenticacao
             builder.Services.AddScoped<IAutenticacao, AutenticacaoService>();
