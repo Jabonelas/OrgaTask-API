@@ -2,7 +2,7 @@
 
 namespace BlazorAPI.DTOs.Tarefa;
 
-public class TarefaCadastrarDTO
+public class TarefaDTO
 {
     public int Id { get; set; }
 

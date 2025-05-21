@@ -4,7 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace BlazorAPI.Services
+namespace BlazorAPI.Services.Autenticacao
 {
     public class AutenticacaoService : IAutenticacao
     {

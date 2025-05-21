@@ -1,10 +1,12 @@
-﻿using BlazorAPI.DTOs.Tarefa;
+﻿using BlazorAPI.DTOs;
+using BlazorAPI.DTOs.Tarefa;
 using BlazorAPI.Interfaces.Service.Cache;
 using BlazorAPI.Interfaces.Service.Tarefa;
+using BlazorAPI.Models;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
 
-namespace BlazorAPI.Services
+namespace BlazorAPI.Services.Cache
 {
     public class TarefaCacheService : ITarefaCacheService
     {
@@ -18,9 +20,9 @@ namespace BlazorAPI.Services
             tarefaService = _tarefaService;
         }
 
-        public async Task<List<TarefaConsultaDTO>> GetTarefasCacheAsync(int usuarioId)
+        public async Task<List<TarefaConsultaDTO>> GetListaTarefasCacheAsync(int _idUsuario)
         {
-            var cacheKey = GetCacheKey(usuarioId);
+            var cacheKey = GetCacheKey(_idUsuario);
             var cachedData = await cache.GetStringAsync(cacheKey);
 
             if (cachedData != null)
@@ -28,16 +30,16 @@ namespace BlazorAPI.Services
                 return JsonSerializer.Deserialize<List<TarefaConsultaDTO>>(cachedData);
             }
 
-            var tarefas = await tarefaService.ListaTarefasIdAsync(usuarioId);
+            var tarefas = await tarefaService.ListaTarefasIdAsync(_idUsuario);
 
-            await AtualziarTarefasCacheAsync(usuarioId, tarefas);
+            await AtualziarTarefasCacheAsync(_idUsuario, tarefas);
 
             return tarefas;
         }
 
-        public async Task AtualziarTarefasCacheAsync(int usuarioId, List<TarefaConsultaDTO> tarefas)
+        public async Task AtualziarTarefasCacheAsync(int _idUsuario, List<TarefaConsultaDTO> _tarefas)
         {
-            var cacheKey = GetCacheKey(usuarioId);
+            var cacheKey = GetCacheKey(_idUsuario);
             var options = new DistributedCacheEntryOptions
             {
                 AbsoluteExpirationRelativeToNow = cacheDuration
@@ -45,17 +47,17 @@ namespace BlazorAPI.Services
 
             await cache.SetStringAsync(
                 cacheKey,
-                JsonSerializer.Serialize(tarefas),
+                JsonSerializer.Serialize(_tarefas),
                 options
             );
         }
 
-        public async Task InvalidateCacheAsync(int usuarioId)
+        public async Task InvalidarCache(int _idUsuario)
         {
-            var cacheKey = GetCacheKey(usuarioId);
+            var cacheKey = GetCacheKey(_idUsuario);
             await cache.RemoveAsync(cacheKey);
         }
 
-        private static string GetCacheKey(int usuarioId) => $"tarefas_user_{usuarioId}";
+        private static string GetCacheKey(int _idUsuario) => $"tarefas_user_{_idUsuario}";
     }
 }

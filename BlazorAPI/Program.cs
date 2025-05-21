@@ -7,7 +7,10 @@ using BlazorAPI.Interfaces.Service.Tarefa;
 using BlazorAPI.Interfaces.Service.Usuario;
 using BlazorAPI.Models;
 using BlazorAPI.Repository;
-using BlazorAPI.Services;
+using BlazorAPI.Services.Autenticacao;
+using BlazorAPI.Services.Cache;
+using BlazorAPI.Services.Tarefa;
+using BlazorAPI.Services.Usuario;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.RateLimiting;
 
@@ -68,32 +71,21 @@ namespace BlazorAPI
             });
 
             // Configuração do cache
-            builder.Services.AddStackExchangeRedisCache(options =>
-            {
-                // Configuração segura usando variáveis de ambiente
-                options.Configuration = builder.Configuration.GetConnectionString("Redis") ??
-                                      builder.Configuration["REDIS_CONNECTION_STRING"];
-                options.InstanceName = "BlazorAPI_";
-            });
+            //builder.Services.AddStackExchangeRedisCache(options =>
+            //{
+            //    // Configuração segura usando variáveis de ambiente
+            //    options.Configuration = builder.Configuration.GetConnectionString("Redis") ??
+            //                          builder.Configuration["REDIS_CONNECTION_STRING"];
+            //    options.InstanceName = "BlazorAPI_";
+            //});
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             //builder.Services.AddSwaggerGen();
 
-            //Usuario
-            builder.Services.AddScoped<IUsuarioService, UsuarioService>();
-            builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-
-            //Usuario
-            builder.Services.AddScoped<ITarefaService, TarefaService>();
-            builder.Services.AddScoped<ITarefaRepository, TarefaRepository>();
-
-            //Cache
-            builder.Services.AddScoped<ITarefaCacheService, TarefaCacheService>();
-
-            //Autenticacao
-            builder.Services.AddScoped<IAutenticacao, AutenticacaoService>();
+            //Adicionando as injeções de dependencias
+            builder.Services.AdicionarInjecoesDependencias();
 
             //Swagger
             builder.Services.AdicionarConfiguracaoSwagger();

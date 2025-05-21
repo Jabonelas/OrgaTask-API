@@ -1,13 +1,14 @@
-﻿using BlazorAPI.DTOs.Tarefa;
+﻿using BlazorAPI.DTOs;
+using BlazorAPI.DTOs.Tarefa;
 
 namespace BlazorAPI.Interfaces.Service.Cache
 {
     public interface ITarefaCacheService
     {
-        Task<List<TarefaConsultaDTO>> GetTarefasCacheAsync(int usuarioId);
+        Task<List<TarefaConsultaDTO>> GetListaTarefasCacheAsync(int _idUsuario);
 
-        Task AtualziarTarefasCacheAsync(int usuarioId, List<TarefaConsultaDTO> tarefas);
+        Task AtualziarTarefasCacheAsync(int _idUsuario, List<TarefaConsultaDTO> _tarefas);
 
-        Task InvalidateCacheAsync(int usuarioId);
+        Task InvalidarCache(int _idUsuario);
     }
 }

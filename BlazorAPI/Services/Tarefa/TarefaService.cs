@@ -1,12 +1,14 @@
-﻿using Blazor_WebAssembly.DTOs.Tarefa;
-using BlazorAPI.DTOs;
+﻿using BlazorAPI.DTOs;
 using BlazorAPI.DTOs.Tarefa;
 using BlazorAPI.Interfaces.Autenticacao;
 using BlazorAPI.Interfaces.Repository.Tarefa;
 using BlazorAPI.Interfaces.Service.Tarefa;
 using BlazorAPI.Models;
+using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace BlazorAPI.Services
+namespace BlazorAPI.Services.Tarefa
 {
     public class TarefaService : ITarefaService
     {
@@ -20,7 +22,7 @@ namespace BlazorAPI.Services
             iAutenticacao = _iAutenticacao;
         }
 
-        public async Task CadastrarTarefaAsync(int _idUsuario, TarefaCadastrarDTO _dadosTarefaCadastro)
+        public async Task CadastrarTarefaAsync(int _idUsuario, TarefaDTO _dadosTarefaCadastro)
         {
             TbTarefa tarefa = _dadosTarefaCadastro;
 
@@ -39,7 +41,7 @@ namespace BlazorAPI.Services
             await iTarefaRepository.DeletarTarefaAsync(_idTarefa);
         }
 
-        public async Task AlterarTarefaAsync(TarefaCadastrarDTO _dadosTarefaCadastro, int _idUsuario)
+        public async Task AlterarTarefaAsync(TarefaDTO _dadosTarefaCadastro, int _idUsuario)
         {
             if (!await TarefaPertenceUsuarioAsync(_dadosTarefaCadastro.Id, _idUsuario))
             {
@@ -95,19 +97,23 @@ namespace BlazorAPI.Services
             return listaConsultaTarefa;
         }
 
-        public async Task<PagedResult<TarefaConsultaDTO>> ListaTarefasPaginadasAsync(int _idUsuario, int _pageNumber, int _pageSize)
+        public async Task<PagedResult<TarefaConsultaDTO>> ListaTarefasPaginadasAsync(int _idUsuario, int _pageNumber, int _pageSize, string _status)
         {
-            (List<TbTarefa> Items, int TotalCount) listaTarefa = await iTarefaRepository.ListaTarefasPaginadasAsync(_idUsuario, _pageNumber, _pageSize);
+            (List<TbTarefa> Items, int TotalCount) listaTarefa;
 
-            if (listaTarefa.TotalCount == 0)
+            if (string.IsNullOrEmpty(_status) || _status == "todas")
             {
-                throw new KeyNotFoundException($"Nenhuma tarefa encontrada para o usuário ID {_idUsuario}");
+                listaTarefa = await iTarefaRepository.ListaTarefasPaginadasAsync(_idUsuario, _pageNumber, _pageSize);
+            }
+            else
+            {
+                listaTarefa = await iTarefaRepository.ListaTarefasPaginadasStatusAsync(_idUsuario, _pageNumber, _pageSize, _status);
             }
 
             return MapearTarefaPaginacao(listaTarefa);
         }
 
-        public async Task<TarefaCadastrarDTO> BuscarTarefaAsync(int _idTarefa, int _idUsuario)
+        public async Task<TarefaDTO> BuscarTarefaAsync(int _idTarefa, int _idUsuario)
         {
             if (!await TarefaPertenceUsuarioAsync(_idTarefa, _idUsuario))
             {
@@ -116,22 +122,69 @@ namespace BlazorAPI.Services
 
             TbTarefa tarefa = await iTarefaRepository.BuscarTarefaAsync(_idTarefa);
 
-            TarefaCadastrarDTO tarefaCadastrarDTO = tarefa;
+            TarefaDTO tarefaCadastrarDTO = tarefa;
 
             return tarefaCadastrarDTO;
         }
 
-        public async Task<TarefaQtdStatus> BuscarQtdStatusTarefaAsync(int _idUsuario)
+        public async Task<TarefaQtdStatusDTO> BuscarQtdStatusTarefaAsync(int _idUsuario)
         {
-            var tarefas = await iTarefaRepository.BuscarQtdStatusTarefaAsync(_idUsuario);
+            var (pendente, emAndamento, concluido) = await iTarefaRepository.BuscarQtdStatusTarefaAsync(_idUsuario);
 
-            TarefaQtdStatus tarefaQtdStatus = new TarefaQtdStatus();
-
-            tarefaQtdStatus.Pendente = tarefas.pendente;
-            tarefaQtdStatus.EmProgresso = tarefas.emAndamento;
-            tarefaQtdStatus.Concluido = tarefas.concluido;
+            TarefaQtdStatusDTO tarefaQtdStatus = new TarefaQtdStatusDTO()
+            {
+                Pendente = pendente,
+                EmProgresso = emAndamento,
+                Concluido = concluido
+            };
 
             return tarefaQtdStatus;
+        }
+
+        public async Task<decimal> BuscarPorcentagemTarefaConcluidaAsync(int _idUsuario)
+        {
+            var (pendente, emAndamento, concluido) = await iTarefaRepository.BuscarQtdStatusTarefaAsync(_idUsuario);
+
+            int soma = pendente + emAndamento + concluido;
+
+            if (soma != 0)
+            {
+                decimal porcentagemTarefasConcluidas = concluido * 100 / soma;
+
+                return porcentagemTarefasConcluidas;
+            }
+
+            return 0;
+        }
+
+        public async Task<List<TarefaPrioridadeAltaDTO>> BuscarTarefasPrioridadeAltaAsync(int _idUsuario)
+        {
+            List<TbTarefa> listaTarefas = await iTarefaRepository.BuscarTarefasPrioridadeAltaAsync(_idUsuario);
+
+            List<TarefaPrioridadeAltaDTO> listaPrioridadeAlta = new List<TarefaPrioridadeAltaDTO>();
+
+            foreach (var item in listaTarefas)
+            {
+                DateTime hoje = DateTime.Today;
+
+                DateTime.TryParse(item.TaData?.ToString(), out DateTime dataTarefa);
+                TimeSpan diferenca = hoje - dataTarefa;
+                int diasDiferenca = diferenca.Days;
+
+                int diasDiferente = -diasDiferenca + item.TaPrazo;
+
+                listaPrioridadeAlta.Add(new TarefaPrioridadeAltaDTO
+                {
+                    Titulo = item.TaTitulo,
+                    Data = item.TaData,
+                    Status = item.TaStatus,
+                    Prazo = diasDiferente
+                });
+            }
+
+            listaPrioridadeAlta.OrderByDescending(x => x.Status);
+
+            return listaPrioridadeAlta;
         }
     }
 }

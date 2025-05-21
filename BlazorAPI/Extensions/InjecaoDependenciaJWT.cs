@@ -1,6 +1,6 @@
 ﻿using BlazorAPI.Interfaces.Autenticacao;
 using BlazorAPI.Models;
-using BlazorAPI.Services;
+using BlazorAPI.Services.Autenticacao;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;

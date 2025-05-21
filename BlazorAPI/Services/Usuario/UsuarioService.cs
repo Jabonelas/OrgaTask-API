@@ -7,7 +7,7 @@ using BlazorAPI.Models;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace BlazorAPI.Services
+namespace BlazorAPI.Services.Usuario
 {
     public class UsuarioService : IUsuarioService
     {
@@ -29,6 +29,8 @@ namespace BlazorAPI.Services
             }
 
             TbUsuario usuario = _dadosCadastroUsuario;
+
+            usuario.UsSenha = CriptografarSenha(_dadosCadastroUsuario.Senha);
 
             await iUsuarioRepository.AdicionarAsync(usuario);
         }

@@ -37,7 +37,7 @@ public partial class TbTarefa
     [ForeignKey("FkUsuario")]
     public virtual TbUsuario FkUsuarioNavigation { get; set; }
 
-    public static implicit operator TbTarefa(TarefaCadastrarDTO _dadosTarefaCadastro) =>
+    public static implicit operator TbTarefa(TarefaDTO _dadosTarefaCadastro) =>
             new()
             {
                 IdTarefa = _dadosTarefaCadastro.Id,
@@ -50,7 +50,7 @@ public partial class TbTarefa
             };
 
 
-    public static implicit operator TarefaCadastrarDTO(TbTarefa _tarefa) =>
+    public static implicit operator TarefaDTO(TbTarefa _tarefa) =>
     new()
     {
         Id = _tarefa.IdTarefa,

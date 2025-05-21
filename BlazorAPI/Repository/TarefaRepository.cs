@@ -1,6 +1,8 @@
-﻿using BlazorAPI.Interfaces.Repository.Tarefa;
+﻿using BlazorAPI.DTOs.Tarefa;
+using BlazorAPI.Interfaces.Repository.Tarefa;
 using BlazorAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace BlazorAPI.Repository
 {
@@ -69,6 +71,22 @@ namespace BlazorAPI.Repository
             return (items, totalCount);
         }
 
+        public async Task<(List<TbTarefa> Items, int TotalCount)> ListaTarefasPaginadasStatusAsync(int _idUsuario, int _pageNumber, int _pageSize, string _status)
+        {
+            var query = context.TbTarefas
+                     .Where(x => x.FkUsuario == _idUsuario && x.TaStatus == _status)
+                     .OrderByDescending(x => x.IdTarefa);
+
+            var totalCount = await query.CountAsync();
+
+            var items = await query
+                .Skip((_pageNumber - 1) * _pageSize)
+                .Take(_pageSize)
+                .ToListAsync();
+
+            return (items, totalCount);
+        }
+
         public async Task<List<TbTarefa>> ListaTarefasIdAsync(int _idUsuario)
         {
             List<TbTarefa> listaTarefa = await context.TbTarefas
@@ -82,9 +100,10 @@ namespace BlazorAPI.Repository
         public async Task<(int pendente, int emAndamento, int concluido)> BuscarQtdStatusTarefaAsync(int _idUsuario)
         {
             var tarefas = await context.TbTarefas
-              .Where(x => x.TaStatus == "Pendente" ||
+              .Where(x => (x.TaStatus == "Pendente" ||
                           x.TaStatus == "Em Progresso" ||
-                          x.TaStatus == "Concluído")
+                          x.TaStatus == "Concluído") &&
+                          x.FkUsuario == _idUsuario)
               .GroupBy(x => x.TaStatus)
               .Select(g => new
               {
@@ -98,6 +117,13 @@ namespace BlazorAPI.Repository
                 emProgresso: tarefas.FirstOrDefault(x => x.Status == "Em Progresso")?.Count ?? 0,
                 concluido: tarefas.FirstOrDefault(x => x.Status == "Concluído")?.Count ?? 0
             );
+        }
+
+        public async Task<List<TbTarefa>> BuscarTarefasPrioridadeAltaAsync(int _idUsuario)
+        {
+            List<TbTarefa> listaTarefasPrioridadeAlta = await context.TbTarefas.Where(x => x.TaPrioridade == "Alta" && x.TaStatus != "Concluído" && x.FkUsuario == _idUsuario).ToListAsync();
+
+            return listaTarefasPrioridadeAlta;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Blazor_WebAssembly.DTOs.Tarefa;
+﻿using BlazorAPI.DTOs.Tarefa;
 using BlazorAPI.Models;
 
 namespace BlazorAPI.Interfaces.Repository.Tarefa
@@ -19,6 +19,10 @@ namespace BlazorAPI.Interfaces.Repository.Tarefa
 
         Task<(List<TbTarefa> Items, int TotalCount)> ListaTarefasPaginadasAsync(int _idUsuario, int _pageNumber, int _pageSize);
 
+        Task<(List<TbTarefa> Items, int TotalCount)> ListaTarefasPaginadasStatusAsync(int _idUsuario, int _pageNumber, int _pageSize, string _status);
+
         Task<(int pendente, int emAndamento, int concluido)> BuscarQtdStatusTarefaAsync(int _idUsuario);
+
+        Task<List<TbTarefa>> BuscarTarefasPrioridadeAltaAsync(int _idUsuario);
     }
 }
