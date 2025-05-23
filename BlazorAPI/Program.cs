@@ -33,6 +33,8 @@ namespace BlazorAPI
             //Pegando o link na appsettings
             var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>();
 
+#if DEBUG
+
             //Permitir interacao com a aplicacao blazor
             builder.Services.AddCors(options =>
             {
@@ -43,6 +45,18 @@ namespace BlazorAPI
                           .AllowAnyMethod();
                 });
             });
+#else
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowBlazorApp",
+                    builder => builder
+                        .WithOrigins("https://seusite.pages.dev") // Substitua pelo seu domínio no Cloudflare
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
+
+#endif
 
             ////Permitir interacao com a aplicacao blazor
             //builder.Services.AddCors(options =>
@@ -104,6 +118,18 @@ namespace BlazorAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.Use(async (context, next) =>
+            {
+                Console.WriteLine($"Request: {context.Request.Method} {context.Request.Path}");
+                await next();
+            });
+
+#if RELEASE
+
+            app.UseCors("AllowBlazorApp");
+
+#endif
 
             app.UseHttpsRedirection();
 
