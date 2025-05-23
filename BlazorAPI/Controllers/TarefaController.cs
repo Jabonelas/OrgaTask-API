@@ -348,7 +348,7 @@ public class TarefaController : ControllerBase
     public async Task<ActionResult<PagedResult<TarefaConsultaDTO>>> ListaTarefasPaginadasAsync(
          [FromRoute] string? status = null,
         [FromQuery] int pageNumber = 1,
-        [FromQuery] int pageSize = 12)
+        [FromQuery] int pageSize = 15)
     {
         try
         {

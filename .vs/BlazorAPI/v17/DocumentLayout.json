@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\controllers\\tarefacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|solutionrelative:blazorapi\\controllers\\tarefacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|solutionrelative:blazorapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,10 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\services\\cache\\tarefacacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|solutionrelative:blazorapi\\services\\cache\\tarefacacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\controllers\\tarefacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|solutionrelative:blazorapi\\controllers\\tarefacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\services\\tarefa\\tarefaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Bookmark",
@@ -62,7 +62,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Program.cs",
               "RelativeDocumentMoniker": "BlazorAPI\\Program.cs",
@@ -87,7 +87,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "TarefaCacheService.cs",
               "DocumentMoniker": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Services\\Cache\\TarefaCacheService.cs",
               "RelativeDocumentMoniker": "BlazorAPI\\Services\\Cache\\TarefaCacheService.cs",
@@ -111,7 +111,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\appsettings.json",
               "RelativeDocumentMoniker": "BlazorAPI\\appsettings.json",
@@ -119,8 +119,7 @@
               "RelativeToolTip": "BlazorAPI\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-21T01:39:28.433Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-21T01:39:28.433Z"
             },
             {
               "$type": "Document",
@@ -172,15 +171,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "TarefaController.cs",
               "DocumentMoniker": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Controllers\\TarefaController.cs",
               "RelativeDocumentMoniker": "BlazorAPI\\Controllers\\TarefaController.cs",
               "ToolTip": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Controllers\\TarefaController.cs",
               "RelativeToolTip": "BlazorAPI\\Controllers\\TarefaController.cs",
-              "ViewState": "AgIAANYAAAAAAAAAAAAgwBUBAABGAAAAAAAAAA==",
+              "ViewState": "AgIAAB4BAAAAAAAAAAAcwGEBAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T18:19:26.344Z"
+              "WhenOpened": "2025-05-20T18:19:26.344Z",
+              "EditorCaption": ""
             }
           ]
         },
