@@ -49,11 +49,13 @@ namespace BlazorAPI
 
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("AllowBlazorApp",
-                    builder => builder
-                        .WithOrigins("https://seusite.pages.dev") // Substitua pelo seu domínio no Cloudflare
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
+                options.AddDefaultPolicy(policy =>
+                {
+                    policy.WithOrigins("https://blazor-webassembly.pages.dev") // Seu domínio Cloudflare
+                          .AllowAnyMethod()                                   // Permite GET, POST, PUT, DELETE, etc.
+                          .AllowAnyHeader()                                  // Permite qualquer cabeçalho (Content-Type, Authorization)
+                          .AllowCredentials();                               // Se estiver usando cookies ou autenticação
+                });
             });
 
 #endif
@@ -127,7 +129,7 @@ namespace BlazorAPI
 
 #if RELEASE
 
-            app.UseCors("AllowBlazorApp");
+            app.UseCors();
 
 #endif
 
