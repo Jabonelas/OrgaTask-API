@@ -4,9 +4,6 @@ using BlazorAPI.Interfaces.Autenticacao;
 using BlazorAPI.Interfaces.Repository.Tarefa;
 using BlazorAPI.Interfaces.Service.Tarefa;
 using BlazorAPI.Models;
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BlazorAPI.Services.Tarefa
 {
@@ -58,31 +55,6 @@ namespace BlazorAPI.Services.Tarefa
             return await iTarefaRepository.TarefaPertenceUsuarioAsync(_idTarefa, _idUsuario);
         }
 
-        #region Mapear Tarefas
-
-        private PagedResult<TarefaConsultaDTO> MapearTarefaPaginacao((List<TbTarefa> Items, int TotalCount) _listaTarefa)
-        {
-            var result = new PagedResult<TarefaConsultaDTO>
-            {
-                Items = _listaTarefa.Items.Select(t => new TarefaConsultaDTO
-                {
-                    Id = t.IdTarefa,
-                    Titulo = t.TaTitulo,
-                    Descricao = t.TaDescricao,
-                    Prioridade = t.TaPrioridade,
-                    Prazo = t.TaPrazo,
-                    Status = t.TaStatus,
-                    Data = t.TaData,
-                }).ToList(),
-
-                TotalCount = _listaTarefa.TotalCount,
-            };
-
-            return result;
-        }
-
-        #endregion Mapear Tarefas
-
         public async Task<List<TarefaConsultaDTO>> ListaTarefasIdAsync(int _idUsuario)
         {
             List<TbTarefa> listaTarefas = await iTarefaRepository.ListaTarefasIdAsync(_idUsuario);
@@ -127,34 +99,21 @@ namespace BlazorAPI.Services.Tarefa
             return tarefaCadastrarDTO;
         }
 
-        public async Task<TarefaQtdStatusDTO> BuscarQtdStatusTarefaAsync(int _idUsuario)
+        public async Task<TarefaQtdStatusDTO> ObterQtdStatusEPorcentagemConclusaoAsync(int _idUsuario)
         {
             var (pendente, emAndamento, concluido) = await iTarefaRepository.BuscarQtdStatusTarefaAsync(_idUsuario);
+
+            var porcentagem = CalcularPorcentagemConclusao(pendente, emAndamento, concluido);
 
             TarefaQtdStatusDTO tarefaQtdStatus = new TarefaQtdStatusDTO()
             {
                 Pendente = pendente,
                 EmProgresso = emAndamento,
-                Concluido = concluido
+                Concluido = concluido,
+                PorcentagemConcluidas = porcentagem,
             };
 
             return tarefaQtdStatus;
-        }
-
-        public async Task<decimal> BuscarPorcentagemTarefaConcluidaAsync(int _idUsuario)
-        {
-            var (pendente, emAndamento, concluido) = await iTarefaRepository.BuscarQtdStatusTarefaAsync(_idUsuario);
-
-            int soma = pendente + emAndamento + concluido;
-
-            if (soma != 0)
-            {
-                decimal porcentagemTarefasConcluidas = concluido * 100 / soma;
-
-                return porcentagemTarefasConcluidas;
-            }
-
-            return 0;
         }
 
         public async Task<List<TarefaPrioridadeAltaDTO>> BuscarTarefasPrioridadeAltaAsync(int _idUsuario)
@@ -175,6 +134,7 @@ namespace BlazorAPI.Services.Tarefa
 
                 listaPrioridadeAlta.Add(new TarefaPrioridadeAltaDTO
                 {
+                    Id = item.IdTarefa,
                     Titulo = item.TaTitulo,
                     Data = item.TaData,
                     Status = item.TaStatus,
@@ -186,5 +146,49 @@ namespace BlazorAPI.Services.Tarefa
 
             return listaPrioridadeAlta;
         }
+
+        #region Mapear Tarefas
+
+        private PagedResult<TarefaConsultaDTO> MapearTarefaPaginacao((List<TbTarefa> Items, int TotalCount) _listaTarefa)
+        {
+            var result = new PagedResult<TarefaConsultaDTO>
+            {
+                Items = _listaTarefa.Items.Select(t => new TarefaConsultaDTO
+                {
+                    Id = t.IdTarefa,
+                    Titulo = t.TaTitulo,
+                    Descricao = t.TaDescricao,
+                    Prioridade = t.TaPrioridade,
+                    Prazo = t.TaPrazo,
+                    Status = t.TaStatus,
+                    Data = t.TaData,
+                }).ToList(),
+
+                TotalCount = _listaTarefa.TotalCount,
+            };
+
+            return result;
+        }
+
+        #endregion Mapear Tarefas
+
+        #region Metodo Privado
+
+        private decimal CalcularPorcentagemConclusao(int _pendente, int _emAndamento, int _concluido)
+        {
+            decimal soma = _pendente + _emAndamento + _concluido;
+            decimal porcentagem = 0;
+
+            if (soma != 0)
+            {
+                decimal porcentagemTarefasConcluidas = _concluido * 100m / soma;
+
+                porcentagem = Math.Round(porcentagemTarefasConcluidas, 2);
+            }
+
+            return porcentagem;
+        }
+
+        #endregion Metodo Privado
     }
 }

@@ -1,5 +1,4 @@
-﻿using BlazorAPI.DTOs;
-using BlazorAPI.DTOs.Tarefa;
+﻿using BlazorAPI.DTOs.Tarefa;
 
 namespace BlazorAPI.Interfaces.Service.Cache
 {

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace BlazorAPI.DTOs.Usuario
+﻿namespace BlazorAPI.DTOs.Usuario
 {
     //public class UsuarioLoginDTO
     //{

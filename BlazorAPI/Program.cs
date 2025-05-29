@@ -1,16 +1,5 @@
 using BlazorAPI.Extensions;
-using BlazorAPI.Interfaces.Autenticacao;
-using BlazorAPI.Interfaces.Repository.Tarefa;
-using BlazorAPI.Interfaces.Repository.Usuario;
-using BlazorAPI.Interfaces.Service.Cache;
-using BlazorAPI.Interfaces.Service.Tarefa;
-using BlazorAPI.Interfaces.Service.Usuario;
 using BlazorAPI.Models;
-using BlazorAPI.Repository;
-using BlazorAPI.Services.Autenticacao;
-using BlazorAPI.Services.Cache;
-using BlazorAPI.Services.Tarefa;
-using BlazorAPI.Services.Usuario;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.RateLimiting;
 

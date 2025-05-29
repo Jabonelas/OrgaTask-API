@@ -1,8 +1,6 @@
-﻿using BlazorAPI.DTOs.Tarefa;
-using BlazorAPI.Interfaces.Repository.Tarefa;
+﻿using BlazorAPI.Interfaces.Repository.Tarefa;
 using BlazorAPI.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
 namespace BlazorAPI.Repository
 {

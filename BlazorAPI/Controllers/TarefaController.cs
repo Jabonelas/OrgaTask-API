@@ -1,22 +1,17 @@
 ﻿using BlazorAPI.DTOs;
 using BlazorAPI.DTOs.Tarefa;
-using BlazorAPI.Interfaces.Service.Cache;
 using BlazorAPI.Interfaces.Service.Tarefa;
-using BlazorAPI.Models;
 using BlazorAPI.Responses;
-using BlazorAPI.Services.Cache;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Distributed;
-using System.Text.Json;
 
 namespace BlazorAPI.Controllers;
 
 [ApiController]
 [Route("api/tarefas")]
-[Authorize]
 public class TarefaController : ControllerBase
 {
+    //[Authorize]
     private readonly ITarefaService tarefaService;
 
     //private readonly ITarefaCacheService tarefacacheService;
@@ -452,7 +447,7 @@ public class TarefaController : ControllerBase
     ///
     /// Exemplo de requisição:
     ///
-    ///     GET /tarefa/qtd_status
+    ///     GET /tarefa/status_completo
     ///
     /// Exemplo de resposta de sucesso:
     ///
@@ -472,7 +467,7 @@ public class TarefaController : ControllerBase
     /// <response code="401">Token inválido ou ausente</response>
     /// <response code="404">Usuário não encontrado</response>
     /// <response code="500">Erro interno no servidor</response>
-    [HttpGet("qtd_status")]
+    [HttpGet("status_completo")]
     [ProducesResponseType(typeof(IEnumerable<TarefaQtdStatusDTO>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
@@ -484,7 +479,7 @@ public class TarefaController : ControllerBase
             // Recupera o ID do usuário do token
             _ = int.TryParse(User.FindFirst("idUsuario")?.Value, out var idUsuario);
 
-            var tarefa = await tarefaService.BuscarQtdStatusTarefaAsync(idUsuario);
+            var tarefa = await tarefaService.ObterQtdStatusEPorcentagemConclusaoAsync(idUsuario);
 
             return Ok(tarefa);
         }
@@ -499,59 +494,6 @@ public class TarefaController : ControllerBase
         catch (Exception)
         {
             return StatusCode(500, new ErrorResponse { message = "Erro interno ao buscar quantidade dos status das tarefas." });
-        }
-    }
-
-    /// <summary>
-    /// Obtém a quantidade total de tarefas concluídas para o usuário autenticado
-    /// </summary>
-    /// <remarks>
-    /// Requer autenticação via JWT.
-    ///
-    /// Exemplo de requisição:
-    ///
-    ///     GET /tarefa/qtd_concluida
-    ///
-    /// Exemplo de resposta de sucesso:
-    ///
-    ///     9
-    ///
-    /// Observações:
-    /// - Retorna um valor inteiro representando a quantidade absoluta de tarefas concluídas
-    /// - O ID do usuário é extraído automaticamente do token JWT
-    /// </remarks>
-    /// <returns>Quantidade de tarefas concluídas no formato inteiro</returns>
-    /// <response code="200">Retorna a quantidade de tarefas concluídas</response>
-    /// <response code="401">Token inválido ou ausente</response>
-    /// <response code="404">Usuário não encontrado</response>
-    /// <response code="500">Erro interno no servidor</response>
-    [HttpGet("qtd_concluida")]
-    [ProducesResponseType(typeof(IEnumerable<decimal>), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
-    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<decimal>> BuscarPorcentagemTarefaConcluidaAsync()
-    {
-        try
-        {
-            // Recupera o ID do usuário do token
-            _ = int.TryParse(User.FindFirst("idUsuario")?.Value, out var idUsuario);
-
-            var porcentagemTarefasConcluidasMensal = await tarefaService.BuscarPorcentagemTarefaConcluidaAsync(idUsuario);
-
-            return Ok(porcentagemTarefasConcluidasMensal);
-        }
-        catch (UnauthorizedAccessException ex)
-        {
-            return Unauthorized(new ErrorResponse { message = ex.Message });
-        }
-        catch (KeyNotFoundException ex)
-        {
-            return NotFound(new ErrorResponse { message = ex.Message });
-        }
-        catch (Exception)
-        {
-            return StatusCode(500, new ErrorResponse { message = "Erro interno ao buscar porcentagem das tarefas concluidas." });
         }
     }
 

@@ -1,6 +1,5 @@
 ﻿using BlazorAPI.DTOs;
 using BlazorAPI.DTOs.Tarefa;
-using BlazorAPI.Models;
 
 namespace BlazorAPI.Interfaces.Service.Tarefa;
 
@@ -18,9 +17,7 @@ public interface ITarefaService
 
     Task<TarefaDTO> BuscarTarefaAsync(int _idTarefa, int _idUsuario);
 
-    Task<TarefaQtdStatusDTO> BuscarQtdStatusTarefaAsync(int _idUsuario);
-
-    Task<decimal> BuscarPorcentagemTarefaConcluidaAsync(int _idUsuario);
+    Task<TarefaQtdStatusDTO> ObterQtdStatusEPorcentagemConclusaoAsync(int _idUsuario);
 
     Task<List<TarefaPrioridadeAltaDTO>> BuscarTarefasPrioridadeAltaAsync(int _idUsuario);
 }

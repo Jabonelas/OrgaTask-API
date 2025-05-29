@@ -1,8 +1,6 @@
-﻿using BlazorAPI.DTOs;
-using BlazorAPI.DTOs.Tarefa;
+﻿using BlazorAPI.DTOs.Tarefa;
 using BlazorAPI.Interfaces.Service.Cache;
 using BlazorAPI.Interfaces.Service.Tarefa;
-using BlazorAPI.Models;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
 
