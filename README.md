@@ -21,13 +21,15 @@ Esta API é consumida por:
 - [OrgaTask Windows Forms](https://github.com/Jabonelas/OrgaTask-Windows-Forms) (Versão Desktop)
 
 ## 🛠 Tecnologias
-- .NET 8
-- Entity Framework Core
-- SQLite
-- JWT para autenticação
-- Swagger para documentação
-- Injeção de Dependência nativa
-- Design Patterns (Repository, Unit of Work)
+- **Core**: .NET 8
+- **Banco de Dados**: SQLite
+- **ORM (Object Relational Mapping)**: Entity Framework Core
+- **Autenticação**: JWT Bearer Tokens
+- **Documentação**: Swagger
+- **Padrões Arquiteturais**:
+  - **Service Layer**: Separação clara entre controllers e lógica de negócio
+  - **Repository Pattern**: Abstração do acesso a dados
+  - **Injeção de Dependência**: Nativa do .NET (IServiceCollection)
 
 ## 🚀 Como Executar
 1. Clone o repositório:
