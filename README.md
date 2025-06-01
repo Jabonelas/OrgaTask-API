@@ -17,8 +17,8 @@ API central do sistema OrgaTask que fornece endpoints para:
 
 ## 🌐 Ecossistema OrgaTask
 Esta API é consumida por:
-- [OrgaTask Blazor WebAssembly](https://github.com/Jabonelas/OrgaTask-Blazor-WebAssembly) (Web)
-- [OrgaTask Windows Forms](https://github.com/Jabonelas/OrgaTask-Windows-Forms) (Desktop)
+- [OrgaTask Blazor WebAssembly](https://github.com/Jabonelas/OrgaTask-Blazor-WebAssembly) (Versão Web)
+- [OrgaTask Windows Forms](https://github.com/Jabonelas/OrgaTask-Windows-Forms) (Versão Desktop)
 
 ## 🛠 Tecnologias
 - .NET 8
