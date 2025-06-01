@@ -36,16 +36,27 @@ namespace BlazorAPI
             });
 #else
 
-            builder.Services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(policy =>
-                {
-                    policy.WithOrigins("https://blazor-webassembly.pages.dev") // Seu domínio Cloudflare
-                          .AllowAnyMethod()                                   // Permite GET, POST, PUT, DELETE, etc.
-                          .AllowAnyHeader()                                  // Permite qualquer cabeçalho (Content-Type, Authorization)
-                          .AllowCredentials();                               // Se estiver usando cookies ou autenticação
-                });
-            });
+            //Permitir interacao com a aplicacao blazor hospedada
+            //builder.Services.AddCors(options =>
+            //{
+            //    options.AddDefaultPolicy(policy =>
+            //    {
+            //        policy.WithOrigins("https://blazor-webassembly.pages.dev") // Seu domínio Cloudflare
+            //              .AllowAnyMethod()                                   // Permite GET, POST, PUT, DELETE, etc.
+            //              .AllowAnyHeader()                                  // Permite qualquer cabeçalho (Content-Type, Authorization)
+            //              .AllowCredentials();                               // Se estiver usando cookies ou autenticação
+            //    });
+            //});
+
+            // Permite qualquer origem (não recomendado para produção)
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder => builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+});
 
 #endif
 
