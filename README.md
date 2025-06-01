@@ -1,45 +1,37 @@
-# Blazor API com .NET 8
-Este projeto é uma API REST desenvolvida em .NET 8, com foco em arquitetura limpa, segurança e boas práticas, servindo como base para uma futura aplicação Blazor WebAssembly que também será publicada em breve.
+# OrgaTask API
 
-✨ Funcionalidades
-O sistema permite:
+![.NET](https://img.shields.io/badge/.NET-8-%23512BD4)
+![EF Core](https://img.shields.io/badge/EF%20Core-8-%23512BD4)
+![Swagger](https://img.shields.io/badge/Swagger-UI-%2385EA2D)
 
-✅ Cadastro e autenticação de usuários (com JWT)
+> Backend do ecossistema OrgaTask - API RESTful para gerenciamento de tarefas
 
-✅ Gerenciamento de tarefas por usuário:
+<div align="center">
+![image](https://github.com/user-attachments/assets/fff9a5bb-4cdd-4c92-9a8f-a70ca60ad3ff)
 
-Criar novas tarefas
+  
+  <img src="docs/api-screenshot.png" alt="Swagger UI" width="600">
+  
+</div>
 
-Listar tarefas existentes
+## 📋 Visão Geral
+API central do sistema OrgaTask que fornece endpoints para:
+- Autenticação de usuários com JWT
+- CRUD de usuários
+- CRUD de tarefas com prioridade e status
+- Gerenciamento de projetos
 
-Atualizar informações de uma tarefa
+## 🌐 Ecossistema OrgaTask
+Esta API é consumida por:
+- [OrgaTask Blazor WebAssembly](https://github.com/Jabonelas/OrgaTask-Blazor-WebAssembly) (Web)
+- [OrgaTask Windows Forms](https://github.com/Jabonelas/OrgaTask-Windows-Forms) (Desktop)
 
-Deletar tarefas
+## 🛠 Tecnologias
+- .NET 8
+- Entity Framework Core
+- SQLite
+- JWT para autenticação
+- Swagger para documentação
+- Injeção de Dependência nativa
+- Design Patterns (Repository, Unit of Work)
 
-📌 Cada tarefa possui:
-
-Status (Ex: pendente, concluída)
-
-Prioridade (Ex: alta, média, baixa)
-
-🧪 Tecnologias Utilizadas
-.NET 8
-
-Entity Framework Core com SQLite
-
-JWT para autenticação segura
-
-Swagger para documentação da API
-
-Injeção de Dependência nativa do .NET
-
-Aplicação de Design Patterns para uma arquitetura modular e escalável
-
-📚 Objetivo
-Este projeto tem como propósito:
-
-Servir de base para estudos e prática de desenvolvimento backend com C#
-
-Demonstrar uma estrutura de API REST limpa e segura
-
-Preparar o backend para integração com um front-end em Blazor WebAssembly
