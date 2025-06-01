@@ -7,12 +7,16 @@
       "RelativeMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|solutionrelative:blazorapi\\services\\tarefa\\tarefaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\repository\\tarefarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|solutionrelative:blazorapi\\repository\\tarefarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\services\\usuario\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|solutionrelative:blazorapi\\services\\usuario\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\controllers\\tarefacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|solutionrelative:blazorapi\\controllers\\tarefacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\repository\\tarefarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|solutionrelative:blazorapi\\repository\\tarefarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\dtos\\tarefa\\tarefaqtdstatusdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -29,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|solutionrelative:blazorapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\services\\usuario\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|solutionrelative:blazorapi\\services\\usuario\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -70,7 +70,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "TarefaQtdStatusDTO.cs",
               "DocumentMoniker": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\DTOs\\Tarefa\\TarefaQtdStatusDTO.cs",
               "RelativeDocumentMoniker": "BlazorAPI\\DTOs\\Tarefa\\TarefaQtdStatusDTO.cs",
@@ -106,7 +106,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Program.cs",
               "RelativeDocumentMoniker": "BlazorAPI\\Program.cs",
@@ -142,15 +142,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
               "Title": "UsuarioService.cs",
               "DocumentMoniker": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Services\\Usuario\\UsuarioService.cs",
               "RelativeDocumentMoniker": "BlazorAPI\\Services\\Usuario\\UsuarioService.cs",
               "ToolTip": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Services\\Usuario\\UsuarioService.cs",
               "RelativeToolTip": "BlazorAPI\\Services\\Usuario\\UsuarioService.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAqwBcAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T01:48:08.448Z"
+              "WhenOpened": "2025-05-21T01:48:08.448Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -166,7 +167,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "TarefaRepository.cs",
               "DocumentMoniker": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Repository\\TarefaRepository.cs",
               "RelativeDocumentMoniker": "BlazorAPI\\Repository\\TarefaRepository.cs",
@@ -178,7 +179,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "ITarefaRepository.cs",
               "DocumentMoniker": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Interfaces\\Repository\\Tarefa\\ITarefaRepository.cs",
               "RelativeDocumentMoniker": "BlazorAPI\\Interfaces\\Repository\\Tarefa\\ITarefaRepository.cs",
@@ -194,16 +195,16 @@
               "Title": "TarefaService.cs",
               "DocumentMoniker": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Services\\Tarefa\\TarefaService.cs",
               "RelativeDocumentMoniker": "BlazorAPI\\Services\\Tarefa\\TarefaService.cs",
-              "ToolTip": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Services\\Tarefa\\TarefaService.cs",
-              "RelativeToolTip": "BlazorAPI\\Services\\Tarefa\\TarefaService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIgAAAAnAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Services\\Tarefa\\TarefaService.cs \u2B24",
+              "RelativeToolTip": "BlazorAPI\\Services\\Tarefa\\TarefaService.cs \u2B24",
+              "ViewState": "AgIAACYAAAAAAAAAAAAwwDgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-20T22:54:10.692Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ITarefaService.cs",
               "DocumentMoniker": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Interfaces\\Service\\Tarefa\\ITarefaService.cs",
               "RelativeDocumentMoniker": "BlazorAPI\\Interfaces\\Service\\Tarefa\\ITarefaService.cs",
@@ -221,9 +222,10 @@
               "RelativeDocumentMoniker": "BlazorAPI\\Controllers\\TarefaController.cs",
               "ToolTip": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Controllers\\TarefaController.cs",
               "RelativeToolTip": "BlazorAPI\\Controllers\\TarefaController.cs",
-              "ViewState": "AgIAABMCAAAAAAAAAAAAANUBAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAJYBAAAAAAAAAAAiwNUBAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T18:19:26.344Z"
+              "WhenOpened": "2025-05-20T18:19:26.344Z",
+              "EditorCaption": ""
             }
           ]
         },
