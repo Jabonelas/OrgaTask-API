@@ -29,3 +29,7 @@ Esta API é consumida por:
 - Injeção de Dependência nativa
 - Design Patterns (Repository, Unit of Work)
 
+## 🚀 Como Executar
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/Jabonelas/OrgaTask-API.git
