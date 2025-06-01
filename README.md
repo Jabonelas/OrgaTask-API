@@ -6,13 +6,7 @@
 
 > Backend do ecossistema OrgaTask - API RESTful para gerenciamento de tarefas
 
-<div align="center">
 ![image](https://github.com/user-attachments/assets/fff9a5bb-4cdd-4c92-9a8f-a70ca60ad3ff)
-
-  
-  <img src="docs/api-screenshot.png" alt="Swagger UI" width="600">
-  
-</div>
 
 ## 📋 Visão Geral
 API central do sistema OrgaTask que fornece endpoints para:
