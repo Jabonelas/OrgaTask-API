@@ -4,7 +4,16 @@
 ![EF Core](https://img.shields.io/badge/EF%20Core-8-%23512BD4)
 ![Swagger](https://img.shields.io/badge/Swagger-UI-%2385EA2D)
 
+
+## 📌 **Sobre o OrgaTask**  
+**Sistema central** para gestão de tarefas, onde usuários podem:  
+- Criar/gerenciar tarefas com prioridades e status  
+- Acessar de múltiplos frontends (web e desktop)  
+- Ter dados sincronizados em tempo real  
+ 
+
 > Backend do ecossistema OrgaTask - API RESTful para gerenciamento de tarefas
+
 
 ![image](https://github.com/user-attachments/assets/fff9a5bb-4cdd-4c92-9a8f-a70ca60ad3ff)
 
