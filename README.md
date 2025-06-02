@@ -20,6 +20,9 @@ Esta API é consumida por:
 - [OrgaTask Blazor WebAssembly](https://github.com/Jabonelas/OrgaTask-Blazor-WebAssembly) (Versão Web)
 - [OrgaTask Windows Forms](https://github.com/Jabonelas/OrgaTask-Windows-Forms) (Versão Desktop)
 
+- ![OrganizacaoOrgaTask](https://github.com/user-attachments/assets/3819ff15-5b68-400a-b2ec-db8cc41b7fef)
+
+
 ## 🛠 Tecnologias
 - **Core**: .NET 8
 - **Banco de Dados**: SQLite
