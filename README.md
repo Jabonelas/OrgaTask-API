@@ -29,7 +29,11 @@ Esta API é consumida por:
 - [OrgaTask Blazor WebAssembly](https://github.com/Jabonelas/OrgaTask-Blazor-WebAssembly) (Versão Web)
 - [OrgaTask Windows Forms](https://github.com/Jabonelas/OrgaTask-Windows-Forms) (Versão Desktop)
 
-![OrganizacaoOrgaTask](https://github.com/user-attachments/assets/3819ff15-5b68-400a-b2ec-db8cc41b7fef)
+- 📊 Arquitetura do Sistema
+
+![OrganizacaoOrgaTask](https://github.com/user-attachments/assets/bae20b56-ace7-4ef0-8d14-7fe13f1d9d31)
+Figura 1: Visão geral da integração entre os componentes do OrgaTask.
+A API central (Backend) serve dados para os frontends Web e Desktop.
 
 
 ## 🛠 Tecnologias
