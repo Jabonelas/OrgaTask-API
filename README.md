@@ -30,6 +30,7 @@ Esta API é consumida por:
   - **Service Layer**: Separação clara entre controllers e lógica de negócio
   - **Repository Pattern**: Abstração do acesso a dados
   - **Unit of Work**: Gerenciamento transacional e agrupamento de operações em repositórios
+  - **DTOs**: para transferência de dados
   - **Injeção de Dependência**: Nativa do .NET (IServiceCollection)
 
 ## 🚀 Como Executar
