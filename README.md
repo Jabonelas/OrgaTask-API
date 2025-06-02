@@ -23,7 +23,7 @@ Esta API é consumida por:
 ## 🛠 Tecnologias
 - **Core**: .NET 8
 - **Banco de Dados**: SQLite
-- **ORM (Object Relational Mapping)**: Entity Framework Core
+- **ORM (Object Relational Mapping)**: Entity Framework
 - **Autenticação**: JWT Bearer Tokens
 - **Documentação**: Swagger
 - **Padrões Arquiteturais**:
