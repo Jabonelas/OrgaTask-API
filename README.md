@@ -29,6 +29,7 @@ Esta API é consumida por:
 - **Padrões Arquiteturais**:
   - **Service Layer**: Separação clara entre controllers e lógica de negócio
   - **Repository Pattern**: Abstração do acesso a dados
+  - **Unit of Work**: Gerenciamento transacional e agrupamento de operações em repositórios
   - **Injeção de Dependência**: Nativa do .NET (IServiceCollection)
 
 ## 🚀 Como Executar
