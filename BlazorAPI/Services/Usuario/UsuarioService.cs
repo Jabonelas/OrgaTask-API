@@ -3,6 +3,7 @@ using BlazorAPI.DTOs.Usuario;
 using BlazorAPI.Interfaces.Autenticacao;
 using BlazorAPI.Interfaces.Repository.Usuario;
 using BlazorAPI.Interfaces.Service.Usuario;
+using BlazorAPI.Interfaces.Unit_Of_Work;
 using BlazorAPI.Models;
 using System.Security.Cryptography;
 using System.Text;
@@ -11,13 +12,13 @@ namespace BlazorAPI.Services.Usuario
 {
     public class UsuarioService : IUsuarioService
     {
-        private readonly IUsuarioRepository iUsuarioRepository;
         private readonly IAutenticacao iAutenticacao;
 
-        public UsuarioService(IUsuarioRepository _iUsuarioRepository, IAutenticacao _iAutenticacao)
-        {
-            iUsuarioRepository = _iUsuarioRepository;
+        private readonly IUnitOfWork unitOfWork;
 
+        public UsuarioService(IUnitOfWork _unitOfWork, IAutenticacao _iAutenticacao)
+        {
+            unitOfWork = _unitOfWork;
             iAutenticacao = _iAutenticacao;
         }
 
@@ -32,7 +33,8 @@ namespace BlazorAPI.Services.Usuario
 
             usuario.UsSenha = CriptografarSenha(_dadosCadastroUsuario.Senha);
 
-            await iUsuarioRepository.AdicionarAsync(usuario);
+            await unitOfWork.UsuarioReposity.AdicionarAsync(usuario);
+            await unitOfWork.SalvarBancoAsync();
         }
 
         public string CriptografarSenha(string _senhaDigitada)
@@ -53,7 +55,7 @@ namespace BlazorAPI.Services.Usuario
 
         public async Task<bool> LoginExisteAsync(string _login)
         {
-            return await iUsuarioRepository.LoginExisteAsync(_login);
+            return await unitOfWork.UsuarioReposity.LoginExisteAsync(_login);
         }
 
         public async Task LoginSenhaValidosAsync(UsuarioLoginDTO _dadosUsuarioLogin)
@@ -62,7 +64,7 @@ namespace BlazorAPI.Services.Usuario
 
             usuarioLogin.UsSenha = CriptografarSenha(_dadosUsuarioLogin.Senha);
 
-            if (!await iUsuarioRepository.LoginSenhaValidosAsync(usuarioLogin))
+            if (!await unitOfWork.UsuarioReposity.LoginSenhaValidosAsync(usuarioLogin))
             {
                 throw new UnauthorizedAccessException("Falha na autenticação: credenciais inválidas.");
             }
@@ -70,7 +72,7 @@ namespace BlazorAPI.Services.Usuario
 
         public async Task<int> BuscarIdUsuarioAsync(string _login)
         {
-            return await iUsuarioRepository.BuscarIdUsuarioAsync(_login);
+            return await unitOfWork.UsuarioReposity.BuscarIdUsuarioAsync(_login);
         }
 
         public async Task<UserToken> GerarTorkenAsync(int _idUsuario, UsuarioLoginDTO _dadosUsuarioLogin)

@@ -15,9 +15,7 @@ namespace BlazorAPI.Repository
 
         public async Task AdicionarAsync(TbUsuario _dadosCadastroUsuario)
         {
-            context.TbUsuarios.Add(_dadosCadastroUsuario);
-
-            await context.SaveChangesAsync();
+            await context.TbUsuarios.AddAsync(_dadosCadastroUsuario);
         }
 
         public async Task<bool> LoginExisteAsync(string _login)

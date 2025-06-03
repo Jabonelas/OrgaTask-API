@@ -3,10 +3,12 @@ using BlazorAPI.Interfaces.Repository.Tarefa;
 using BlazorAPI.Interfaces.Repository.Usuario;
 using BlazorAPI.Interfaces.Service.Tarefa;
 using BlazorAPI.Interfaces.Service.Usuario;
+using BlazorAPI.Interfaces.Unit_Of_Work;
 using BlazorAPI.Repository;
 using BlazorAPI.Services.Autenticacao;
 using BlazorAPI.Services.Tarefa;
 using BlazorAPI.Services.Usuario;
+using BlazorAPI.Unit_O_fWork;
 
 namespace BlazorAPI.Extensions
 {
@@ -21,6 +23,9 @@ namespace BlazorAPI.Extensions
             //Tarefa
             service.AddScoped<ITarefaService, TarefaService>();
             service.AddScoped<ITarefaRepository, TarefaRepository>();
+
+            //Unit Of Work
+            service.AddScoped<IUnitOfWork, UnitOfWork>();
 
             //Cache
             //service.AddScoped<ITarefaCacheService, TarefaCacheService>();

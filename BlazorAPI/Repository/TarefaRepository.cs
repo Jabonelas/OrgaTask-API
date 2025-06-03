@@ -15,8 +15,7 @@ namespace BlazorAPI.Repository
 
         public async Task CadastrarTarefaAsync(TbTarefa _dadosTarefa)
         {
-            context.TbTarefas.Add(_dadosTarefa);
-            await context.SaveChangesAsync();
+            await context.TbTarefas.AddAsync(_dadosTarefa);
         }
 
         public async Task AlterarTarefaAsync(TbTarefa _dadosTarefa)
@@ -28,8 +27,6 @@ namespace BlazorAPI.Repository
             tarefa.TaPrazo = _dadosTarefa.TaPrazo;
             tarefa.TaPrioridade = _dadosTarefa.TaPrioridade;
             tarefa.TaStatus = _dadosTarefa.TaStatus;
-
-            await context.SaveChangesAsync();
         }
 
         public async Task<bool> TarefaPertenceUsuarioAsync(int _idTarefa, int _idUsuario)
@@ -44,7 +41,6 @@ namespace BlazorAPI.Repository
             if (tarefa != null)
             {
                 context.TbTarefas.Remove(tarefa);
-                await context.SaveChangesAsync();
             }
         }
 
