@@ -58,26 +58,16 @@ namespace BlazorAPI
             //            .AllowAnyHeader());
             //});
 
-            builder.Services.AddCors(options =>
+ builder.Services.AddCors(options =>
 {
-    // Política para Blazor (requer CORS explícito)
-    options.AddPolicy("BlazorPolicy",
-        builder => builder
-            .WithOrigins(
-                "https://orgatask.pages.dev/", // Cloudflare
-                "https://localhost:7170",                        // Dev Blazor
-                "http://localhost:5000"                          // Portas alternativas
-            )
-            .AllowAnyMethod()
-            .AllowAnyHeader()
-            .AllowCredentials()); // Necessário se usar cookies/tokens
-
-    // Política para Windows Forms (sem restrições de origem)
-    options.AddPolicy("WindowsFormsPolicy",
-        builder => builder
-            .AllowAnyOrigin()  // Apps desktop não usam CORS
-            .AllowAnyMethod()
-            .AllowAnyHeader());
+    options.AddPolicy("RenderPolicy", builder => builder
+        .WithOrigins(
+            "https://localhost:7170",          // Dev Blazor
+            "https://orgatask.pages.dev" // Produção
+        )
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials());
 });
 
 #endif
@@ -151,8 +141,9 @@ namespace BlazorAPI
 
 #if RELEASE
 
-            app.UseCors();
+            //app.UseCors();
 
+            app.UseCors("RenderPolicy");
 #endif
 
             app.UseHttpsRedirection();
