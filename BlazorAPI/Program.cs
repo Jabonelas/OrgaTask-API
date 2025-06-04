@@ -36,17 +36,17 @@ namespace BlazorAPI
             });
 #else
 
-            //Permitir interacao com a aplicacao blazor hospedada
-            builder.Services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(policy =>
-                {
-                    policy.WithOrigins("https://orgatask.pages.dev/") // Seu domínio Cloudflare
-                          .AllowAnyMethod()                                   // Permite GET, POST, PUT, DELETE, etc.
-                          .AllowAnyHeader()                                  // Permite qualquer cabeçalho (Content-Type, Authorization)
-                          .AllowCredentials();                               // Se estiver usando cookies ou autenticação
-                });
-            });
+            ////Permitir interacao com a aplicacao blazor hospedada
+            //builder.Services.AddCors(options =>
+            //{
+            //    options.AddDefaultPolicy(policy =>
+            //    {
+            //        policy.WithOrigins("https://orgatask.pages.dev/") // Seu domínio Cloudflare
+            //              .AllowAnyMethod()                                   // Permite GET, POST, PUT, DELETE, etc.
+            //              .AllowAnyHeader()                                  // Permite qualquer cabeçalho (Content-Type, Authorization)
+            //              .AllowCredentials();                               // Se estiver usando cookies ou autenticação
+            //    });
+            //});
 
             //            // Permite qualquer origem (não recomendado para produção)
             //builder.Services.AddCors(options =>
@@ -57,6 +57,28 @@ namespace BlazorAPI
             //            .AllowAnyMethod()
             //            .AllowAnyHeader());
             //});
+
+            builder.Services.AddCors(options =>
+{
+    // Política para Blazor (requer CORS explícito)
+    options.AddPolicy("BlazorPolicy",
+        builder => builder
+            .WithOrigins(
+                "https://orgatask.pages.dev/", // Cloudflare
+                "https://localhost:7170",                        // Dev Blazor
+                "http://localhost:5000"                          // Portas alternativas
+            )
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials()); // Necessário se usar cookies/tokens
+
+    // Política para Windows Forms (sem restrições de origem)
+    options.AddPolicy("WindowsFormsPolicy",
+        builder => builder
+            .AllowAnyOrigin()  // Apps desktop não usam CORS
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+});
 
 #endif
 

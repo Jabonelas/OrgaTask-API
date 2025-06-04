@@ -22,5 +22,11 @@
     <ArrayOfString>
       <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Repository\TarefaRepository.cs</string>
     </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Program.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\appsettings.json</string>
+    </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>
