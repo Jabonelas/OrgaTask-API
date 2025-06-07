@@ -107,7 +107,7 @@ namespace BlazorAPI.Services.Tarefa
         {
             var (pendente, emAndamento, concluido) = await unitOfWork.TarefaRepository.BuscarQtdStatusTarefaAsync(_idUsuario);
 
-            var porcentagem = CalcularPorcentagemConclusao(pendente, emAndamento, concluido);
+            var porcentagem = CalcularPorcentagemConclusaoTarefas(pendente, emAndamento, concluido);
 
             TarefaQtdStatusDTO tarefaQtdStatus = new TarefaQtdStatusDTO()
             {
@@ -178,7 +178,7 @@ namespace BlazorAPI.Services.Tarefa
 
         #region Metodo Privado
 
-        private decimal CalcularPorcentagemConclusao(int _pendente, int _emAndamento, int _concluido)
+        private decimal CalcularPorcentagemConclusaoTarefas(int _pendente, int _emAndamento, int _concluido)
         {
             decimal soma = _pendente + _emAndamento + _concluido;
             decimal porcentagem = 0;

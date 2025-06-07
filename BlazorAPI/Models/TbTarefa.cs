@@ -62,9 +62,6 @@ public partial class TbTarefa
     };
 
 
-
-
-
     public static implicit operator TarefaConsultaDTO(TbTarefa _tarefa) =>
  new()
  {

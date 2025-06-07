@@ -2,28 +2,13 @@
 <ArrayOfArrayOfArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ArrayOfArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Interfaces\Unit Of Work\IUnitOfWork .cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Unit Of Work\UnitOfWork.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Extensions\InjecaoDependencia.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Repository\UsuarioRepository.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Services\Usuario\UsuarioService.cs</string>
+      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Services\Autenticacao\AutenticacaoService.cs</string>
     </ArrayOfString>
     <ArrayOfString>
       <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Services\Tarefa\TarefaService.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Repository\TarefaRepository.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Program.cs</string>
+      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\DTOs\Tarefa\TarefaQtdStatusDTO.cs</string>
     </ArrayOfString>
     <ArrayOfString>
       <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\appsettings.json</string>

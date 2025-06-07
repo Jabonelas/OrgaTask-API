@@ -19,9 +19,9 @@ namespace BlazorAPI.Services.Autenticacao
         {
             var claims = new[]
    {
-        new Claim("idUsuario", _idUsuario.ToString()), // Claim com o ID do usuário
-        new Claim(ClaimTypes.Name, _login), // Claim padrão para o nome
-        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()) // ID único do token
+        new Claim("idUsuario", _idUsuario.ToString()),
+        new Claim(ClaimTypes.Name, _login),
+        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
     };
 
             var chavePrivada = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["jwt:secretKey"]));
