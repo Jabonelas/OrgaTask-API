@@ -115,10 +115,15 @@ Resposta:
 ]
 ```
 
-Capturas de Tela
 
 ![image](https://github.com/user-attachments/assets/3ef37418-166a-4d55-8eb6-4a9c268cb70e)
 
+![image](https://github.com/user-attachments/assets/1fd2ed5d-e121-4ddf-bb80-b9e3e97990ee)
+
 ![image](https://github.com/user-attachments/assets/9a479196-a6c1-4e4e-ab0f-63c93263b91d)
+
+Contribuições
+
+Sinta-se à vontade para abrir issues ou enviar pull requests. Todas as contribuições são bem-vindas!
 
 
