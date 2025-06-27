@@ -1,58 +1,129 @@
 # OrgaTask API
 
-![.NET](https://img.shields.io/badge/.NET-8-%23512BD4)
-![EF Core](https://img.shields.io/badge/EF%20Core-8-%23512BD4)
-![Swagger](https://img.shields.io/badge/Swagger-UI-%2385EA2D)
+## Visão Geral
 
+OrgaTask API é uma API RESTful desenvolvida para gerenciar tarefas e autenticação de usuários, servindo como backend para múltiplos clientes (Web, Desktop, e em breve Mobile). O projeto foi construído com foco em boas práticas de arquitetura, segurança, e documentação, utilizando tecnologias modernas do ecossistema .NET.
 
-## 📌 **Sobre o OrgaTask**  
-**Sistema central** para gestão de tarefas, onde usuários podem:  
-- Criar/gerenciar tarefas com prioridades e status  
-- Acessar de múltiplos frontends (web e desktop)  
-- Ter dados sincronizados em tempo real  
- 
+## Tecnologias Utilizadas
 
-> Backend do ecossistema OrgaTask - API RESTful para gerenciamento de tarefas
-
-
-![image](https://github.com/user-attachments/assets/fff9a5bb-4cdd-4c92-9a8f-a70ca60ad3ff)
-
-## 📋 Visão Geral
-API central do sistema OrgaTask que fornece endpoints para:
-- Autenticação de usuários com JWT
-- CRUD de usuários
-- CRUD de tarefas com prioridade e status
-- Gerenciamento de projetos
-
-## 🌐 Ecossistema OrgaTask
-Esta API é consumida por:
-- [OrgaTask Blazor WebAssembly](https://github.com/Jabonelas/OrgaTask-Blazor-WebAssembly) (Versão Web)
-
-<!--
-- [OrgaTask Windows Forms](https://github.com/Jabonelas/OrgaTask-Windows-Forms) (Versão Desktop)
- -->
-
-- 📊 Arquitetura do Sistema
-
-![OrganizacaoOrgaTask](https://github.com/user-attachments/assets/bae20b56-ace7-4ef0-8d14-7fe13f1d9d31)
-Figura 1: Visão geral da integração entre os componentes do OrgaTask.
-A API central (Backend) serve dados para os frontends Web e Desktop.
-
-
-## 🛠 Tecnologias
 - **Core**: .NET 8
 - **Banco de Dados**: SQLite
-- **ORM (Object Relational Mapping)**: Entity Framework
+- **ORM**: Entity Framework Core
 - **Autenticação**: JWT Bearer Tokens
-- **Documentação**: Swagger
-- **Padrões Arquiteturais**:
-  - **Service Layer**: Separação clara entre controllers e lógica de negócio
-  - **Repository Pattern**: Abstração do acesso a dados
-  - **Unit of Work**: Gerenciamento transacional e agrupamento de operações em repositórios
-  - **DTOs**: para transferência de dados
-  - **Injeção de Dependência**: Nativa do .NET (IServiceCollection)
+- **Documentação**: Swagger/OpenAPI
 
-## 🚀 Como Executar
+## Padrões Arquiteturais
+
+- **Service Layer**: Separação entre controllers e lógica de negócio
+- **Repository Pattern**: Abstração do acesso a dados
+- **Unit of Work**: Gerenciamento transacional
+- **DTOs**: Transferência de dados
+- **Injeção de Dependência**: Nativa do .NET (IServiceCollection)
+
+## Funcionalidades
+
+- Autenticação e autorização via JWT
+- CRUD de tarefas (criar, listar, atualizar, excluir)
+- Documentação interativa via Swagger
+- Validação de dados e tratamento de erros
+
+## Pré-requisitos
+
+- .NET 8 SDK
+- SQLite (ou use o banco embutido no projeto)
+- Postman ou cURL (para testar a API)
+
+## Como Executar o Projeto
+
 1. Clone o repositório:
-   ```bash
-   git clone https://github.com/Jabonelas/OrgaTask-API.git
+```bash
+git clone https://github.com/Jabonelas/OrgaTask-API.git
+cd OrgaTask-API
+```
+
+2. Restaure as dependências:
+```bash
+dotnet restore
+```
+
+3. Configure o banco de dados:
+
+O arquivo do banco de dados (`Banco.db`) já está incluído no projeto.
+
+Caso necessário, aplique as migrações:
+```bash
+dotnet ef database update
+```
+
+4. Execute a API:
+```bash
+dotnet run
+```
+
+5. Acesse a documentação Swagger em: https://localhost:7091/swagger
+
+
+## Exemplo de Uso
+
+Autenticação
+
+Envie uma requisição POST para /api/usuarios/login:
+
+```bash
+curl -X 'POST' \
+  'https://localhost:7091/api/usuarios/login' \
+  -H 'accept: text/plain' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "login": "string",
+  "senha": "string"
+}'
+```
+
+Resposta:
+
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIs..."
+}
+```
+
+Listar Tarefas
+
+Use o token JWT no header Authorization:
+
+```bash
+curl -X 'GET' \
+  'https://localhost:7091/api/tarefas' \
+  -H 'accept: text/plain' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR...'
+```
+
+Resposta:
+
+```json
+[
+  {
+    "id": 255,
+    "titulo": "Otimizar consultas SQL",
+    "descricao": "Analisar e melhorar performance das queries do sistema",
+    "prioridade": "Média",
+    "prazo": 8,
+    "status": "Pendente",
+    "data": null
+  }
+]
+```
+
+
+![image](https://github.com/user-attachments/assets/3ef37418-166a-4d55-8eb6-4a9c268cb70e)
+
+![image](https://github.com/user-attachments/assets/1fd2ed5d-e121-4ddf-bb80-b9e3e97990ee)
+
+![image](https://github.com/user-attachments/assets/9a479196-a6c1-4e4e-ab0f-63c93263b91d)
+
+Contribuições
+
+Sinta-se à vontade para abrir issues ou enviar pull requests. Todas as contribuições são bem-vindas!
+
+
