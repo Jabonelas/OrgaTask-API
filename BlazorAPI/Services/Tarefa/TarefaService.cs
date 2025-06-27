@@ -1,11 +1,9 @@
 ﻿using BlazorAPI.DTOs;
 using BlazorAPI.DTOs.Tarefa;
 using BlazorAPI.Interfaces.Autenticacao;
-using BlazorAPI.Interfaces.Repository.Tarefa;
 using BlazorAPI.Interfaces.Service.Tarefa;
 using BlazorAPI.Interfaces.Unit_Of_Work;
 using BlazorAPI.Models;
-using BlazorAPI.Repository;
 
 namespace BlazorAPI.Services.Tarefa
 {

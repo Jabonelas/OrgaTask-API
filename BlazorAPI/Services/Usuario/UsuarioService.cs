@@ -1,7 +1,6 @@
 ﻿using BlazorAPI.DTOs;
 using BlazorAPI.DTOs.Usuario;
 using BlazorAPI.Interfaces.Autenticacao;
-using BlazorAPI.Interfaces.Repository.Usuario;
 using BlazorAPI.Interfaces.Service.Usuario;
 using BlazorAPI.Interfaces.Unit_Of_Work;
 using BlazorAPI.Models;
@@ -24,7 +23,9 @@ namespace BlazorAPI.Services.Usuario
 
         public async Task CadastrarUsuarioAsync(UsuarioCadastrarDTO _dadosCadastroUsuario)
         {
-            if (await LoginExisteAsync(_dadosCadastroUsuario.Login.ToString()))
+            _dadosCadastroUsuario.Login = _dadosCadastroUsuario.Login.TrimEnd();
+
+            if (await LoginExisteAsync(_dadosCadastroUsuario.Login))
             {
                 throw new InvalidOperationException("Login já cadastrado.");
             }
@@ -64,6 +65,8 @@ namespace BlazorAPI.Services.Usuario
 
             usuarioLogin.UsSenha = CriptografarSenha(_dadosUsuarioLogin.Senha);
 
+            usuarioLogin.UsLogin = usuarioLogin.UsLogin.TrimEnd();
+
             if (!await unitOfWork.UsuarioReposity.LoginSenhaValidosAsync(usuarioLogin))
             {
                 throw new UnauthorizedAccessException("Falha na autenticação: credenciais inválidas.");
@@ -72,11 +75,15 @@ namespace BlazorAPI.Services.Usuario
 
         public async Task<int> BuscarIdUsuarioAsync(string _login)
         {
+            _login = _login.TrimEnd();
+
             return await unitOfWork.UsuarioReposity.BuscarIdUsuarioAsync(_login);
         }
 
         public async Task<UserToken> GerarTorkenAsync(int _idUsuario, UsuarioLoginDTO _dadosUsuarioLogin)
         {
+            _dadosUsuarioLogin.Login = _dadosUsuarioLogin.Login.TrimEnd();
+
             var token = iAutenticacao.GenerateToken(_idUsuario, _dadosUsuarioLogin.Login);
 
             return new UserToken
