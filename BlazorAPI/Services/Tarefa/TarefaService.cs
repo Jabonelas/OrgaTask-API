@@ -127,9 +127,8 @@ namespace BlazorAPI.Services.Tarefa
             foreach (var item in listaTarefas)
             {
                 DateTime hoje = DateTime.Today;
-
-                DateTime.TryParse(item.TaData?.ToString(), out DateTime dataTarefa);
-                TimeSpan diferenca = hoje - dataTarefa;
+                DateTime dataTarefa = Convert.ToDateTime(item.TaData).Date;
+                TimeSpan diferenca = hoje.Date - dataTarefa;
                 int diasDiferenca = diferenca.Days;
 
                 int diasDiferente = -diasDiferenca + item.TaPrazo;

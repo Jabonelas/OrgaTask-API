@@ -28,5 +28,8 @@
     <ArrayOfString>
       <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Services\Usuario\UsuarioService.cs</string>
     </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\appsettings.json</string>
+    </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>
