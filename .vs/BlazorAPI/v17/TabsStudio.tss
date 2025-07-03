@@ -34,5 +34,8 @@
     <ArrayOfString>
       <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Extensions\InjecaoDependenciaSwagger.cs</string>
     </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Extensions\InjecaoDependenciaJWT.cs</string>
+    </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>

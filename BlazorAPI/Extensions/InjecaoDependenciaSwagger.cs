@@ -12,7 +12,7 @@ namespace BlazorAPI.Extensions
                 x.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Blazor API",
+                    Title = "OrgaTask API",
                     Description = "API RESTful desenvolvida em .NET 8. " +
                                   "Inclui autenticação JWT, operações CRUD e validações customizadas."
                 });
