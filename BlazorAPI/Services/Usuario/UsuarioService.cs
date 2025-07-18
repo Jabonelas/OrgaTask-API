@@ -23,7 +23,7 @@ namespace BlazorAPI.Services.Usuario
 
         public async Task CadastrarUsuarioAsync(UsuarioCadastrarDTO _dadosCadastroUsuario)
         {
-            _dadosCadastroUsuario.Login = _dadosCadastroUsuario.Login.TrimEnd();
+            _dadosCadastroUsuario.Login = _dadosCadastroUsuario.Login.TrimEnd().ToLower();
 
             if (await LoginExisteAsync(_dadosCadastroUsuario.Login))
             {
@@ -65,7 +65,7 @@ namespace BlazorAPI.Services.Usuario
 
             usuarioLogin.UsSenha = CriptografarSenha(_dadosUsuarioLogin.Senha);
 
-            usuarioLogin.UsLogin = usuarioLogin.UsLogin.TrimEnd();
+            usuarioLogin.UsLogin = usuarioLogin.UsLogin.TrimEnd().ToLower();
 
             if (!await unitOfWork.UsuarioReposity.LoginSenhaValidosAsync(usuarioLogin))
             {

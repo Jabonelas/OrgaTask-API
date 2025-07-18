@@ -1,6 +1,7 @@
 using BlazorAPI.Extensions;
 using BlazorAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 using System.Threading.RateLimiting;
 
 namespace BlazorAPI
@@ -85,7 +86,13 @@ namespace BlazorAPI
             //    options.InstanceName = "BlazorAPI_";
             //});
 
-            builder.Services.AddControllers();
+            //Permite exibição de enum no Swagger
+            builder.Services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                });
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             //builder.Services.AddSwaggerGen();
@@ -107,8 +114,8 @@ namespace BlazorAPI
             // Configure the HTTP request pipeline.
             //if (app.Environment.IsDevelopment())
             //{
-                app.UseSwagger();
-                app.UseSwaggerUI();
+            app.UseSwagger();
+            app.UseSwaggerUI();
             //}
 
             app.Use(async (context, next) =>

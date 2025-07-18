@@ -9,17 +9,14 @@ namespace BlazorAPI.Services.Tarefa
 {
     public class TarefaService : ITarefaService
     {
-        private readonly IAutenticacao iAutenticacao;
-
         private readonly IUnitOfWork unitOfWork;
 
         public TarefaService(IUnitOfWork _unitOfWork, IAutenticacao _iAutenticacao)
         {
             unitOfWork = _unitOfWork;
-            iAutenticacao = _iAutenticacao;
         }
 
-        public async Task CadastrarTarefaAsync(int _idUsuario, TarefaDTO _dadosTarefaCadastro)
+        public async Task CadastrarTarefaAsync(int _idUsuario, TarefaCadastrarDTO _dadosTarefaCadastro)
         {
             TbTarefa tarefa = _dadosTarefaCadastro;
             tarefa.FkUsuario = _idUsuario;
@@ -39,7 +36,7 @@ namespace BlazorAPI.Services.Tarefa
             await unitOfWork.SalvarBancoAsync();
         }
 
-        public async Task AlterarTarefaAsync(TarefaDTO _dadosTarefaCadastro, int _idUsuario)
+        public async Task AlterarTarefaAsync(TarefaAlterarDTO _dadosTarefaCadastro, int _idUsuario)
         {
             if (!await TarefaPertenceUsuarioAsync(_dadosTarefaCadastro.Id, _idUsuario))
             {
@@ -75,7 +72,7 @@ namespace BlazorAPI.Services.Tarefa
         {
             (List<TbTarefa> Items, int TotalCount) listaTarefa;
 
-            if (string.IsNullOrEmpty(_status) || _status == "todas")
+            if (string.IsNullOrEmpty(_status) || _status.ToLower() == "todas")
             {
                 listaTarefa = await unitOfWork.TarefaRepository.ListaTarefasPaginadasAsync(_idUsuario, _pageNumber, _pageSize);
             }
@@ -87,7 +84,7 @@ namespace BlazorAPI.Services.Tarefa
             return MapearTarefaPaginacao(listaTarefa);
         }
 
-        public async Task<TarefaDTO> BuscarTarefaAsync(int _idTarefa, int _idUsuario)
+        public async Task<TarefaConsultaDTO> BuscarTarefaAsync(int _idTarefa, int _idUsuario)
         {
             if (!await TarefaPertenceUsuarioAsync(_idTarefa, _idUsuario))
             {
@@ -96,9 +93,9 @@ namespace BlazorAPI.Services.Tarefa
 
             TbTarefa tarefa = await unitOfWork.TarefaRepository.BuscarTarefaAsync(_idTarefa);
 
-            TarefaDTO tarefaCadastrarDTO = tarefa;
+            TarefaConsultaDTO tarefaConsultaDTO = tarefa;
 
-            return tarefaCadastrarDTO;
+            return tarefaConsultaDTO;
         }
 
         public async Task<TarefaQtdStatusDTO> ObterQtdStatusEPorcentagemConclusaoAsync(int _idUsuario)
@@ -162,7 +159,7 @@ namespace BlazorAPI.Services.Tarefa
                     Prioridade = t.TaPrioridade,
                     Prazo = t.TaPrazo,
                     Status = t.TaStatus,
-                    Data = t.TaData,
+                    DataCriacao = t.TaData,
                 }).ToList(),
 
                 TotalCount = _listaTarefa.TotalCount,

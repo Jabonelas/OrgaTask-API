@@ -115,7 +115,7 @@ namespace BlazorAPI.Repository
 
         public async Task<List<TbTarefa>> BuscarTarefasPrioridadeAltaAsync(int _idUsuario)
         {
-            List<TbTarefa> listaTarefasPrioridadeAlta = await context.TbTarefas.Where(x => x.TaPrioridade == "Alta" && x.TaStatus != "Concluído" && x.FkUsuario == _idUsuario).ToListAsync();
+            List<TbTarefa> listaTarefasPrioridadeAlta = await context.TbTarefas.Where(x => x.TaPrioridade == "Alta" && x.TaStatus != "Concluído" && x.FkUsuario == _idUsuario).OrderBy(x => x.IdTarefa).ToListAsync();
 
             return listaTarefasPrioridadeAlta;
         }

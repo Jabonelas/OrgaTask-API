@@ -2,10 +2,8 @@
 
 namespace BlazorAPI.DTOs.Tarefa;
 
-public class TarefaDTO
+public class TarefaCadastrarDTO
 {
-    public int Id { get; set; }
-
     [Required(ErrorMessage = "O título é obrigatório!")]
     [MaxLength(50, ErrorMessage = "O título deve ter no máximo 50 caracteres.")]
     public string Titulo { get; set; }

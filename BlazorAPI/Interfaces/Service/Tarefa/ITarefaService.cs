@@ -5,9 +5,9 @@ namespace BlazorAPI.Interfaces.Service.Tarefa;
 
 public interface ITarefaService
 {
-    Task CadastrarTarefaAsync(int idUsuario, TarefaDTO dadosTarefaCadastro);
+    Task CadastrarTarefaAsync(int idUsuario, TarefaCadastrarDTO dadosTarefaCadastro);
 
-    Task AlterarTarefaAsync(TarefaDTO dadosTarefaCadastro, int idUsuario);
+    Task AlterarTarefaAsync(TarefaAlterarDTO dadosTarefaCadastro, int idUsuario);
 
     Task DeletarTarefaAsync(int _idTarefa, int _idUsuario);
 
@@ -15,7 +15,7 @@ public interface ITarefaService
 
     Task<PagedResult<TarefaConsultaDTO>> ListaTarefasPaginadasAsync(int _idUsuario, int _pageNumber, int _pageSize, string _status);
 
-    Task<TarefaDTO> BuscarTarefaAsync(int _idTarefa, int _idUsuario);
+    Task<TarefaConsultaDTO> BuscarTarefaAsync(int _idTarefa, int _idUsuario);
 
     Task<TarefaQtdStatusDTO> ObterQtdStatusEPorcentagemConclusaoAsync(int _idUsuario);
 

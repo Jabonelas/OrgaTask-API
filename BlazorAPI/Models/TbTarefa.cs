@@ -37,10 +37,9 @@ public partial class TbTarefa
     [ForeignKey("FkUsuario")]
     public virtual TbUsuario FkUsuarioNavigation { get; set; }
 
-    public static implicit operator TbTarefa(TarefaDTO _dadosTarefaCadastro) =>
+    public static implicit operator TbTarefa(TarefaCadastrarDTO _dadosTarefaCadastro) =>
             new()
             {
-                IdTarefa = _dadosTarefaCadastro.Id,
                 TaTitulo = _dadosTarefaCadastro.Titulo,
                 TaDescricao = _dadosTarefaCadastro.Descricao,
                 TaPrioridade = _dadosTarefaCadastro.Prioridade,
@@ -49,17 +48,31 @@ public partial class TbTarefa
                 TaData = DateTime.Now.ToString(),
             };
 
+    public static implicit operator TbTarefa(TarefaAlterarDTO _dadosTarefaCadastro) =>
+        new()
+        {
+            IdTarefa = _dadosTarefaCadastro.Id,
+            TaTitulo = _dadosTarefaCadastro.Titulo,
+            TaDescricao = _dadosTarefaCadastro.Descricao,
+            TaPrioridade = _dadosTarefaCadastro.Prioridade,
+            TaPrazo = _dadosTarefaCadastro.Prazo,
+            TaStatus = _dadosTarefaCadastro.Status,
+            TaData = DateTime.Now.ToString(),
+        };
 
-    public static implicit operator TarefaDTO(TbTarefa _tarefa) =>
+
+    public static implicit operator TarefaAlterarDTO(TbTarefa _tarefa) =>
     new()
     {
         Id = _tarefa.IdTarefa,
         Titulo = _tarefa.TaTitulo,
         Descricao = _tarefa.TaDescricao,
         Prioridade = _tarefa.TaPrioridade,
-        Prazo = _tarefa.TaPrazo,
+        //Prazo = _tarefa.TaPrazo,
         Status = _tarefa.TaStatus
     };
+
+
 
 
     public static implicit operator TarefaConsultaDTO(TbTarefa _tarefa) =>
@@ -70,6 +83,9 @@ public partial class TbTarefa
      Descricao = _tarefa.TaDescricao,
      Prioridade = _tarefa.TaPrioridade,
      Prazo = _tarefa.TaPrazo,
-     Status = _tarefa.TaStatus
+     Status = _tarefa.TaStatus,
+     DataCriacao = _tarefa.TaData
+
+
  };
 }

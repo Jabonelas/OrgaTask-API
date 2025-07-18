@@ -46,23 +46,23 @@ public class UsuarioController : ControllerBase
     [HttpPost]
     [ProducesResponseType(typeof(UsuarioCadastrarDTO), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ErrorResponse400), StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status409Conflict)]
-    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(Response), StatusCodes.Status409Conflict)]
+    [ProducesResponseType(typeof(Response), StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult> Cadastrar(UsuarioCadastrarDTO dadosCadastroUsuario)
     {
         try
         {
             await _iUsuarioService.CadastrarUsuarioAsync(dadosCadastroUsuario);
 
-            return Created("", new ErrorResponse { message = "Usuário cadastrado com sucesso!" });
+            return Created("", new Response { message = "Usuário cadastrado com sucesso!" });
         }
         catch (InvalidOperationException ex)
         {
-            return Conflict(new ErrorResponse { message = ex.Message });
+            return Conflict(new Response { message = ex.Message });
         }
         catch (Exception)
         {
-            return StatusCode(500, new ErrorResponse { message = "Erro interno ao cadastrar usuário." });
+            return StatusCode(500, new Response { message = "Erro interno ao cadastrar usuário." });
         }
     }
 
@@ -94,8 +94,8 @@ public class UsuarioController : ControllerBase
     [HttpPost("login")]
     [ProducesResponseType(typeof(UsuarioLoginDTO), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ErrorResponse400), StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(Response), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(Response), StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<UserToken>> UsuarioLogin(UsuarioLoginDTO usuarioDadosLogin)
     {
         try
@@ -110,11 +110,11 @@ public class UsuarioController : ControllerBase
         }
         catch (UnauthorizedAccessException ex)
         {
-            return Unauthorized(new ErrorResponse { message = ex.Message });
+            return Unauthorized(new Response { message = ex.Message });
         }
         catch (Exception)
         {
-            return StatusCode(500, new ErrorResponse { message = "Erro interno ao realizar login." });
+            return StatusCode(500, new Response { message = "Erro interno ao realizar login." });
         }
     }
 }

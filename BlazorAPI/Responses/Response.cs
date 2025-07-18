@@ -1,6 +1,6 @@
 ﻿namespace BlazorAPI.Responses
 {
-    public class ErrorResponse
+    public class Response
     {
         public string message { get; set; }
     }
