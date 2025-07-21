@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-OrgaTask API é uma API RESTful desenvolvida para gerenciar tarefas e autenticação de usuários, servindo como backend para múltiplos clientes (Web, Desktop, e em breve Mobile). O projeto foi construído com foco em boas práticas de arquitetura, segurança, e documentação, utilizando tecnologias modernas do ecossistema .NET.
+OrgaTask API é uma API RESTful desenvolvida para gerenciar tarefas e autenticação de usuários, servindo como backend para múltiplos clientes (Web, Desktop e Mobile). O projeto foi construído com foco em boas práticas de arquitetura, segurança, e documentação, utilizando tecnologias modernas do ecossistema .NET.
 
 ## Tecnologias Utilizadas
 
