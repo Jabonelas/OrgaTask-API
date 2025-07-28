@@ -71,6 +71,7 @@ namespace BlazorAPI.Services.Usuario
             {
                 throw new UnauthorizedAccessException("Falha na autenticação: credenciais inválidas.");
             }
+
         }
 
         public async Task<int> BuscarIdUsuarioAsync(string _login)
@@ -80,7 +81,7 @@ namespace BlazorAPI.Services.Usuario
             return await unitOfWork.UsuarioReposity.BuscarIdUsuarioAsync(_login);
         }
 
-        public async Task<UserToken> GerarTorkenAsync(int _idUsuario, UsuarioLoginDTO _dadosUsuarioLogin)
+        public async Task<UserToken> GerarTokenAsync(int _idUsuario, UsuarioLoginDTO _dadosUsuarioLogin)
         {
             _dadosUsuarioLogin.Login = _dadosUsuarioLogin.Login.TrimEnd();
 

@@ -16,9 +16,11 @@ namespace BlazorAPI.Services.Tarefa
             unitOfWork = _unitOfWork;
         }
 
-        public async Task CadastrarTarefaAsync(int _idUsuario, TarefaCadastrarDTO _dadosTarefaCadastro)
+        public async Task CadastrarTarefaAsync(int _idUsuario, TarefaCadastrarDTO _dadosTarefaCadastro, string _prioridade, string _status)
         {
             TbTarefa tarefa = _dadosTarefaCadastro;
+            tarefa.TaPrioridade = _prioridade;
+            tarefa.TaStatus = _status.Replace("_", " ");
             tarefa.FkUsuario = _idUsuario;
 
             await unitOfWork.TarefaRepository.CadastrarTarefaAsync(tarefa);
@@ -29,21 +31,23 @@ namespace BlazorAPI.Services.Tarefa
         {
             if (!await TarefaPertenceUsuarioAsync(_idTarefa, _idUsuario))
             {
-                throw new UnauthorizedAccessException("Operação não autorizada: a tarefa não pertence ao usuário atual.");
+                throw new InvalidOperationException("Operação não autorizada: a tarefa não pertence ao usuário atual.");
             }
 
             await unitOfWork.TarefaRepository.DeletarTarefaAsync(_idTarefa);
             await unitOfWork.SalvarBancoAsync();
         }
 
-        public async Task AlterarTarefaAsync(TarefaAlterarDTO _dadosTarefaCadastro, int _idUsuario)
+        public async Task AlterarTarefaAsync(int _idUsuario, TarefaAlterarDTO _dadosTarefaCadastro, string _prioridade, string _status)
         {
             if (!await TarefaPertenceUsuarioAsync(_dadosTarefaCadastro.Id, _idUsuario))
             {
-                throw new UnauthorizedAccessException("Operação não autorizada: a tarefa não pertence ao usuário atual.");
+                throw new InvalidOperationException("Operação não autorizada: a tarefa não pertence ao usuário atual.");
             }
 
             TbTarefa tarefa = _dadosTarefaCadastro;
+            tarefa.TaPrioridade = _prioridade;
+            tarefa.TaStatus = _status.Replace("_", " ");
 
             await unitOfWork.TarefaRepository.AlterarTarefaAsync(tarefa);
             await unitOfWork.SalvarBancoAsync();
@@ -72,13 +76,15 @@ namespace BlazorAPI.Services.Tarefa
         {
             (List<TbTarefa> Items, int TotalCount) listaTarefa;
 
-            if (string.IsNullOrEmpty(_status) || _status.ToLower() == "todas")
+
+
+            if (string.IsNullOrEmpty(_status.Replace("_", " ")) || _status.ToLower() == "todas")
             {
                 listaTarefa = await unitOfWork.TarefaRepository.ListaTarefasPaginadasAsync(_idUsuario, _pageNumber, _pageSize);
             }
             else
             {
-                listaTarefa = await unitOfWork.TarefaRepository.ListaTarefasPaginadasStatusAsync(_idUsuario, _pageNumber, _pageSize, _status);
+                listaTarefa = await unitOfWork.TarefaRepository.ListaTarefasPaginadasStatusAsync(_idUsuario, _pageNumber, _pageSize, _status.Replace("_", " "));
             }
 
             return MapearTarefaPaginacao(listaTarefa);
@@ -98,7 +104,7 @@ namespace BlazorAPI.Services.Tarefa
             return tarefaConsultaDTO;
         }
 
-        public async Task<TarefaQtdStatusDTO> ObterQtdStatusEPorcentagemConclusaoAsync(int _idUsuario)
+        public async Task<TarefaQtdStatusDTO> BuscarQtdStatusEPorcentagemConclusaoAsync(int _idUsuario)
         {
             var (pendente, emAndamento, concluido) = await unitOfWork.TarefaRepository.BuscarQtdStatusTarefaAsync(_idUsuario);
 
@@ -159,7 +165,8 @@ namespace BlazorAPI.Services.Tarefa
                     Prioridade = t.TaPrioridade,
                     Prazo = t.TaPrazo,
                     Status = t.TaStatus,
-                    DataCriacao = t.TaData,
+                    DataCriacao = t.TaData
+
                 }).ToList(),
 
                 TotalCount = _listaTarefa.TotalCount,

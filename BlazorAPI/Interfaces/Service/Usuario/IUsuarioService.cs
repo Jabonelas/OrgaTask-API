@@ -13,6 +13,6 @@ namespace BlazorAPI.Interfaces.Service.Usuario
 
         Task LoginSenhaValidosAsync(UsuarioLoginDTO _dadosLogin);
 
-        Task<UserToken> GerarTorkenAsync(int _idUsuario, UsuarioLoginDTO _dadosLogin);
+        Task<UserToken> GerarTokenAsync(int _idUsuario, UsuarioLoginDTO _dadosLogin);
     }
 }

@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+		<PackageReference Include="xUnit" Version="2.9.2" />
+		<PackageReference Include="xUnit.runner.visualstudio" Version="3.0.0" />
+		<PackageReference Include="Moq" Version="4.20.70" />
+		<PackageReference Include="FluentAssertions" Version="6.12.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.8" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\BlazorAPI\BlazorAPI.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Models\" />
+	  <Folder Include="Repository\" />
+	</ItemGroup>
+</Project>

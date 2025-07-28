@@ -73,7 +73,7 @@ namespace BlazorAPI
                             PermitLimit = 50, // 50 requisições
                             Window = TimeSpan.FromMinutes(1), // por minuto
                             QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
-                            QueueLimit = 10
+                            QueueLimit = 1000
                         }));
             });
 

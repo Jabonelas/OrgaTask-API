@@ -4,7 +4,7 @@ using BlazorAPI.Interfaces.Service.Usuario;
 using BlazorAPI.Responses;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BlazorAPI.Controllers;
+namespace BlazorAPI.Controllers.Usuario;
 
 [ApiController]
 [Route("api/usuarios")]
@@ -48,7 +48,7 @@ public class UsuarioController : ControllerBase
     [ProducesResponseType(typeof(ErrorResponse400), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status409Conflict)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult> Cadastrar(UsuarioCadastrarDTO dadosCadastroUsuario)
+    public async Task<ActionResult> CadastrarUsuarioAsync(UsuarioCadastrarDTO dadosCadastroUsuario)
     {
         try
         {
@@ -96,7 +96,7 @@ public class UsuarioController : ControllerBase
     [ProducesResponseType(typeof(ErrorResponse400), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<UserToken>> UsuarioLogin(UsuarioLoginDTO usuarioDadosLogin)
+    public async Task<ActionResult<UserToken>> UsuarioLoginAsync(UsuarioLoginDTO usuarioDadosLogin)
     {
         try
         {
@@ -104,7 +104,7 @@ public class UsuarioController : ControllerBase
 
             var idUsuario = await _iUsuarioService.BuscarIdUsuarioAsync(usuarioDadosLogin.Login);
 
-            UserToken token = await _iUsuarioService.GerarTorkenAsync(idUsuario, usuarioDadosLogin);
+            UserToken token = await _iUsuarioService.GerarTokenAsync(idUsuario, usuarioDadosLogin);
 
             return token;
         }

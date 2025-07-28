@@ -4,8 +4,9 @@ using BlazorAPI.Interfaces.Service.Tarefa;
 using BlazorAPI.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
-namespace BlazorAPI.Controllers;
+namespace BlazorAPI.Controllers.Tarefa;
 
 [ApiController]
 [Route("api/tarefas")]
@@ -26,6 +27,22 @@ public class TarefaController : ControllerBase
     {
         tarefaService = _tarefaService;
     }
+    
+    public enum PrioridadeTarefa
+    {
+        Alta,
+        Média,
+        Baixa
+    }
+
+    public enum StatusTarefa
+    {
+        Pendente,
+        Em_Progresso,
+        Concluído,
+        Todas
+    }
+    
 
     /// <summary>
     /// Registra uma nova tarefa no vinculada ao usuário atualmente autenticado.
@@ -39,9 +56,7 @@ public class TarefaController : ControllerBase
     ///     {
     ///        "titulo": "Implementar API",
     ///        "descricao": "Desenvolver endpoints da aplicação",
-    ///        "prioridade": "Alta"
     ///        "prazo": "5"
-    ///        "status": "Pendente"
     ///     }
     ///
     /// Exemplo de resposta de sucesso:
@@ -55,37 +70,38 @@ public class TarefaController : ControllerBase
     /// <response code="201">Retorna mensagem de sucesso ao cadastrar a tarefa</response>
     /// <response code="400">Se os dados da tarefa forem inválidos</response>
     /// <response code="401">Acesso não autorizado (token inválido ou ausente)</response>
-    /// <response code="404">Se o usuário não for encontrado</response>
-    /// <response code="422">Status inválido. Informe um dos seguintes: 'pendente', 'em andamento' ou 'concluído'</response>
     /// <response code="500">Erro interno no servidor</response>
     [HttpPost]
     [ProducesResponseType(typeof(Response), StatusCodes.Status201Created)]
-    //[ProducesResponseType(typeof(IEnumerable<TarefaCadastrarDTO>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ErrorResponse400), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(typeof(Response), StatusCodes.Status404NotFound)]
-    [ProducesResponseType(typeof(Response), StatusCodes.Status422UnprocessableEntity)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult> CadastrarTarefa(TarefaCadastrarDTO dadosTarefaCadastro)
+    public async Task<ActionResult> CadastrarTarefaAsync(TarefaCadastrarDTO _dadosTarefaCadastro, [FromQuery][Required] PrioridadeTarefa? prioridade = null, [FromQuery][Required] StatusTarefa? status = null)
     {
         try
         {
             // Recupera o ID do usuário do token
             _ = int.TryParse(User.FindFirst("idUsuario")?.Value, out var idUsuario);
 
-            await tarefaService.CadastrarTarefaAsync(idUsuario, dadosTarefaCadastro);
+            if (!prioridade.HasValue)
+                return BadRequest(new Response { message = "Prioridade inválida. Valores aceitos: " + string.Join(", ", Enum.GetNames(typeof(PrioridadeTarefa))) });
+
+            if (!status.HasValue)
+                return BadRequest(new Response { message = "Status inválido. Valores aceitos: " + string.Join(", ", Enum.GetNames(typeof(StatusTarefa))) });
+
+            await tarefaService.CadastrarTarefaAsync(idUsuario, _dadosTarefaCadastro, prioridade.ToString() , status.ToString());
 
             //await tarefacacheService.InvalidarCache(idUsuario);
 
             return Created("", new Response { message = "Tarefa cadastrada com sucesso!" });
         }
-        catch (KeyNotFoundException ex)
-        {
-            return NotFound(new Response { message = ex.Message });
-        }
         catch (InvalidOperationException ex)
         {
-            return StatusCode(422, new Response { message = ex.Message });
+            return BadRequest(new Response { message = ex.Message });
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            return Unauthorized(new Response { message = ex.Message });
         }
         catch (Exception)
         {
@@ -106,8 +122,7 @@ public class TarefaController : ControllerBase
     ///        "id": 1,
     ///        "titulo": "Atualizar API",
     ///        "descricao": "Revisar e atualizar endpoints existentes",
-    ///        "prioridade": "Alta"
-    ///        "status": "Em Progresso"
+    ///        "prazo": 2
     ///     }
     ///
     /// Exemplo de resposta de sucesso:
@@ -117,31 +132,38 @@ public class TarefaController : ControllerBase
     /// </remarks>
     /// <param name="_dadosTarefaCadastro">DTO com os dados necessários para alteração da tarefa</param>
     /// <returns>Mensagem de confirmação da alteração</returns>
-    /// <response code="201">Retorna mensagem de sucesso ao alterar a tarefa</response>
+    /// <response code="200">Retorna mensagem de sucesso ao alterar a tarefa</response>
     /// <response code="400">Se os dados da tarefa forem inválidos</response>
     /// <response code="401">Acesso não autorizado (token inválido ou ausente)</response>
     /// <response code="404">Se a tarefa não for encontrada</response>
-    /// <response code="422">Status inválido. Informe um dos seguintes: 'pendente', 'em andamento' ou 'concluído'</response>
+    /// <response code="422">Se a operação não puder ser concluída devido a regras de negócio</response>
     /// <response code="500">Erro interno no servidor</response>
     [HttpPut]
-    [ProducesResponseType(typeof(Response), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(Response), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ErrorResponse400), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status422UnprocessableEntity)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult> AlterarTarefa(TarefaAlterarDTO _dadosTarefaCadastro)
+    public async Task<ActionResult> AlterarTarefaAsync(TarefaAlterarDTO _dadosTarefaCadastro, [FromQuery][Required] PrioridadeTarefa? prioridade = null, [FromQuery][Required] StatusTarefa? status = null)
     {
         try
         {
             // Recupera o ID do usuário do token
             _ = int.TryParse(User.FindFirst("idUsuario")?.Value, out var idUsuario);
 
-            await tarefaService.AlterarTarefaAsync(_dadosTarefaCadastro, idUsuario);
+            if (!prioridade.HasValue)
+                return BadRequest(new Response { message = "Prioridade inválida. Valores aceitos: " + string.Join(", ", Enum.GetNames(typeof(PrioridadeTarefa))) });
+
+            if (!status.HasValue)
+                return BadRequest(new Response { message = "Status inválido. Valores aceitos: " + string.Join(", ", Enum.GetNames(typeof(StatusTarefa))) });
+
+
+            await tarefaService.AlterarTarefaAsync(idUsuario, _dadosTarefaCadastro, prioridade.ToString(), status.ToString());
 
             //await tarefacacheService.InvalidarCache(idUsuario);
 
-            return Created("", new Response { message = "Tarefa alterada com sucesso!" });
+            return Ok( new Response { message = "Tarefa alterada com sucesso!" });
         }
         catch (UnauthorizedAccessException ex)
         {
@@ -178,20 +200,16 @@ public class TarefaController : ControllerBase
     /// </remarks>
     /// <param name="id">ID da tarefa a ser deletada</param>
     /// <returns>Mensagem de confirmação da exclusão</returns>
-    /// <response code="201">Retorna mensagem de sucesso ao deletar a tarefa</response>
-    /// <response code="400">Se o ID da tarefa for inválido</response>
+    /// <response code="200">Retorna mensagem de sucesso ao deletar a tarefa</response>
     /// <response code="401">Acesso não autorizado (token inválido ou ausente)</response>
-    /// <response code="404">Se a tarefa não for encontrada</response>
     /// <response code="422">Se a operação não puder ser concluída devido a regras de negócio</response>
     /// <response code="500">Erro interno no servidor</response>
     [HttpDelete("{id}")]
-    [ProducesResponseType(typeof(Response), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(ErrorResponse400), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(Response), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(typeof(Response), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status422UnprocessableEntity)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult> DeletarTarefa(int id)
+    public async Task<ActionResult> DeletarTarefaAsync(int id)
     {
         try
         {
@@ -202,15 +220,11 @@ public class TarefaController : ControllerBase
 
             //await tarefacacheService.InvalidarCache(idUsuario);
 
-            return Created("", new Response { message = "Tarefa deletada com sucesso!" });
+            return Ok(new Response { message = "Tarefa deletada com sucesso!" });
         }
         catch (UnauthorizedAccessException ex)
         {
             return Unauthorized(new Response { message = ex.Message });
-        }
-        catch (KeyNotFoundException ex)
-        {
-            return NotFound(new Response { message = ex.Message });
         }
         catch (InvalidOperationException ex)
         {
@@ -336,17 +350,15 @@ public class TarefaController : ControllerBase
     /// <response code="200">Retorna a lista paginada de tarefas</response>
     /// <response code="400">Parâmetros inválidos (valores negativos ou pageSize muito grande)</response>
     /// <response code="401">Acesso não autorizado (token inválido ou ausente)</response>
-    /// <response code="404">Se o usuário não for encontrado</response>
     /// <response code="500">Erro interno no servidor</response>
     //[HttpGet("paginado")]
     [HttpGet("paginado/{status?}")]
     [ProducesResponseType(typeof(PagedResult<TarefaConsultaDTO>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(typeof(Response), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<PagedResult<TarefaConsultaDTO>>> ListaTarefasPaginadasAsync(
-    [FromRoute] StatusTarefa? status = null,
+    [FromRoute][Required] StatusTarefa? status = null,
         [FromQuery] int pageNumber = 1,
         [FromQuery] int pageSize = 15)
     {
@@ -365,7 +377,7 @@ public class TarefaController : ControllerBase
             // Recupera o ID do usuário do token
             _ = int.TryParse(User.FindFirst("idUsuario")?.Value, out var idUsuario);
 
-            var tarefas = await tarefaService.ListaTarefasPaginadasAsync(idUsuario, pageNumber, pageSize, status.ToString().Replace("_", " "));
+            var tarefas = await tarefaService.ListaTarefasPaginadasAsync(idUsuario, pageNumber, pageSize, status.ToString());
 
             return Ok(tarefas);
         }
@@ -386,13 +398,7 @@ public class TarefaController : ControllerBase
         }
     }
 
-    public enum StatusTarefa
-    {
-        Concluído,
-        Em_Progresso,
-        Pendente,
-        Todas
-    }
+
 
     /// <summary>
     /// Recupera os detalhes completos de uma tarefa específica usando seu ID. Acesso permitido apenas para o usuário dono da tarefa.
@@ -449,7 +455,7 @@ public class TarefaController : ControllerBase
         }
         catch (Exception)
         {
-            return StatusCode(500, new Response { message = "Erro interno ao buscar lista tarefas." });
+            return StatusCode(500, new Response { message = "Erro interno ao buscar tarefas." });
         }
     }
 
@@ -486,14 +492,14 @@ public class TarefaController : ControllerBase
     [ProducesResponseType(typeof(Response), StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<TarefaQtdStatusDTO>> BuscarTarefaQdtStatusAsync()
+    public async Task<ActionResult<TarefaQtdStatusDTO>> BuscarQtdStatusEPorcentagemConclusaoAsync()
     {
         try
         {
             // Recupera o ID do usuário do token
             _ = int.TryParse(User.FindFirst("idUsuario")?.Value, out var idUsuario);
 
-            var tarefa = await tarefaService.ObterQtdStatusEPorcentagemConclusaoAsync(idUsuario);
+            var tarefa = await tarefaService.BuscarQtdStatusEPorcentagemConclusaoAsync(idUsuario);
 
             return Ok(tarefa);
         }
