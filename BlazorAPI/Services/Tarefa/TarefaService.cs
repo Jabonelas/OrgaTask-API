@@ -1,4 +1,5 @@
-﻿using BlazorAPI.DTOs;
+﻿using System.Runtime.InteropServices;
+using BlazorAPI.DTOs;
 using BlazorAPI.DTOs.Tarefa;
 using BlazorAPI.Interfaces.Autenticacao;
 using BlazorAPI.Interfaces.Service.Tarefa;
@@ -22,7 +23,10 @@ namespace BlazorAPI.Services.Tarefa
             tarefa.TaPrioridade = _prioridade;
             tarefa.TaStatus = _status.Replace("_", " ");
             tarefa.FkUsuario = _idUsuario;
-            tarefa.TaData = DateTime.Now.ToString();
+
+            DateTimeOffset dataAtualBrasil = DateTimeOffset.UtcNow.ToOffset(new TimeSpan(-3, 0, 0)); 
+            tarefa.TaData = dataAtualBrasil.ToString("yyyy-MM-dd HH:mm:ss");
+
 
             await unitOfWork.TarefaRepository.CadastrarTarefaAsync(tarefa);
             await unitOfWork.SalvarBancoAsync();
