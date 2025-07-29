@@ -22,6 +22,7 @@ namespace BlazorAPI.Services.Tarefa
             tarefa.TaPrioridade = _prioridade;
             tarefa.TaStatus = _status.Replace("_", " ");
             tarefa.FkUsuario = _idUsuario;
+            tarefa.TaData = DateTime.Now.ToString();
 
             await unitOfWork.TarefaRepository.CadastrarTarefaAsync(tarefa);
             await unitOfWork.SalvarBancoAsync();

@@ -6,12 +6,13 @@ using BlazorAPI.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using OrgaTask_API.Tests;
 using System.Security.Claims;
 using Xunit;
 using static BlazorAPI.Controllers.Tarefa.TarefaController;
 
 
-namespace OrgaTask_API.Tests.Controllers
+namespace Controllers.Tarefa
 {
     public class TarefaControllerTest
     {

@@ -3,6 +3,8 @@ using BlazorAPI.Interfaces.Repository.Usuario;
 using BlazorAPI.Interfaces.Unit_Of_Work;
 using BlazorAPI.Models;
 using BlazorAPI.Repository;
+using BlazorAPI.Repository.Tarefa;
+using BlazorAPI.Repository.Usuario;
 
 namespace BlazorAPI.Unit_O_fWork
 {

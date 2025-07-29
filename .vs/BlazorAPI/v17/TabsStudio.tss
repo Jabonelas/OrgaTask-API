@@ -5,13 +5,31 @@
       <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Services\Usuario\UsuarioService.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\israe\source\repos\BlazorAPI\OrgaTask-API.Tests\Services\UsuarioServiceTest.cs</string>
+      <string>C:\Users\israe\source\repos\BlazorAPI\OrgaTask-API.Tests\Services\Usuario\UsuarioServiceTest.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Interfaces\Repository\Usuario\IUsuarioRepository.cs</string>
+      <string>C:\Users\israe\source\repos\BlazorAPI\OrgaTask-API.Tests\Services\Tarefa\TarefaServiceTest.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\israe\source\repos\BlazorAPI\OrgaTask-API.Tests\Services\TarefaServiceTest.cs</string>
+      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Services\Tarefa\TarefaService.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\israe\source\repos\BlazorAPI\OrgaTask-API.Tests\TarefaTestDataFactory.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Controllers\Tarefa\TarefaController.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Interfaces\Service\Tarefa\ITarefaService.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Repository\Tarefa\TarefaRepository.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\DTOs\Tarefa\TarefaCadastrarDTO.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Unit Of Work\UnitOfWork.cs</string>
     </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>

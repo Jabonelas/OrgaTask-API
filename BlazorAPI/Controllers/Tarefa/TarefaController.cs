@@ -27,7 +27,7 @@ public class TarefaController : ControllerBase
     {
         tarefaService = _tarefaService;
     }
-    
+
     public enum PrioridadeTarefa
     {
         Alta,
@@ -42,7 +42,7 @@ public class TarefaController : ControllerBase
         Concluído,
         Todas
     }
-    
+
 
     /// <summary>
     /// Registra uma nova tarefa no vinculada ao usuário atualmente autenticado.
@@ -89,7 +89,7 @@ public class TarefaController : ControllerBase
             if (!status.HasValue)
                 return BadRequest(new Response { message = "Status inválido. Valores aceitos: " + string.Join(", ", Enum.GetNames(typeof(StatusTarefa))) });
 
-            await tarefaService.CadastrarTarefaAsync(idUsuario, _dadosTarefaCadastro, prioridade.ToString() , status.ToString());
+            await tarefaService.CadastrarTarefaAsync(idUsuario, _dadosTarefaCadastro, prioridade.ToString(), status.ToString());
 
             //await tarefacacheService.InvalidarCache(idUsuario);
 
@@ -163,7 +163,7 @@ public class TarefaController : ControllerBase
 
             //await tarefacacheService.InvalidarCache(idUsuario);
 
-            return Ok( new Response { message = "Tarefa alterada com sucesso!" });
+            return Ok(new Response { message = "Tarefa alterada com sucesso!" });
         }
         catch (UnauthorizedAccessException ex)
         {

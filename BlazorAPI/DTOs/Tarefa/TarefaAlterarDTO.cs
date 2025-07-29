@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using BlazorAPI.Models;
+﻿using BlazorAPI.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace BlazorAPI.DTOs.Tarefa
 {

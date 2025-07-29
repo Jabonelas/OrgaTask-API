@@ -1,20 +1,16 @@
-﻿using BlazorAPI.Controllers.Usuario;
-using BlazorAPI.DTOs;
+﻿using BlazorAPI.DTOs;
 using BlazorAPI.DTOs.Usuario;
 using BlazorAPI.Interfaces.Autenticacao;
-using BlazorAPI.Interfaces.Repository.Usuario;
-using BlazorAPI.Interfaces.Service.Usuario;
 using BlazorAPI.Interfaces.Unit_Of_Work;
 using BlazorAPI.Models;
 using BlazorAPI.Services.Usuario;
-using BlazorAPI.Unit_O_fWork;
-using FluentAssertions.Common;
 using Moq;
+using OrgaTask_API.Tests;
 using System.Security.Cryptography;
 using System.Text;
 using Xunit;
 
-namespace OrgaTask_API.Tests.Services
+namespace Services.Usuario
 {
     public class UsuarioServiceTest
     {
@@ -59,7 +55,7 @@ namespace OrgaTask_API.Tests.Services
             UsuarioCadastrarDTO dadosUsuario = UsuarioTestDataFactory.CriarDadosCadastrarUsuario();
 
             iUnitOfWorkMock.Setup(u => u.UsuarioReposity.LoginExisteAsync(It.IsAny<string>())).ReturnsAsync(true);
-       
+
             // Act & Assert
             await Assert.ThrowsAsync<InvalidOperationException>(() => usuarioService.CadastrarUsuarioAsync(dadosUsuario));
         }
@@ -115,9 +111,9 @@ namespace OrgaTask_API.Tests.Services
 
         #endregion
 
-        
+
         #region Criptografar Senha
-        
+
         [Fact(DisplayName = "Criptografar Senha: Deve retornar HashBase64")]
         public void CriptografarSenhaDeveRetornarHashBase64()
         {

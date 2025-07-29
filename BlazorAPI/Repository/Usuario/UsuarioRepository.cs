@@ -2,7 +2,7 @@
 using BlazorAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlazorAPI.Repository
+namespace BlazorAPI.Repository.Usuario
 {
     public class UsuarioRepository : IUsuarioRepository
     {
