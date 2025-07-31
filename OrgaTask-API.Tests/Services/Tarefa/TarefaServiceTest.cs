@@ -11,7 +11,7 @@ using OrgaTask_API.Tests;
 using System.Collections.Generic;
 using Xunit;
 
-namespace Services.Tarefa
+namespace Services
 {
     public class TarefaServiceTest
     {
@@ -36,7 +36,7 @@ namespace Services.Tarefa
             // Arrange
             int idUsuario = 1;
 
-            TarefaCadastrarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosCadastrarTarefa();
+            TarefaCadastrarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosCadastrarTarefaDTO();
 
             iUnitOfWorkMock.Setup(u => u.TarefaRepository.CadastrarTarefaAsync(It.IsAny<TbTarefa>())).Returns(Task.CompletedTask);
 
@@ -101,7 +101,7 @@ namespace Services.Tarefa
             // Arrange
             int idUsuario = 1;
 
-            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefa();
+            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefaDTO();
 
             iUnitOfWorkMock.Setup(u => u.TarefaRepository.TarefaPertenceUsuarioAsync(It.IsAny<int>(), It.IsAny<int>())).ReturnsAsync(true);
 
@@ -124,7 +124,7 @@ namespace Services.Tarefa
             int idUsuario = 1;
             int idTarefa = 1;
 
-            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefa();
+            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefaDTO();
 
             iUnitOfWorkMock.Setup(u => u.TarefaRepository.TarefaPertenceUsuarioAsync(It.IsAny<int>(), It.IsAny<int>())).ReturnsAsync(false);
 
@@ -283,8 +283,8 @@ namespace Services.Tarefa
 
         #region Buscar QTD Status
 
-        [Fact(DisplayName = "Buscar Quantidade Tarefa por Estatus: Deve retornar a quantidade de tarefadas e pertence ao usuário")]
-        public async Task BuscarQtdStatus()
+        [Fact(DisplayName = "Buscar Quantidade Tarefa por Status: Deve retornar a quantidade de tarefas e porcentagem de conclusão para o usuário")]
+        public async Task BuscarQtdStatusEPorcentagemConclusaoComTarefasExistenteDeveRetornarDTOComValoresCorretos()
         {
             // Arrange
             int idUsuario = 1;
@@ -300,6 +300,30 @@ namespace Services.Tarefa
             // Assert
             Assert.NotNull(resultado);
             Assert.IsType<TarefaQtdStatusDTO>(resultado);
+        }
+
+        #endregion
+
+
+        #region Buscar Tarefas Prioridade Alta
+
+        [Fact(DisplayName = "Buscar Tarefa Prioridade Alta: Deve retornar a quantidade de tarefadas e pertence ao usuário")]
+        public async Task BuscarTarefasPrioridadeAltaQuandoExistiremTarefasDeveRetornarListaDTOsValidos()
+        {
+            // Arrange
+            int idUsuario = 1;
+            int idTarefa = 1;
+
+            List<TbTarefa> listaTarefas = TarefaTestDataFactory.CriarDadosListaTarefa();
+
+            iUnitOfWorkMock.Setup(u => u.TarefaRepository.BuscarTarefasPrioridadeAltaAsync(It.IsAny<int>())).ReturnsAsync(listaTarefas);
+
+            // Act
+            var resultado = await tarefaService.BuscarTarefasPrioridadeAltaAsync(idUsuario);
+
+            // Assert
+            Assert.NotNull(resultado);
+            Assert.IsType<List<TarefaPrioridadeAltaDTO>>(resultado);
         }
 
         #endregion

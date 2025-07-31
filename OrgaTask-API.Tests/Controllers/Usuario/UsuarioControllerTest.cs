@@ -7,9 +7,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System.Security.Claims;
+using OrgaTask_API.Tests;
 using Xunit;
 
-namespace OrgaTask_API.Tests.Controllers
+namespace Controllers
 {
     public class UsuarioControllerTest
     {

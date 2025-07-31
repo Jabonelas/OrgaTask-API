@@ -20,13 +20,25 @@
       <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Controllers\Tarefa\TarefaController.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Repository\Tarefa\TarefaRepository.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
       <string>C:\Users\israe\source\repos\BlazorAPI\OrgaTask-API.Tests\Controllers\Tarefa\TarefaControllerTest.cs</string>
     </ArrayOfString>
     <ArrayOfString>
       <string>C:\Users\israe\source\repos\BlazorAPI\OrgaTask-API.Tests\Controllers\Usuario\UsuarioControllerTest.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\DTOs\Tarefa\TarefaPrioridadeAltaDTO.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\israe\source\repos\BlazorAPI\OrgaTask-API.Tests\Repository\Usuario\UsuarioRepositoryTest.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Repository\Usuario\UsuarioRepository.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\israe\source\repos\BlazorAPI\OrgaTask-API.Tests\Repository\Tarefa\TarefaRepositoryTest.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Repository\Tarefa\TarefaRepository.cs</string>
     </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>

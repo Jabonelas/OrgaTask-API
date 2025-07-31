@@ -12,7 +12,7 @@ using Xunit;
 using static BlazorAPI.Controllers.Tarefa.TarefaController;
 
 
-namespace Controllers.Tarefa
+namespace Controllers
 {
     public class TarefaControllerTest
     {
@@ -33,7 +33,7 @@ namespace Controllers.Tarefa
             // Arrange
             int idUsuario = 1;
 
-            TarefaCadastrarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosCadastrarTarefa();
+            TarefaCadastrarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosCadastrarTarefaDTO();
 
             ConfigurarControllerComUsuario();
 
@@ -59,7 +59,7 @@ namespace Controllers.Tarefa
             // Arrange
             ConfigurarControllerComUsuario();
 
-            TarefaCadastrarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosCadastrarTarefa();
+            TarefaCadastrarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosCadastrarTarefaDTO();
 
             iTarefaServiceMock.Setup(s => s.CadastrarTarefaAsync(It.IsAny<int>(), It.IsAny<TarefaCadastrarDTO>(), It.IsAny<string>(), It.IsAny<string>())).Verifiable();
 
@@ -83,7 +83,7 @@ namespace Controllers.Tarefa
             // Arrange
             ConfigurarControllerComUsuario();
 
-            TarefaCadastrarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosCadastrarTarefa();
+            TarefaCadastrarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosCadastrarTarefaDTO();
 
             iTarefaServiceMock.Setup(s => s.CadastrarTarefaAsync(It.IsAny<int>(), It.IsAny<TarefaCadastrarDTO>(), It.IsAny<string>(), It.IsAny<string>())).Verifiable();
 
@@ -105,7 +105,7 @@ namespace Controllers.Tarefa
         public async Task CadastrarTarefa_UsuarioNaoAutorizado_Retorna401()
         {
             // Arrange
-            TarefaCadastrarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosCadastrarTarefa();
+            TarefaCadastrarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosCadastrarTarefaDTO();
 
             ConfigurarControllerComUsuario();
 
@@ -136,7 +136,7 @@ namespace Controllers.Tarefa
             // Arrange
             int idUsuario = 1;
 
-            TarefaCadastrarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosCadastrarTarefa();
+            TarefaCadastrarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosCadastrarTarefaDTO();
 
             ConfigurarControllerComUsuario();
 
@@ -166,7 +166,7 @@ namespace Controllers.Tarefa
             // Arrange
             int idUsuario = 1;
 
-            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefa();
+            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefaDTO();
 
             ConfigurarControllerComUsuario();
 
@@ -194,7 +194,7 @@ namespace Controllers.Tarefa
             // Arrange
             ConfigurarControllerComUsuario();
 
-            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefa();
+            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefaDTO();
 
             iTarefaServiceMock.Setup(s => s.AlterarTarefaAsync(It.IsAny<int>(), It.IsAny<TarefaAlterarDTO>(), It.IsAny<string>(), It.IsAny<string>())).Verifiable();
 
@@ -218,7 +218,7 @@ namespace Controllers.Tarefa
             // Arrange
             ConfigurarControllerComUsuario();
 
-            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefa();
+            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefaDTO();
 
             iTarefaServiceMock.Setup(s => s.AlterarTarefaAsync(It.IsAny<int>(), It.IsAny<TarefaAlterarDTO>(), It.IsAny<string>(), It.IsAny<string>())).Verifiable();
 
@@ -240,7 +240,7 @@ namespace Controllers.Tarefa
         public async Task AlterarTarefaUsuarioNaoAutorizadoRetorna401()
         {
             // Arrange
-            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefa();
+            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefaDTO();
 
             ConfigurarControllerComUsuario();
 
@@ -265,7 +265,7 @@ namespace Controllers.Tarefa
         public async Task AlterarTarefaTarefaNaoEncontradaRetornaNotFound404()
         {
             // Arrange
-            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefa();
+            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefaDTO();
 
             ConfigurarControllerComUsuario();
 
@@ -289,7 +289,7 @@ namespace Controllers.Tarefa
         public async Task AlterarTarefaOperacaoNaoPermitidaRetorna422()
         {
             // Arrange
-            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefa();
+            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefaDTO();
 
             ConfigurarControllerComUsuario();
 
@@ -317,7 +317,7 @@ namespace Controllers.Tarefa
             // Arrange
             int idUsuario = 1;
 
-            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefa();
+            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefaDTO();
 
             ConfigurarControllerComUsuario();
 

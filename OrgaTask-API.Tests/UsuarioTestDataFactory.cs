@@ -15,6 +15,17 @@ namespace OrgaTask_API.Tests
             };
         }
 
+
+        public static UsuarioCadastrarDTO CriarDadosCadastrarUsuarioInvalido()
+        {
+            return new UsuarioCadastrarDTO()
+            {
+                Nome = "nome usaurio invalido",
+                Login = "usuario teste invalido",
+                Senha = "123456789"
+            };
+        }
+
         public static UsuarioLoginDTO CriarDadosLogin()
         {
             return new UsuarioLoginDTO()

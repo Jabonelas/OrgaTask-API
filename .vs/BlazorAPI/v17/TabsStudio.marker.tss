@@ -1,2 +1,21 @@
 <?xml version="1.0"?>
-<ArrayOfTabHighlightState xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+<ArrayOfTabHighlightState xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <TabHighlightState>
+    <extensions>
+      <string>BlazorAPI\Repository\Tarefa\TarefaRepository.cs</string>
+    </extensions>
+    <highlightIndex>1</highlightIndex>
+  </TabHighlightState>
+  <TabHighlightState>
+    <extensions>
+      <string>OrgaTask-API.Tests\Repository\Tarefa\TarefaRepositoryTest.cs</string>
+    </extensions>
+    <highlightIndex>1</highlightIndex>
+  </TabHighlightState>
+  <TabHighlightState>
+    <extensions>
+      <string>OrgaTask-API.Tests\Controllers\Tarefa\TarefaControllerTest.cs</string>
+    </extensions>
+    <highlightIndex>1</highlightIndex>
+  </TabHighlightState>
+</ArrayOfTabHighlightState>

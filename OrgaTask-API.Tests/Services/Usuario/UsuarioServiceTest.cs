@@ -10,7 +10,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Xunit;
 
-namespace Services.Usuario
+namespace Services
 {
     public class UsuarioServiceTest
     {

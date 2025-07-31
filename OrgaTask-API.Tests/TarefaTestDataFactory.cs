@@ -7,7 +7,7 @@ namespace OrgaTask_API.Tests
 {
     public static class TarefaTestDataFactory
     {
-        public static TarefaCadastrarDTO CriarDadosCadastrarTarefa()
+        public static TarefaCadastrarDTO CriarDadosCadastrarTarefaDTO()
         {
             return new TarefaCadastrarDTO()
             {
@@ -17,7 +17,7 @@ namespace OrgaTask_API.Tests
             };
         }
 
-        public static TarefaAlterarDTO CriarDadosAlterarTarefa()
+        public static TarefaAlterarDTO CriarDadosAlterarTarefaDTO()
         {
             return new TarefaAlterarDTO
             {
@@ -110,7 +110,7 @@ namespace OrgaTask_API.Tests
                         TaPrioridade = "Alta" ,
                         TaPrazo = 1 ,
                         TaStatus = "Pendente" ,
-                        TaData = "Data Criacao 1",
+                        TaData = DateTime.Now.ToString(),
                     },
                     new TbTarefa
                     {
@@ -120,7 +120,7 @@ namespace OrgaTask_API.Tests
                         TaPrioridade = "Alta" ,
                         TaPrazo = 2 ,
                         TaStatus = "Pendente" ,
-                        TaData = "Data Criacao 2",
+                        TaData = DateTime.Now.ToString(),
                     },
             };
 
@@ -140,9 +140,7 @@ namespace OrgaTask_API.Tests
                 DataCriacao = "Data Criacao 1",
             };
         }
-
-
-
+        
         public static TbTarefa CriarDadosBuscarTarefa()
         {
             return new TbTarefa
@@ -150,6 +148,34 @@ namespace OrgaTask_API.Tests
                 IdTarefa = 2,
                 TaTitulo = "Tarefa 2",
                 TaDescricao = "Descricao 2",
+                TaPrioridade = "Alta",
+                TaPrazo = 2,
+                TaStatus = "Pendente",
+                TaData = "Data Criacao 2",
+            };
+        }
+
+        public static TbTarefa CriarDadosTarefa()
+        {
+            return new TbTarefa
+            {
+                IdTarefa = 3,
+                TaTitulo = "Tarefa 2",
+                TaDescricao = "Descricao 2",
+                TaPrioridade = "Alta",
+                TaPrazo = 2,
+                TaStatus = "Pendente",
+                TaData = "Data Criacao 2",
+            };
+        }
+
+        public static TbTarefa CriarDadosAlterarTarefa()
+        {
+            return new TbTarefa
+            {
+                IdTarefa = 3,
+                TaTitulo = "Tarefa Alterada 2",
+                TaDescricao = "Descricao Alterada 2",
                 TaPrioridade = "Alta",
                 TaPrazo = 2,
                 TaStatus = "Pendente",
