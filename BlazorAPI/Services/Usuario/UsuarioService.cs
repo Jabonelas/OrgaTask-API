@@ -13,11 +13,11 @@ namespace BlazorAPI.Services.Usuario
     {
         private readonly IAutenticacao iAutenticacao;
 
-        private readonly IUnitOfWork unitOfWork;
+        private readonly IUnitOfWork iUnitOfWork;
 
         public UsuarioService(IUnitOfWork _unitOfWork, IAutenticacao _iAutenticacao)
         {
-            unitOfWork = _unitOfWork;
+            iUnitOfWork = _unitOfWork;
             iAutenticacao = _iAutenticacao;
         }
 
@@ -34,8 +34,8 @@ namespace BlazorAPI.Services.Usuario
 
             usuario.UsSenha = CriptografarSenha(_dadosCadastroUsuario.Senha);
 
-            await unitOfWork.UsuarioReposity.AdicionarAsync(usuario);
-            await unitOfWork.SalvarBancoAsync();
+            await iUnitOfWork.UsuarioReposity.AdicionarAsync(usuario);
+            await iUnitOfWork.SalvarBancoAsync();
         }
 
         public string CriptografarSenha(string _senhaDigitada)
@@ -56,7 +56,7 @@ namespace BlazorAPI.Services.Usuario
 
         public async Task<bool> LoginExisteAsync(string _login)
         {
-            return await unitOfWork.UsuarioReposity.LoginExisteAsync(_login);
+            return await iUnitOfWork.UsuarioReposity.LoginExisteAsync(_login);
         }
 
         public async Task LoginSenhaValidosAsync(UsuarioLoginDTO _dadosUsuarioLogin)
@@ -67,7 +67,7 @@ namespace BlazorAPI.Services.Usuario
 
             usuarioLogin.UsLogin = usuarioLogin.UsLogin.TrimEnd().ToLower();
 
-            if (!await unitOfWork.UsuarioReposity.LoginSenhaValidosAsync(usuarioLogin))
+            if (!await iUnitOfWork.UsuarioReposity.LoginSenhaValidosAsync(usuarioLogin))
             {
                 throw new UnauthorizedAccessException("Falha na autenticação: credenciais inválidas.");
             }
@@ -78,7 +78,7 @@ namespace BlazorAPI.Services.Usuario
         {
             _login = _login.TrimEnd();
 
-            return await unitOfWork.UsuarioReposity.BuscarIdUsuarioAsync(_login);
+            return await iUnitOfWork.UsuarioReposity.BuscarIdUsuarioAsync(_login);
         }
 
         public async Task<UserToken> GerarTokenAsync(int _idUsuario, UsuarioLoginDTO _dadosUsuarioLogin)

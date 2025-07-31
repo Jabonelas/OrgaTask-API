@@ -29,14 +29,14 @@ namespace OrgaTask_API.Tests.Controllers
         public async Task CadastrarUsuarioComDadosValidosDeveRetornarCreated201()
         {
             // Arrange
-            UsuarioCadastrarDTO dadosUsuario = UsuarioTestDataFactory.CriarDadosCadastrarUsuario();
+            UsuarioCadastrarDTO dadosUsuarioMock = UsuarioTestDataFactory.CriarDadosCadastrarUsuario();
 
             ConfigurarControllerComUsuario();
 
-            iUsuarioServiceMock.Setup(s => s.CadastrarUsuarioAsync(dadosUsuario)).Returns(Task.CompletedTask);
+            iUsuarioServiceMock.Setup(s => s.CadastrarUsuarioAsync(dadosUsuarioMock)).Returns(Task.CompletedTask);
 
             // Act
-            var result = await usuarioController.CadastrarUsuarioAsync(dadosUsuario);
+            var result = await usuarioController.CadastrarUsuarioAsync(dadosUsuarioMock);
 
             // Assert
             var createdResult = Assert.IsType<CreatedResult>(result);
@@ -53,14 +53,14 @@ namespace OrgaTask_API.Tests.Controllers
         public async Task CadastrarUsuarioComUsuarioJaCadastradoDeveRetornarStatusCode409()
         {
             // Arrange
-            UsuarioCadastrarDTO dadosUsuario = UsuarioTestDataFactory.CriarDadosCadastrarUsuario();
+            UsuarioCadastrarDTO dadosUsuarioMock = UsuarioTestDataFactory.CriarDadosCadastrarUsuario();
 
             ConfigurarControllerComUsuario();
 
             iUsuarioServiceMock.Setup(s => s.CadastrarUsuarioAsync(It.IsAny<UsuarioCadastrarDTO>())).ThrowsAsync(new InvalidOperationException("Login já cadastrado."));
 
             // Act 
-            var result = await usuarioController.CadastrarUsuarioAsync(dadosUsuario);
+            var result = await usuarioController.CadastrarUsuarioAsync(dadosUsuarioMock);
 
             // Assert
             var statusCodeResult = Assert.IsType<ConflictObjectResult>(result);
@@ -78,14 +78,14 @@ namespace OrgaTask_API.Tests.Controllers
         public async Task CadastrarUsuarioComErroNaServiceDeveRetornarStatusCode500()
         {
             // Arrange
-            UsuarioCadastrarDTO dadosUsuario = UsuarioTestDataFactory.CriarDadosCadastrarUsuario();
+            UsuarioCadastrarDTO dadosUsuarioMock = UsuarioTestDataFactory.CriarDadosCadastrarUsuario();
 
             ConfigurarControllerComUsuario();
 
             iUsuarioServiceMock.Setup(s => s.CadastrarUsuarioAsync(It.IsAny<UsuarioCadastrarDTO>())).ThrowsAsync(new Exception("Database error"));
 
             // Act 
-            var result = await usuarioController.CadastrarUsuarioAsync(dadosUsuario);
+            var result = await usuarioController.CadastrarUsuarioAsync(dadosUsuarioMock);
 
             // Assert
             var statusCodeResult = Assert.IsType<ObjectResult>(result);
@@ -109,7 +109,7 @@ namespace OrgaTask_API.Tests.Controllers
             // Arrange
             var idUsuario = 1;
 
-            var dadosUsuario = UsuarioTestDataFactory.CriarDadosLogin();
+            var dadosUsuarioMock = UsuarioTestDataFactory.CriarDadosLogin();
 
             var tokenEsperado = UsuarioTestDataFactory.CriarToken();
 
@@ -128,7 +128,7 @@ namespace OrgaTask_API.Tests.Controllers
                 .ReturnsAsync(tokenEsperado);
 
             // Act
-            var result = await usuarioController.UsuarioLoginAsync(dadosUsuario);
+            var result = await usuarioController.UsuarioLoginAsync(dadosUsuarioMock);
 
             // Assert
             var tokenRetornado = Assert.IsType<UserToken>(result.Value);
@@ -140,7 +140,7 @@ namespace OrgaTask_API.Tests.Controllers
         public async Task UsuarioLoginComCredenciaisInvalidas_DeveRetornarUnauthorized()
         {
             // Arrange
-            var dadosUsuario = UsuarioTestDataFactory.CriarDadosLogin();
+            var dadosUsuarioMock = UsuarioTestDataFactory.CriarDadosLogin();
 
             ConfigurarControllerComUsuario();
 
@@ -149,7 +149,7 @@ namespace OrgaTask_API.Tests.Controllers
                 .ThrowsAsync(new UnauthorizedAccessException("Falha na autenticação: credenciais inválidas."));
 
             // Act
-            var result = await usuarioController.UsuarioLoginAsync(dadosUsuario);
+            var result = await usuarioController.UsuarioLoginAsync(dadosUsuarioMock);
 
             // Assert
             var unauthorizedResult = Assert.IsType<UnauthorizedObjectResult>(result.Result);
@@ -163,7 +163,7 @@ namespace OrgaTask_API.Tests.Controllers
         public async Task LoginComErroNaServiceDeveRetornarStatusCode500()
         {
             // Arrange
-            var dadosUsuario = UsuarioTestDataFactory.CriarDadosLogin();
+            var dadosUsuarioMock = UsuarioTestDataFactory.CriarDadosLogin();
 
             ConfigurarControllerComUsuario();
 
@@ -172,7 +172,7 @@ namespace OrgaTask_API.Tests.Controllers
             iUsuarioServiceMock.Setup(s => s.BuscarIdUsuarioAsync(It.IsAny<string>())).ThrowsAsync(new Exception("Database error"));
 
             // Act 
-            var result = await usuarioController.UsuarioLoginAsync(dadosUsuario);
+            var result = await usuarioController.UsuarioLoginAsync(dadosUsuarioMock);
 
             // Assert
             var statusCodeResult = Assert.IsType<ObjectResult>(result.Result);

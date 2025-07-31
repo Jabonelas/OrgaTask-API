@@ -20,16 +20,13 @@
       <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Controllers\Tarefa\TarefaController.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Interfaces\Service\Tarefa\ITarefaService.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
       <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Repository\Tarefa\TarefaRepository.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\DTOs\Tarefa\TarefaCadastrarDTO.cs</string>
+      <string>C:\Users\israe\source\repos\BlazorAPI\OrgaTask-API.Tests\Controllers\Tarefa\TarefaControllerTest.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\israe\source\repos\BlazorAPI\BlazorAPI\Unit Of Work\UnitOfWork.cs</string>
+      <string>C:\Users\israe\source\repos\BlazorAPI\OrgaTask-API.Tests\Controllers\Usuario\UsuarioControllerTest.cs</string>
     </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>

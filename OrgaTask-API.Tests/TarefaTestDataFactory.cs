@@ -1,5 +1,7 @@
 ﻿using BlazorAPI.DTOs;
 using BlazorAPI.DTOs.Tarefa;
+using BlazorAPI.Models;
+using System.Collections.Generic;
 
 namespace OrgaTask_API.Tests
 {
@@ -63,7 +65,69 @@ namespace OrgaTask_API.Tests
         }
 
 
-        public static TarefaConsultaDTO CriarDadosBuscarTarefa()
+        public static (List<TbTarefa> Items, int TotalCount) CriarDadosListaTarefaPaginadaPorEstatus()
+        {
+            var listaTarefaPaginada = (
+                Items: new List<TbTarefa>
+                {
+                    new TbTarefa
+                    {
+                        IdTarefa = 1,
+                        TaTitulo = "Tarefa 1",
+                        TaDescricao = "Descricao 1",
+                        TaPrioridade = "Alta",
+                        TaPrazo = 1,
+                        TaStatus = "Pendente",
+                        TaData = "Data Criacao 1",
+                    },
+                    new TbTarefa
+                    {
+                        IdTarefa = 2,
+                        TaTitulo = "Tarefa 2",
+                        TaDescricao = "Descricao 2",
+                        TaPrioridade = "Alta",
+                        TaPrazo = 2,
+                        TaStatus = "Pendente",
+                        TaData = "Data Criacao 2",
+                    }
+                },
+                TotalCount: 2
+            );
+
+            return listaTarefaPaginada;
+        }
+
+
+        public static List<TbTarefa> CriarDadosListaTarefa()
+        {
+            List<TbTarefa> listaTarefa = new List<TbTarefa>
+            {
+                    new TbTarefa
+                    {
+                        IdTarefa = 1,
+                        TaTitulo = "Tarefa 1" ,
+                        TaDescricao = "Descricao 1" ,
+                        TaPrioridade = "Alta" ,
+                        TaPrazo = 1 ,
+                        TaStatus = "Pendente" ,
+                        TaData = "Data Criacao 1",
+                    },
+                    new TbTarefa
+                    {
+                        IdTarefa = 2,
+                        TaTitulo = "Tarefa 2" ,
+                        TaDescricao =  "Descricao 2" ,
+                        TaPrioridade = "Alta" ,
+                        TaPrazo = 2 ,
+                        TaStatus = "Pendente" ,
+                        TaData = "Data Criacao 2",
+                    },
+            };
+
+            return listaTarefa;
+        }
+
+        public static TarefaConsultaDTO CriarDadosBuscarTarefaDTO()
         {
             return new TarefaConsultaDTO()
             {
@@ -78,6 +142,25 @@ namespace OrgaTask_API.Tests
         }
 
 
+
+        public static TbTarefa CriarDadosBuscarTarefa()
+        {
+            return new TbTarefa
+            {
+                IdTarefa = 2,
+                TaTitulo = "Tarefa 2",
+                TaDescricao = "Descricao 2",
+                TaPrioridade = "Alta",
+                TaPrazo = 2,
+                TaStatus = "Pendente",
+                TaData = "Data Criacao 2",
+            };
+        }
+
+        public static (int pendente, int emAndamento, int concluido) CriarDadosQtdStatus()
+        {
+            return (pendente: 0, emAndamento: 0, concluido: 0);
+        }
 
         public static TarefaQtdStatusDTO CriarDadosBuscarQtdStatusEPorcentagemConclusao()
         {

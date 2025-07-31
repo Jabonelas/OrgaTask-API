@@ -33,14 +33,14 @@ namespace Controllers.Tarefa
             // Arrange
             int idUsuario = 1;
 
-            TarefaCadastrarDTO dadosTarefa = TarefaTestDataFactory.CriarDadosCadastrarTarefa();
+            TarefaCadastrarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosCadastrarTarefa();
 
             ConfigurarControllerComUsuario();
 
             iTarefaServiceMock.Setup(s => s.CadastrarTarefaAsync(idUsuario, It.IsAny<TarefaCadastrarDTO>(), PrioridadeTarefa.Média.ToString(), StatusTarefa.Concluído.ToString())).Returns(Task.CompletedTask);
 
             // Act
-            var result = await tarefaController.CadastrarTarefaAsync(dadosTarefa, PrioridadeTarefa.Média, StatusTarefa.Concluído);
+            var result = await tarefaController.CadastrarTarefaAsync(dadosTarefaMock, PrioridadeTarefa.Média, StatusTarefa.Concluído);
 
             // Assert
             var createdResult = Assert.IsType<CreatedResult>(result);
@@ -59,12 +59,12 @@ namespace Controllers.Tarefa
             // Arrange
             ConfigurarControllerComUsuario();
 
-            TarefaCadastrarDTO dadosTarefa = TarefaTestDataFactory.CriarDadosCadastrarTarefa();
+            TarefaCadastrarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosCadastrarTarefa();
 
             iTarefaServiceMock.Setup(s => s.CadastrarTarefaAsync(It.IsAny<int>(), It.IsAny<TarefaCadastrarDTO>(), It.IsAny<string>(), It.IsAny<string>())).Verifiable();
 
             // Act
-            var result = await tarefaController.CadastrarTarefaAsync(dadosTarefa, null, StatusTarefa.Pendente);
+            var result = await tarefaController.CadastrarTarefaAsync(dadosTarefaMock, null, StatusTarefa.Pendente);
 
             // Assert
             var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
@@ -83,12 +83,12 @@ namespace Controllers.Tarefa
             // Arrange
             ConfigurarControllerComUsuario();
 
-            TarefaCadastrarDTO dadosTarefa = TarefaTestDataFactory.CriarDadosCadastrarTarefa();
+            TarefaCadastrarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosCadastrarTarefa();
 
             iTarefaServiceMock.Setup(s => s.CadastrarTarefaAsync(It.IsAny<int>(), It.IsAny<TarefaCadastrarDTO>(), It.IsAny<string>(), It.IsAny<string>())).Verifiable();
 
             // Act
-            var result = await tarefaController.CadastrarTarefaAsync(dadosTarefa, PrioridadeTarefa.Alta, null);
+            var result = await tarefaController.CadastrarTarefaAsync(dadosTarefaMock, PrioridadeTarefa.Alta, null);
 
             // Assert
             var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
@@ -105,7 +105,7 @@ namespace Controllers.Tarefa
         public async Task CadastrarTarefa_UsuarioNaoAutorizado_Retorna401()
         {
             // Arrange
-            TarefaCadastrarDTO dadosTarefa = TarefaTestDataFactory.CriarDadosCadastrarTarefa();
+            TarefaCadastrarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosCadastrarTarefa();
 
             ConfigurarControllerComUsuario();
 
@@ -117,7 +117,7 @@ namespace Controllers.Tarefa
                 .ThrowsAsync(new UnauthorizedAccessException("Usuário não autorizado"));
 
             // Act
-            var result = await tarefaController.CadastrarTarefaAsync(dadosTarefa, PrioridadeTarefa.Média, StatusTarefa.Concluído);
+            var result = await tarefaController.CadastrarTarefaAsync(dadosTarefaMock, PrioridadeTarefa.Média, StatusTarefa.Concluído);
 
             // Assert
             var unauthorizedResult = Assert.IsType<UnauthorizedObjectResult>(result);
@@ -136,14 +136,14 @@ namespace Controllers.Tarefa
             // Arrange
             int idUsuario = 1;
 
-            TarefaCadastrarDTO dadosTarefa = TarefaTestDataFactory.CriarDadosCadastrarTarefa();
+            TarefaCadastrarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosCadastrarTarefa();
 
             ConfigurarControllerComUsuario();
 
             iTarefaServiceMock.Setup(s => s.CadastrarTarefaAsync(idUsuario, It.IsAny<TarefaCadastrarDTO>(), PrioridadeTarefa.Média.ToString(), StatusTarefa.Concluído.ToString())).ThrowsAsync(new Exception("Database error"));
 
             // Act 
-            var result = await tarefaController.CadastrarTarefaAsync(dadosTarefa, PrioridadeTarefa.Média, StatusTarefa.Concluído);
+            var result = await tarefaController.CadastrarTarefaAsync(dadosTarefaMock, PrioridadeTarefa.Média, StatusTarefa.Concluído);
 
             // Assert
             var statusCodeResult = Assert.IsType<ObjectResult>(result);
@@ -166,7 +166,7 @@ namespace Controllers.Tarefa
             // Arrange
             int idUsuario = 1;
 
-            TarefaAlterarDTO dadosTarefa = TarefaTestDataFactory.CriarDadosAlterarTarefa();
+            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefa();
 
             ConfigurarControllerComUsuario();
 
@@ -174,7 +174,7 @@ namespace Controllers.Tarefa
                 .Returns(Task.CompletedTask);
 
             // Act
-            var result = await tarefaController.AlterarTarefaAsync(dadosTarefa, PrioridadeTarefa.Média, StatusTarefa.Concluído);
+            var result = await tarefaController.AlterarTarefaAsync(dadosTarefaMock, PrioridadeTarefa.Média, StatusTarefa.Concluído);
 
             // Assert
             var updateResult = Assert.IsType<OkObjectResult>(result);
@@ -194,12 +194,12 @@ namespace Controllers.Tarefa
             // Arrange
             ConfigurarControllerComUsuario();
 
-            TarefaAlterarDTO dadosTarefa = TarefaTestDataFactory.CriarDadosAlterarTarefa();
+            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefa();
 
             iTarefaServiceMock.Setup(s => s.AlterarTarefaAsync(It.IsAny<int>(), It.IsAny<TarefaAlterarDTO>(), It.IsAny<string>(), It.IsAny<string>())).Verifiable();
 
             // Act
-            var result = await tarefaController.AlterarTarefaAsync(dadosTarefa, null, StatusTarefa.Pendente);
+            var result = await tarefaController.AlterarTarefaAsync(dadosTarefaMock, null, StatusTarefa.Pendente);
 
             // Assert
             var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
@@ -218,12 +218,12 @@ namespace Controllers.Tarefa
             // Arrange
             ConfigurarControllerComUsuario();
 
-            TarefaAlterarDTO dadosTarefa = TarefaTestDataFactory.CriarDadosAlterarTarefa();
+            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefa();
 
             iTarefaServiceMock.Setup(s => s.AlterarTarefaAsync(It.IsAny<int>(), It.IsAny<TarefaAlterarDTO>(), It.IsAny<string>(), It.IsAny<string>())).Verifiable();
 
             // Act
-            var result = await tarefaController.AlterarTarefaAsync(dadosTarefa, PrioridadeTarefa.Alta, null);
+            var result = await tarefaController.AlterarTarefaAsync(dadosTarefaMock, PrioridadeTarefa.Alta, null);
 
             // Assert
             var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
@@ -240,7 +240,7 @@ namespace Controllers.Tarefa
         public async Task AlterarTarefaUsuarioNaoAutorizadoRetorna401()
         {
             // Arrange
-            TarefaAlterarDTO dadosTarefa = TarefaTestDataFactory.CriarDadosAlterarTarefa();
+            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefa();
 
             ConfigurarControllerComUsuario();
 
@@ -248,7 +248,7 @@ namespace Controllers.Tarefa
                 .ThrowsAsync(new UnauthorizedAccessException("Usuário não autorizado"));
 
             // Act
-            var result = await tarefaController.AlterarTarefaAsync(dadosTarefa, PrioridadeTarefa.Média, StatusTarefa.Concluído);
+            var result = await tarefaController.AlterarTarefaAsync(dadosTarefaMock, PrioridadeTarefa.Média, StatusTarefa.Concluído);
 
             // Assert
             var unauthorizedResult = Assert.IsType<UnauthorizedObjectResult>(result);
@@ -265,7 +265,7 @@ namespace Controllers.Tarefa
         public async Task AlterarTarefaTarefaNaoEncontradaRetornaNotFound404()
         {
             // Arrange
-            TarefaAlterarDTO dadosTarefa = TarefaTestDataFactory.CriarDadosAlterarTarefa();
+            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefa();
 
             ConfigurarControllerComUsuario();
 
@@ -273,7 +273,7 @@ namespace Controllers.Tarefa
                 .ThrowsAsync(new KeyNotFoundException("Tarefa não encontrada"));
 
             // Act
-            var result = await tarefaController.AlterarTarefaAsync(dadosTarefa, PrioridadeTarefa.Média, StatusTarefa.Concluído);
+            var result = await tarefaController.AlterarTarefaAsync(dadosTarefaMock, PrioridadeTarefa.Média, StatusTarefa.Concluído);
 
             // Assert
             var notFoundResult = Assert.IsType<NotFoundObjectResult>(result);
@@ -289,7 +289,7 @@ namespace Controllers.Tarefa
         public async Task AlterarTarefaOperacaoNaoPermitidaRetorna422()
         {
             // Arrange
-            TarefaAlterarDTO dadosTarefa = TarefaTestDataFactory.CriarDadosAlterarTarefa();
+            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefa();
 
             ConfigurarControllerComUsuario();
 
@@ -298,7 +298,7 @@ namespace Controllers.Tarefa
                 .ThrowsAsync(new InvalidOperationException("Operação não permitida"));
 
             // Act
-            var result = await tarefaController.AlterarTarefaAsync(dadosTarefa, PrioridadeTarefa.Média, StatusTarefa.Concluído);
+            var result = await tarefaController.AlterarTarefaAsync(dadosTarefaMock, PrioridadeTarefa.Média, StatusTarefa.Concluído);
 
             // Assert
             var statusCodeResult = Assert.IsType<ObjectResult>(result);
@@ -317,14 +317,14 @@ namespace Controllers.Tarefa
             // Arrange
             int idUsuario = 1;
 
-            TarefaAlterarDTO dadosTarefa = TarefaTestDataFactory.CriarDadosAlterarTarefa();
+            TarefaAlterarDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosAlterarTarefa();
 
             ConfigurarControllerComUsuario();
 
             iTarefaServiceMock.Setup(s => s.AlterarTarefaAsync(idUsuario, It.IsAny<TarefaAlterarDTO>(), PrioridadeTarefa.Média.ToString(), StatusTarefa.Concluído.ToString())).ThrowsAsync(new Exception("Database error"));
 
             // Act 
-            var result = await tarefaController.AlterarTarefaAsync(dadosTarefa, PrioridadeTarefa.Média, StatusTarefa.Concluído);
+            var result = await tarefaController.AlterarTarefaAsync(dadosTarefaMock, PrioridadeTarefa.Média, StatusTarefa.Concluído);
 
             // Assert
             var statusCodeResult = Assert.IsType<ObjectResult>(result);
@@ -589,11 +589,11 @@ namespace Controllers.Tarefa
             int idUsuario = 1;
             int idTarefa = 1;
 
-            TarefaConsultaDTO dadosTarefa = TarefaTestDataFactory.CriarDadosBuscarTarefa();
+            TarefaConsultaDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosBuscarTarefaDTO();
 
             ConfigurarControllerComUsuario();
 
-            iTarefaServiceMock.Setup(s => s.BuscarTarefaAsync(idTarefa, idUsuario)).ReturnsAsync(dadosTarefa);
+            iTarefaServiceMock.Setup(s => s.BuscarTarefaAsync(idTarefa, idUsuario)).ReturnsAsync(dadosTarefaMock);
 
             // Act
             var result = await tarefaController.BuscarTarefaAsync(idUsuario);
@@ -603,13 +603,13 @@ namespace Controllers.Tarefa
             Assert.Equal(200, updateResult.StatusCode);
 
             var response = Assert.IsType<TarefaConsultaDTO>(updateResult.Value);
-            Assert.Equal(dadosTarefa.Id, response.Id);
-            Assert.Equal(dadosTarefa.Titulo, response.Titulo);
-            Assert.Equal(dadosTarefa.Descricao, response.Descricao);
-            Assert.Equal(dadosTarefa.Prioridade, response.Prioridade);
-            Assert.Equal(dadosTarefa.Prazo, response.Prazo);
-            Assert.Equal(dadosTarefa.Status, response.Status);
-            Assert.Equal(dadosTarefa.DataCriacao, response.DataCriacao);
+            Assert.Equal(dadosTarefaMock.Id, response.Id);
+            Assert.Equal(dadosTarefaMock.Titulo, response.Titulo);
+            Assert.Equal(dadosTarefaMock.Descricao, response.Descricao);
+            Assert.Equal(dadosTarefaMock.Prioridade, response.Prioridade);
+            Assert.Equal(dadosTarefaMock.Prazo, response.Prazo);
+            Assert.Equal(dadosTarefaMock.Status, response.Status);
+            Assert.Equal(dadosTarefaMock.DataCriacao, response.DataCriacao);
         }
 
 
@@ -699,11 +699,11 @@ namespace Controllers.Tarefa
             // Arrange
             int idUsuario = 1;
 
-            TarefaQtdStatusDTO dadosTarefa = TarefaTestDataFactory.CriarDadosBuscarQtdStatusEPorcentagemConclusao();
+            TarefaQtdStatusDTO dadosTarefaMock = TarefaTestDataFactory.CriarDadosBuscarQtdStatusEPorcentagemConclusao();
 
             ConfigurarControllerComUsuario();
 
-            iTarefaServiceMock.Setup(s => s.BuscarQtdStatusEPorcentagemConclusaoAsync(idUsuario)).ReturnsAsync(dadosTarefa);
+            iTarefaServiceMock.Setup(s => s.BuscarQtdStatusEPorcentagemConclusaoAsync(idUsuario)).ReturnsAsync(dadosTarefaMock);
 
             // Act
             var result = await tarefaController.BuscarQtdStatusEPorcentagemConclusaoAsync();
@@ -713,10 +713,10 @@ namespace Controllers.Tarefa
             Assert.Equal(200, updateResult.StatusCode);
 
             var response = Assert.IsType<TarefaQtdStatusDTO>(updateResult.Value);
-            Assert.Equal(dadosTarefa.Concluido, response.Concluido);
-            Assert.Equal(dadosTarefa.EmProgresso, response.EmProgresso);
-            Assert.Equal(dadosTarefa.Pendente, response.Pendente);
-            Assert.Equal(dadosTarefa.PorcentagemConcluidas, response.PorcentagemConcluidas);
+            Assert.Equal(dadosTarefaMock.Concluido, response.Concluido);
+            Assert.Equal(dadosTarefaMock.EmProgresso, response.EmProgresso);
+            Assert.Equal(dadosTarefaMock.Pendente, response.Pendente);
+            Assert.Equal(dadosTarefaMock.PorcentagemConcluidas, response.PorcentagemConcluidas);
         }
 
 
@@ -804,12 +804,12 @@ namespace Controllers.Tarefa
             // Arrange
             int idUsuario = 1;
 
-            List<TarefaPrioridadeAltaDTO> dadosTarefa = TarefaTestDataFactory.CriarDadosBuscarTarefasPrioridadeAlta();
+            List<TarefaPrioridadeAltaDTO> dadosTarefaMock = TarefaTestDataFactory.CriarDadosBuscarTarefasPrioridadeAlta();
 
             ConfigurarControllerComUsuario();
 
             iTarefaServiceMock.Setup(s => s.BuscarTarefasPrioridadeAltaAsync(idUsuario))
-                .ReturnsAsync(dadosTarefa);
+                .ReturnsAsync(dadosTarefaMock);
 
             // Act
             var result = await tarefaController.BuscarTarefasPrioridadeAltaAsync();
@@ -819,12 +819,12 @@ namespace Controllers.Tarefa
             Assert.Equal(200, okResult.StatusCode);
 
             var response = Assert.IsType<List<TarefaPrioridadeAltaDTO>>(okResult.Value);
-            Assert.Equal(dadosTarefa.Count, response.Count);
-            Assert.Equal(dadosTarefa[0].Id, response[0].Id);
-            Assert.Equal(dadosTarefa[0].Titulo, response[0].Titulo);
-            Assert.Equal(dadosTarefa[0].Data, response[0].Data);
-            Assert.Equal(dadosTarefa[0].Status, response[0].Status);
-            Assert.Equal(dadosTarefa[0].Prazo, response[0].Prazo);
+            Assert.Equal(dadosTarefaMock.Count, response.Count);
+            Assert.Equal(dadosTarefaMock[0].Id, response[0].Id);
+            Assert.Equal(dadosTarefaMock[0].Titulo, response[0].Titulo);
+            Assert.Equal(dadosTarefaMock[0].Data, response[0].Data);
+            Assert.Equal(dadosTarefaMock[0].Status, response[0].Status);
+            Assert.Equal(dadosTarefaMock[0].Prazo, response[0].Prazo);
         }
 
 

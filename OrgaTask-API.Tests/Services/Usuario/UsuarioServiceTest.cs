@@ -33,14 +33,14 @@ namespace Services.Usuario
         public async Task CadastrarUsuarioAsyncLoginNovoDeveSalvarNoBanco()
         {
             // Arrange
-            UsuarioCadastrarDTO dadosUsuario = UsuarioTestDataFactory.CriarDadosCadastrarUsuario();
+            UsuarioCadastrarDTO dadosUsuarioMock = UsuarioTestDataFactory.CriarDadosCadastrarUsuario();
 
             iUnitOfWorkMock.Setup(u => u.UsuarioReposity.LoginExisteAsync(It.IsAny<string>())).ReturnsAsync(false);
 
             iUnitOfWorkMock.Setup(u => u.UsuarioReposity.AdicionarAsync(It.IsAny<TbUsuario>()));
 
             // Act
-            await usuarioService.CadastrarUsuarioAsync(dadosUsuario);
+            await usuarioService.CadastrarUsuarioAsync(dadosUsuarioMock);
 
             // Assert
             iUnitOfWorkMock.Verify(u => u.UsuarioReposity.AdicionarAsync(It.IsAny<TbUsuario>()), Times.Once);
@@ -52,12 +52,12 @@ namespace Services.Usuario
         public async Task CadastrarUsuarioAsyncLoginExistenteDeveLancarExcecao()
         {
             // Arrange
-            UsuarioCadastrarDTO dadosUsuario = UsuarioTestDataFactory.CriarDadosCadastrarUsuario();
+            UsuarioCadastrarDTO dadosUsuarioMock = UsuarioTestDataFactory.CriarDadosCadastrarUsuario();
 
             iUnitOfWorkMock.Setup(u => u.UsuarioReposity.LoginExisteAsync(It.IsAny<string>())).ReturnsAsync(true);
 
             // Act & Assert
-            await Assert.ThrowsAsync<InvalidOperationException>(() => usuarioService.CadastrarUsuarioAsync(dadosUsuario));
+            await Assert.ThrowsAsync<InvalidOperationException>(() => usuarioService.CadastrarUsuarioAsync(dadosUsuarioMock));
         }
 
         #endregion
@@ -89,24 +89,24 @@ namespace Services.Usuario
         public async Task LoginSenhaValidosAsyncCredenciaisCorretasNaoDeveLancarExcecao()
         {
             // Arrange
-            UsuarioLoginDTO dadosUsuario = UsuarioTestDataFactory.CriarDadosLogin();
+            UsuarioLoginDTO dadosUsuarioMock = UsuarioTestDataFactory.CriarDadosLogin();
 
             iUnitOfWorkMock.Setup(u => u.UsuarioReposity.LoginSenhaValidosAsync(It.IsAny<TbUsuario>())).ReturnsAsync(true);
 
             // Act 
-            await usuarioService.LoginSenhaValidosAsync(dadosUsuario);
+            await usuarioService.LoginSenhaValidosAsync(dadosUsuarioMock);
         }
 
         [Fact(DisplayName = "Login Senha Validos: Credenciais invalidas deve lancar excecao")]
         public async Task LoginSenhaValidosAsyncCredenciaisInvalidasDeveLancarExcecao()
         {
             // Arrange
-            UsuarioLoginDTO dadosUsuario = UsuarioTestDataFactory.CriarDadosLogin();
+            UsuarioLoginDTO dadosUsuarioMock = UsuarioTestDataFactory.CriarDadosLogin();
 
             iUnitOfWorkMock.Setup(u => u.UsuarioReposity.LoginSenhaValidosAsync(It.IsAny<TbUsuario>())).ReturnsAsync(false);
 
             // Act & Assert
-            await Assert.ThrowsAsync<UnauthorizedAccessException>(() => usuarioService.LoginSenhaValidosAsync(dadosUsuario));
+            await Assert.ThrowsAsync<UnauthorizedAccessException>(() => usuarioService.LoginSenhaValidosAsync(dadosUsuarioMock));
         }
 
         #endregion
@@ -162,14 +162,14 @@ namespace Services.Usuario
             // Arrange
             int idUsuario = 1;
 
-            UsuarioLoginDTO dadosUsuario = UsuarioTestDataFactory.CriarDadosLogin();
+            UsuarioLoginDTO dadosUsuarioMock = UsuarioTestDataFactory.CriarDadosLogin();
 
             UserToken token = UsuarioTestDataFactory.CriarToken();
 
             iAutenticacaoMock.Setup(a => a.GenerateToken(idUsuario, It.IsAny<string>())).Returns(token.Token);
 
             // Act
-            var resultado = await usuarioService.GerarTokenAsync(idUsuario, dadosUsuario);
+            var resultado = await usuarioService.GerarTokenAsync(idUsuario, dadosUsuarioMock);
 
             // Assert
             Assert.Equal(token.Token, resultado.Token);
