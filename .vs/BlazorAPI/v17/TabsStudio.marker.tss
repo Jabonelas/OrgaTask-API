@@ -18,4 +18,10 @@
     </extensions>
     <highlightIndex>1</highlightIndex>
   </TabHighlightState>
+  <TabHighlightState>
+    <extensions>
+      <string>OrgaTask-API.Tests\TarefaTestDataFactory.cs</string>
+    </extensions>
+    <highlightIndex>1</highlightIndex>
+  </TabHighlightState>
 </ArrayOfTabHighlightState>

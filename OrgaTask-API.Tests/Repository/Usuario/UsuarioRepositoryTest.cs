@@ -17,7 +17,7 @@ namespace Repository
         private BlazorAPIBancodbContext CriarContextoInMemory()
         {
             var options = new DbContextOptionsBuilder<BlazorAPIBancodbContext>()
-                .UseInMemoryDatabase(databaseName: "BlazorAPIDB_Test")
+                .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                 .Options;
 
             return new BlazorAPIBancodbContext(options);

@@ -166,6 +166,7 @@ namespace OrgaTask_API.Tests
                 TaPrazo = 2,
                 TaStatus = "Pendente",
                 TaData = "Data Criacao 2",
+                FkUsuario = 1
             };
         }
 

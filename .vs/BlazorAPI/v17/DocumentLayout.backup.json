@@ -15,16 +15,16 @@
       "RelativeMoniker": "D:0:0:{FFB6981C-7471-40FC-BF82-9B39CFF9CE3C}|OrgaTask-API.Tests\\OrgaTask-API.Tests.csproj|solutionrelative:orgatask-api.tests\\repository\\usuario\\usuariorepositorytest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\repository\\usuario\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|solutionrelative:blazorapi\\repository\\usuario\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FFB6981C-7471-40FC-BF82-9B39CFF9CE3C}|OrgaTask-API.Tests\\OrgaTask-API.Tests.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\orgatask-api.tests\\tarefatestdatafactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FFB6981C-7471-40FC-BF82-9B39CFF9CE3C}|OrgaTask-API.Tests\\OrgaTask-API.Tests.csproj|solutionrelative:orgatask-api.tests\\tarefatestdatafactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FFB6981C-7471-40FC-BF82-9B39CFF9CE3C}|OrgaTask-API.Tests\\OrgaTask-API.Tests.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\orgatask-api.tests\\controllers\\tarefa\\tarefacontrollertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FFB6981C-7471-40FC-BF82-9B39CFF9CE3C}|OrgaTask-API.Tests\\OrgaTask-API.Tests.csproj|solutionrelative:orgatask-api.tests\\controllers\\tarefa\\tarefacontrollertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\repository\\usuario\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|solutionrelative:blazorapi\\repository\\usuario\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B5BFBCE6-19BF-4E74-8E0D-AFCDE34AFC81}|BlazorAPI\\BlazorAPI.csproj|c:\\users\\israe\\source\\repos\\blazorapi\\blazorapi\\controllers\\tarefa\\tarefacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -76,7 +76,7 @@
               "RelativeDocumentMoniker": "BlazorAPI\\Repository\\Tarefa\\TarefaRepository.cs",
               "ToolTip": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Repository\\Tarefa\\TarefaRepository.cs",
               "RelativeToolTip": "BlazorAPI\\Repository\\Tarefa\\TarefaRepository.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAA5wBQAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-29T01:17:56.364Z",
               "EditorCaption": ""
@@ -89,14 +89,14 @@
               "RelativeDocumentMoniker": "OrgaTask-API.Tests\\Repository\\Tarefa\\TarefaRepositoryTest.cs",
               "ToolTip": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\OrgaTask-API.Tests\\Repository\\Tarefa\\TarefaRepositoryTest.cs",
               "RelativeToolTip": "OrgaTask-API.Tests\\Repository\\Tarefa\\TarefaRepositoryTest.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAqwA4AAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAowGsAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-31T19:42:50.152Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "UsuarioRepository.cs",
               "DocumentMoniker": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\BlazorAPI\\Repository\\Usuario\\UsuarioRepository.cs",
               "RelativeDocumentMoniker": "BlazorAPI\\Repository\\Usuario\\UsuarioRepository.cs",
@@ -104,8 +104,7 @@
               "RelativeToolTip": "BlazorAPI\\Repository\\Usuario\\UsuarioRepository.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAACEAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-31T16:57:01.798Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-31T16:57:01.798Z"
             },
             {
               "$type": "Document",
@@ -115,7 +114,7 @@
               "RelativeDocumentMoniker": "OrgaTask-API.Tests\\Repository\\Usuario\\UsuarioRepositoryTest.cs",
               "ToolTip": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\OrgaTask-API.Tests\\Repository\\Usuario\\UsuarioRepositoryTest.cs",
               "RelativeToolTip": "OrgaTask-API.Tests\\Repository\\Usuario\\UsuarioRepositoryTest.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-31T16:55:10.214Z",
               "EditorCaption": ""
@@ -130,8 +129,7 @@
               "RelativeToolTip": "BlazorAPI\\DTOs\\Tarefa\\TarefaPrioridadeAltaDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-31T16:50:59.734Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-31T16:50:59.734Z"
             },
             {
               "$type": "Document",
@@ -143,18 +141,17 @@
               "RelativeToolTip": "OrgaTask-API.Tests\\Controllers\\Usuario\\UsuarioControllerTest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-31T00:26:45.183Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-31T00:26:45.183Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "TarefaControllerTest.cs",
               "DocumentMoniker": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\OrgaTask-API.Tests\\Controllers\\Tarefa\\TarefaControllerTest.cs",
               "RelativeDocumentMoniker": "OrgaTask-API.Tests\\Controllers\\Tarefa\\TarefaControllerTest.cs",
               "ToolTip": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\OrgaTask-API.Tests\\Controllers\\Tarefa\\TarefaControllerTest.cs",
               "RelativeToolTip": "OrgaTask-API.Tests\\Controllers\\Tarefa\\TarefaControllerTest.cs",
-              "ViewState": "AgIAAJUAAAAAAAAAAAAmwIoAAABjAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIoAAABjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-30T23:51:47.857Z",
               "EditorCaption": ""
@@ -169,18 +166,17 @@
               "RelativeToolTip": "BlazorAPI\\Controllers\\Tarefa\\TarefaController.cs",
               "ViewState": "AgIAAKQBAAAAAAAAAAAowLIBAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-29T01:17:24.489Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-29T01:17:24.489Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "TarefaTestDataFactory.cs",
               "DocumentMoniker": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\OrgaTask-API.Tests\\TarefaTestDataFactory.cs",
               "RelativeDocumentMoniker": "OrgaTask-API.Tests\\TarefaTestDataFactory.cs",
               "ToolTip": "C:\\Users\\israe\\source\\repos\\BlazorAPI\\OrgaTask-API.Tests\\TarefaTestDataFactory.cs",
               "RelativeToolTip": "OrgaTask-API.Tests\\TarefaTestDataFactory.cs",
-              "ViewState": "AgIAAIoAAAAAAAAAAAAlwJgAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAI8AAAAAAAAAAIA7wKgAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-28T22:28:34.978Z",
               "EditorCaption": ""
@@ -195,8 +191,7 @@
               "RelativeToolTip": "BlazorAPI\\Services\\Tarefa\\TarefaService.cs",
               "ViewState": "AgIAAHIAAAAAAAAAAAAzwIMAAABZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-28T22:17:03.855Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-28T22:17:03.855Z"
             },
             {
               "$type": "Document",
@@ -208,8 +203,7 @@
               "RelativeToolTip": "OrgaTask-API.Tests\\Services\\Tarefa\\TarefaServiceTest.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAASwCYAAABlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-28T22:05:45.457Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-28T22:05:45.457Z"
             },
             {
               "$type": "Document",
@@ -221,8 +215,7 @@
               "RelativeToolTip": "OrgaTask-API.Tests\\Services\\Usuario\\UsuarioServiceTest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-27T23:57:35.163Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-27T23:57:35.163Z"
             },
             {
               "$type": "Document",
@@ -234,8 +227,7 @@
               "RelativeToolTip": "BlazorAPI\\Services\\Usuario\\UsuarioService.cs",
               "ViewState": "AgIAAB8AAAAAAAAAAIAwwDoAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-25T01:40:50.965Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-25T01:40:50.965Z"
             }
           ]
         },
