@@ -1,13 +1,15 @@
-﻿using BlazorAPI.Models;
+﻿using BlazorAPI.DTOs;
+using BlazorAPI.DTOs.Tarefa;
+using BlazorAPI.Models;
+using BlazorAPI.Repository.Tarefa;
 using BlazorAPI.Repository.Usuario;
 using Microsoft.EntityFrameworkCore;
+using OrgaTask_API.Tests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BlazorAPI.Repository.Tarefa;
-using OrgaTask_API.Tests;
 using Xunit;
 
 namespace Repository
@@ -71,12 +73,15 @@ namespace Repository
             await contexto.SaveChangesAsync();
 
             // Assert
-            var retorno = await contexto.TbTarefas.FirstOrDefaultAsync(u => u.IdTarefa == dadosTarefaMock.IdTarefa);
+            var retorno = await contexto.TbTarefas.AnyAsync(u => u.IdTarefa == dadosTarefaMock.IdTarefa && u.TaTitulo == dadosTarefaAlterarMock.TaTitulo);
 
-            Assert.NotNull(retorno);
+            Assert.True(retorno);
         }
 
         #endregion
+
+
+        #region Tarefa Pertence ao Usuario
 
 
         [Fact(DisplayName = "Tarefa Pertence Usuario: Deve retornar true quando tarefa pertence ao usuário")]
@@ -120,5 +125,213 @@ namespace Repository
             // Assert
             Assert.False(retorno);
         }
+
+        #endregion
+
+
+        #region Deletar Tarefa
+
+
+        [Fact(DisplayName = "Deletar Tarefa: Deve remover a tarefa do banco quando tarefa existe")]
+        public async Task DeletarTareTarefaExistenteDeveRemoverTarefa()
+        {
+            // Arrange
+            var contexto = CriarContextoInMemory();
+
+            TbTarefa dadosTarefaMock = TarefaTestDataFactory.CriarDadosTarefa();
+            contexto.TbTarefas.Add(dadosTarefaMock);
+            await contexto.SaveChangesAsync();
+
+            var repository = new TarefaRepository(contexto);
+
+            // Act
+            await repository.DeletarTarefaAsync(dadosTarefaMock.IdTarefa);
+            await contexto.SaveChangesAsync();
+
+            // Assert
+            var retorno = await contexto.TbTarefas.AnyAsync(u => u.IdTarefa == dadosTarefaMock.IdTarefa);
+
+            Assert.False(retorno);
+        }
+
+        #endregion
+
+
+        #region Buscar Tarefa
+
+        [Fact(DisplayName = "Buscar Tarefa: Deve retornar a tarefa correspondente quando tarefa existe")]
+        public async Task BuscarTarefaTarefaExistenteDeveRetornarTarefa()
+        {
+            // Arrange
+            var contexto = CriarContextoInMemory();
+
+            TbTarefa dadosTarefaMock = TarefaTestDataFactory.CriarDadosTarefa();
+            contexto.TbTarefas.Add(dadosTarefaMock);
+            await contexto.SaveChangesAsync();
+
+            var repository = new TarefaRepository(contexto);
+
+            // Act
+            TbTarefa retorno = await repository.BuscarTarefaAsync(dadosTarefaMock.IdTarefa);
+            await contexto.SaveChangesAsync();
+
+            // Assert
+            Assert.NotNull(retorno);
+        }
+
+        #endregion
+
+
+        #region Lista Tarefas Paginadas
+
+        [Fact(DisplayName = "Lista Tarefas Paginada: Deve retornar lista paginada quando tarefas existem")]
+        public async Task ListaTarefasPaginadasQuandoTarefasExistemDeveRetornarListaPaginada()
+        {
+            // Arrange
+            int idUsuario = 1;
+            int pageNumber = 1;
+            int pageSize = 12;
+
+            var contexto = CriarContextoInMemory();
+
+            List<TbTarefa> listaTarefaMock = TarefaTestDataFactory.CriarDadosListaTarefa();
+
+            listaTarefaMock.ForEach(t => contexto.TbTarefas.Add(t));
+
+            await contexto.SaveChangesAsync();
+
+            var repository = new TarefaRepository(contexto);
+            
+            // Act
+            (List<TbTarefa> Items, int TotalCount) retorno = await repository.ListaTarefasPaginadasAsync(idUsuario,pageNumber,pageSize);
+            await contexto.SaveChangesAsync();
+
+            // Assert
+            Assert.NotNull(retorno);
+        }
+
+        #endregion
+
+
+        #region Lista Tarefas Paginadas por Status
+
+        [Fact(DisplayName = "Lista Tarefas Paginada Por Estatus: Deve retornar lista paginada quando tarefas existem")]
+        public async Task ListaTarefasPaginadasPorStatusQuandoTarefasExistemDeveRetornarListaPaginada()
+        {
+            // Arrange
+            int idUsuario = 1;
+            int pageNumber = 1;
+            int pageSize = 12;
+            string status = "Pendente";
+
+            var contexto = CriarContextoInMemory();
+
+            List<TbTarefa> listaTarefaMock = TarefaTestDataFactory.CriarDadosListaTarefa();
+
+            listaTarefaMock.ForEach(t => contexto.TbTarefas.Add(t));
+
+            await contexto.SaveChangesAsync();
+
+            var repository = new TarefaRepository(contexto);
+
+            // Act
+            (List<TbTarefa> Items, int TotalCount) retorno = await repository.ListaTarefasPaginadasStatusAsync(idUsuario, pageNumber, pageSize, status);
+            await contexto.SaveChangesAsync();
+
+            // Assert
+            Assert.NotNull(retorno);
+        }
+
+        #endregion
+
+
+
+        #region Lista Tarefas por IdUsuario
+
+        [Fact(DisplayName = "Lista Tarefas IdUsuario: Deve retornar lista correspondente quando tarefas existem para o usuário")]
+        public async Task ListaTarefasIdQuandoTarefasExistemParaUsuarioDeveRetornarListaCorrespondente()
+        {
+            // Arrange
+            int idUsuario = 1;
+         
+            var contexto = CriarContextoInMemory();
+
+            List<TbTarefa> listaTarefaMock = TarefaTestDataFactory.CriarDadosListaTarefa();
+
+            listaTarefaMock.ForEach(t => contexto.TbTarefas.Add(t));
+
+            await contexto.SaveChangesAsync();
+
+            var repository = new TarefaRepository(contexto);
+
+            // Act
+            List<TbTarefa> retorno = await repository.ListaTarefasIdAsync(idUsuario);
+            await contexto.SaveChangesAsync();
+
+            // Assert
+            Assert.NotNull(retorno);
+        }
+
+        #endregion
+
+
+        #region Buscar Qtd Status Tarefa
+
+        [Fact(DisplayName = "Buscar Qtd Status Tarefa: Deve retornar contagem correta por status quando tarefas existem")]
+        public async Task BuscarQtdStatusTarefaComTarefasExistentesDeveRetornarContagemCorretaPorStatus()
+        {
+            // Arrange
+            int idUsuario = 1;
+
+            var contexto = CriarContextoInMemory();
+
+            List<TbTarefa> listaTarefaMock = TarefaTestDataFactory.CriarDadosListaTarefa();
+
+            listaTarefaMock.ForEach(t => contexto.TbTarefas.Add(t));
+
+            await contexto.SaveChangesAsync();
+
+            var repository = new TarefaRepository(contexto);
+
+            // Act
+            (int pendente, int emAndamento, int concluido) retorno = await repository.BuscarQtdStatusTarefaAsync(idUsuario);
+            await contexto.SaveChangesAsync();
+
+            // Assert
+            Assert.Equal(2, retorno.pendente);       
+            Assert.Equal(0, retorno.emAndamento);    
+            Assert.Equal(0, retorno.concluido);      
+        }
+
+        #endregion
+
+
+        #region Buscar Qtd Status Tarefa
+
+        [Fact(DisplayName = "Buscar Tarefas Prioridade Alta: Deve retornar lista de tarefas com prioridade alta quando tarefas existem")]
+        public async Task BuscarTarefasPrioridadeAltaQuandoTarefasExistemDeveRetornarListaPrioridadeAlta()
+        {
+            // Arrange
+            int idUsuario = 1;
+
+            var contexto = CriarContextoInMemory();
+
+            List<TbTarefa> listaTarefaMock = TarefaTestDataFactory.CriarDadosListaTarefa();
+
+            listaTarefaMock.ForEach(t => contexto.TbTarefas.Add(t));
+
+            await contexto.SaveChangesAsync();
+
+            var repository = new TarefaRepository(contexto);
+
+            // Act
+            List<TbTarefa> retorno = await repository.BuscarTarefasPrioridadeAltaAsync(idUsuario);
+            await contexto.SaveChangesAsync();
+
+            // Assert
+            Assert.NotNull(retorno);
+        }
+
+        #endregion
     }
 }

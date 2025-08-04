@@ -111,6 +111,7 @@ namespace OrgaTask_API.Tests
                         TaPrazo = 1 ,
                         TaStatus = "Pendente" ,
                         TaData = DateTime.Now.ToString(),
+                        FkUsuario = 1
                     },
                     new TbTarefa
                     {
@@ -121,6 +122,7 @@ namespace OrgaTask_API.Tests
                         TaPrazo = 2 ,
                         TaStatus = "Pendente" ,
                         TaData = DateTime.Now.ToString(),
+                        FkUsuario = 1
                     },
             };
 
