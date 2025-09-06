@@ -21,6 +21,19 @@ OrgaTask API é uma API RESTful desenvolvida para gerenciar tarefas e autentica�
 - **DTOs**: Transferência de dados
 - **Injeção de Dependência**: Nativa do .NET (IServiceCollection)
 
+## Testes Unitários
+
+O projeto inclui uma suite completa de testes unitários implementados com **xUnit**, seguindo as melhores práticas:
+
+- **Cobertura abrangente** dos serviços de aplicação
+- **Testes de validação** com FluentValidation
+- **Mocking de dependências** usando Moq
+- **Testes isolados** e independentes
+
+### Tecnologias de Teste:
+- **xUnit** - Framework de testes
+- **Moq** - Biblioteca para mocking
+
 ## Funcionalidades
 
 - Autenticação e autorização via JWT
