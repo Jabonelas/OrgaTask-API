@@ -11,6 +11,7 @@ OrgaTask API é uma API RESTful desenvolvida para gerenciar tarefas e autentica�
 - **ORM**: Entity Framework Core
 - **Autenticação**: JWT Bearer Tokens
 - **Documentação**: Swagger/OpenAPI
+- **Testes Unitários**: xUnit, Moq
 
 ## Padrões Arquiteturais
 
@@ -26,6 +27,7 @@ OrgaTask API é uma API RESTful desenvolvida para gerenciar tarefas e autentica�
 - CRUD de tarefas (criar, listar, atualizar, excluir)
 - Documentação interativa via Swagger
 - Validação de dados e tratamento de erros
+- Suite de testes unitários com xUnit
 
 ## Pré-requisitos
 
