@@ -15,7 +15,4 @@
 	<ItemGroup>
 		<ProjectReference Include="..\BlazorAPI\BlazorAPI.csproj" />
 	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Models\" />
-	</ItemGroup>
 </Project>
